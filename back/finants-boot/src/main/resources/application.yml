@@ -62,7 +62,7 @@ server:
       mime-types: application/json, application/xml
 spring:
    datasource:
-      driver-class-name: org.hsqldb.jdbcDriver
+      # driver-class-name: org.hsqldb.jdbcDriver
       jdbc-url: jdbc:postgresql://45.84.210.174:65432/2023_BFS_2_G1
       username: 2023_BFS_2_G1
       password: b2f34VKzTvt2
