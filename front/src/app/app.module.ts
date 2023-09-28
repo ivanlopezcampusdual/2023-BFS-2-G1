@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+//import { APP_CONFIG, ONTIMIZE_MODULES, ONTIMIZE_PROVIDERS, OntimizeWebModule } from 'ontimize-web-ngx';
+
 import { APP_CONFIG, ONTIMIZE_MODULES, ONTIMIZE_PROVIDERS, OntimizeWebModule } from 'ontimize-web-ngx';
 
 import { environment } from '../environments/environment';
@@ -11,6 +13,7 @@ import { CONFIG } from './app.config';
 // Defining custom providers (if needed)...
 export const customProviders: any = [
 ];
+
 
 @NgModule({
   imports: [
