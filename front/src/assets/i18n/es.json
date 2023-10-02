@@ -18,5 +18,16 @@
   "REMEMBER_ME": "Recuérdame",
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
-  "FOOTER_RIGHTS": "Todos los derechos reservados"
+  "FOOTER_RIGHTS": "Todos los derechos reservados",
+
+  "EXPENSES": "Gastos",
+  "CATEGORIES": "Categorias",
+  "CONCEPT": "Concepto",
+  "AMOUNT": "Importe",
+  "DATE": "Fecha",
+  "EXPENSES_FORM": "Formulario de gastos",
+  "ADD_BTN": "Guardar",
+  "MESSAGES.FORM_CHANGES_WILL_BE_LOST": "Prueba",
+  "ADD_EXPENSES": "Añadir gastos",
+  "INSERT": "Guardar"
 }

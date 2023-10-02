@@ -1,0 +1,9 @@
+<div fxFill fxLayout="column" fxLayoutAlign="start">
+  <o-table attr="expenseTable" service="expenses" entity="expense" keys="EX_ID"
+    columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE" visible-columns="EX_CONCEPT;EX_AMOUNT;EX_DATE" query-rows="20">
+    <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+    <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+      content-align="center"></o-table-column>
+    <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column>
+  </o-table>
+</div>

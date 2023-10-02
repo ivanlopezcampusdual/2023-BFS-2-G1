@@ -18,5 +18,14 @@
   "REMEMBER_ME": "Remember me",
   "FORGOT_PWD": "Forgot your password?",
   "FOOTER_CREATED_BY": "Created by Imatia Innovation",
-  "FOOTER_RIGHTS": "All rights reserved"
+  "FOOTER_RIGHTS": "All rights reserved",
+
+  "EXPENSES": "Expenses",
+  "CATEGORIES": "Categories",
+  "CONCEPT": "Concept",
+  "AMOUNT": "Amount",
+  "DATE": "Date",
+  "EXPENSES_FORM": "Expenses form",
+  "ADD_EXPENSES": "Add expenses",
+  "INSERT": "Save"
 }
