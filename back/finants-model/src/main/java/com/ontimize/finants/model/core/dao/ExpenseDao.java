@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @ConfigurationFile(configurationFile = "dao/ExpenseDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class ExpenseDao extends OntimizeJdbcDaoSupport {
 
-    public static final String ATTR_EX_ID = "ex_id";
-    public static final String ATTR_EX_CONCEPT = "ex_concept";
-    public static final String ATTR_EX_AMOUNT = "ex_amount";
-    public static final String ATTR_EX_DATE = "ex_date";
-    public static final String ATTR_CA_EX_ID = "ca_ex_id";
+    public static final String ATTR_EX_ID = "EX_ID";
+    public static final String ATTR_EX_CONCEPT = "EX_CONCEPT";
+    public static final String ATTR_EX_AMOUNT = "EX_AMOUNT";
+    public static final String ATTR_EX_DATE = "EX_DATE";
+    public static final String ATTR_CA_EX_ID = "CA_EX_ID";
 }

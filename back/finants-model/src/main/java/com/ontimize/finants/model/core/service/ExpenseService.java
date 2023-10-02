@@ -34,6 +34,10 @@ public class ExpenseService implements IExpenseService {
 
     @Override
     public EntityResult expenseInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+        Object localDate = attrMap.get(ExpenseDao.ATTR_EX_DATE);
+        if( localDate == null){
+            attrMap.put(ExpenseDao.ATTR_EX_DATE, LocalDate.now());
+        }
         return this.daoHelper.insert(this.expenseDao, attrMap);
     }
 
