@@ -27,5 +27,6 @@
   "DATE": "Date",
   "EXPENSES_FORM": "Expenses form",
   "ADD_EXPENSES": "Add expenses",
-  "INSERT": "Save"
+  "INSERT": "Save",
+  "NONEGATIVE": "Type a positive value"
 }
