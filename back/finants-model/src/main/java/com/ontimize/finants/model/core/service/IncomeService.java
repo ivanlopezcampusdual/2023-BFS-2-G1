@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Lazy
-@Service("ExpenseService")
+@Service("IncomeService")
 
 public class IncomeService implements IIncomeService {
 
