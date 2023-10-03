@@ -4,13 +4,13 @@ import { ValidatorFn, ValidationErrors, FormControl } from "@angular/forms";
 import { OValidators } from "ontimize-web-ngx";
 
 @Component({
-  selector: "app-expenses-detail",
+  selector: "app-expenses-new",
 
-  templateUrl: "./expenses-detail.component.html",
+  templateUrl: "./expenses-new.component.html",
 
-  styleUrls: ["./expenses-detail.component.css"],
+  styleUrls: ["./expenses-new.component.css"],
 })
-export class ExpensesDetailComponent implements OnInit {
+export class ExpensesNewComponent implements OnInit {
   valor: number = 0;
 
   validatorAmount: ValidatorFn[] = [];
