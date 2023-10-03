@@ -27,5 +27,7 @@
   "DATE": "Date",
   "EXPENSES_FORM": "Expenses form",
   "ADD_EXPENSES": "Add expenses",
-  "INSERT": "Save"
+  "INSERT": "Save",
+  "INCOME": "Income",
+  "INCOMES": "Incomes"
 }

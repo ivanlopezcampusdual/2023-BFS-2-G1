@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "ontimize-web-ngx";
 
 import { MainComponent } from "./main.component";
+import { IncomesModule } from "./incomes/incomes.module";
 
 export const routes: Routes = [
   {
@@ -21,6 +22,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import("./expenses/expenses.module").then((m) => m.ExpensesModule),
       },
+      {
+        path: "incomes",
+        loadChildren: () =>
+          import("./incomes/incomes.module").then((m) => m.IncomesModule)
+      }
     ],
   },
 ];
