@@ -30,5 +30,7 @@
   "MESSAGES.FORM_CHANGES_WILL_BE_LOST": "Prueba",
   "ADD_EXPENSES": "Añadir gastos",
   "INSERT": "Guardar",
-  "NONEGATIVE": "Introduce valores positivos"
+  "NONEGATIVE": "Introduce valores positivos",
+  "INCOME": "Ingreso",
+  "INCOMES": "Ingresos"
 }

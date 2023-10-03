@@ -28,5 +28,7 @@
   "EXPENSES_FORM": "Expenses form",
   "ADD_EXPENSES": "Add expenses",
   "INSERT": "Save",
-  "NONEGATIVE": "Type a positive value"
+  "NONEGATIVE": "Type a positive value",
+  "INCOME": "Income",
+  "INCOMES": "Incomes"
 }
