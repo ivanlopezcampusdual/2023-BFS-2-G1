@@ -10,6 +10,13 @@ export const MENU_CONFIG: MenuRootItem[] = [
     confirm: "yes",
   },
   {
+    id: "incomes",
+    name: "INCOMES",
+    route: "/main/incomes",
+    icon: "",
+    confirm: "yes",
+  },
+  {
     id: "logout",
     name: "LOGOUT",
     route: "/login",
