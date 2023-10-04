@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { IncomesRoutingModule } from './incomes-routing.module';
 import { IncomesHomeComponent } from './incomes-home/incomes-home.component';
+import { IncomesNewComponent } from './incomes-new/incomes-new.component';
 
 
 @NgModule({
-  declarations: [IncomesHomeComponent],
+  declarations: [IncomesHomeComponent, IncomesNewComponent],
   imports: [
     CommonModule,
-    IncomesRoutingModule,
+    OntimizeWebModule,
     IncomesRoutingModule
   ]
 })

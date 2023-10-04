@@ -30,6 +30,8 @@
   "INSERT": "Save",
   "NONEGATIVE": "Type a positive value",
   "INCOME": "Income",
-  "INCOMES": "Incomes"
+  "INCOMES": "Incomes",
+  "INCOMES_FORM": "Incomes form",
+  "ADD_INCOMES": "Add incomes"
 
 }
