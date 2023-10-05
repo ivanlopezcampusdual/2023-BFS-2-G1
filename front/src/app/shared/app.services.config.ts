@@ -5,4 +5,10 @@ export const SERVICE_CONFIG: Object = {
   categoryExpenses: {
     path: "/categoryExpenses",
   },
+  incomes: {
+    path: "/incomes",
+  },
+  categoryIncomes: {
+    path: "/categoryIncomes"
+  }
 };

@@ -1,0 +1,21 @@
+<o-form service="incomes" entity="income" keys="IN_ID" header-actions="R;I;U;D" show-header-navigation="no"
+  emitEvent="false" changeType="0" >
+
+  <o-text-input attr="INCOMES_FORM" sql-type="INTEGER" enabled="no"></o-text-input>
+  <o-row>
+    <o-column title-label="INCOMES_FORM" fxFlex>
+      <o-row>
+        <o-text-input class="input-padding" attr="IN_CONCEPT" label="CONCEPT" fxFlex="40" required="yes"
+          max-length="30"></o-text-input>
+        <o-currency-input class="input-padding" attr="IN_AMOUNT" label="AMOUNT" fxFlex="40" required="yes"
+          [validators]="validatorAmount" currency-symbol="€" [locale]="'es-ES'">
+          <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
+        </o-currency-input>
+        <o-date-input attr="IN_DATE" label="DATE" fxFlex="20"></o-date-input>
+        <o-combo attr="CA_IN_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categoryIncomes"
+          entity="categoryIncome" keys="CA_IN_ID" columns="CA_IN_ID;CA_IN_NAME" visible-columns="CA_IN_NAME"
+          value-column="CA_IN_ID" multiple="false"></o-combo>
+      </o-row>
+    </o-column>
+  </o-row>
+</o-form>

@@ -1,27 +1,41 @@
-
 <div fxFill fxLayout ="column" >
+  <div>
+   <div fxFill fxLayout="column" fxLayoutAlign="start">
+     <o-table attr="expenseTable" service="expenses" entity="expense" keys="EX_ID"
+       columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE" visible-columns="EX_CONCEPT;EX_AMOUNT;EX_DATE" query-rows="10">
+       <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+       <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+         content-align="center"></o-table-column>
+       <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column>
+     </o-table>
+   </div>
+ </div>
 
-<div>
-  <div fxFill fxLayout="column" fxLayoutAlign="start">
-    <o-table attr="expenseTable" service="expenses" entity="expense" keys="EX_ID"
-      columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE" visible-columns="EX_CONCEPT;EX_AMOUNT;EX_DATE" query-rows="10">
-      <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
-      <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
-        content-align="center"></o-table-column>
-      <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column>
-    </o-table>
-  </div>
-</div>
-  
   <div layout="column" fxFlex>
     <div fxLayout="row" fxFlexFill>
-      <o-chart fxFlex type="discreteBar" x-label="axis x" y-label="axis y" service="expenses" entity="totalAmountDay"
-        x-axis="fecha" y-axis="suma"  x-data-type=date format="L" y-data-type="currency"  keys="fecha" columns="suma" visible-columns="suma;fecha">
+      <o-chart   attr = "chartTotalAmountDay" fxFlex type="discreteBar" x-label="axis x" y-label="axis y" service="expenses" entity="totalAmountDay"
+        x-axis="DATE_SUM_AMOUNT" y-axis="SUM_AMOUNT"  x-data-type=date format="L" y-data-type="currency"  keys="DATE_SUM_AMOUNT" columns="SUM_AMOUNT" visible-columns="SUM_AMOUNT;DATE_SUM_AMOUNT"
+        show-label ="yes"  >
       </o-chart>
     </div>
   </div>
 </div>
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
