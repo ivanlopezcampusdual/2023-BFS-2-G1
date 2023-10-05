@@ -12,4 +12,21 @@
         <Column>EX_ID</Column>
     </UpdateKeys>
     <GeneratedKey>ex_id</GeneratedKey>
+    <Queries>
+        <Query id="totalAmountDay">
+            <Sentence>
+                <![CDATA[
+					WITH  SUM_TABLE AS
+                        (SELECT
+                            SUM(EX_AMOUNT) suma,
+                           TO_CHAR(EX_DATE, 'YYYY-MM-DD') fecha
+                        FROM
+                            ${mainschema}.EXPENSES ex
+                        GROUP BY fecha
+                        ORDER BY suma DESC)
+					SELECT #COLUMNS# FROM SUM_TABLE #WHERE#
+					]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

@@ -50,4 +50,10 @@ public class ExpenseService implements IExpenseService {
     public EntityResult expenseDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.expenseDao, keyMap);
     }
+
+    @Override
+    public EntityResult totalAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.expenseDao, keyMap, attrList,ExpenseDao.QUERY_TOTAL_AMOUNT );
+    }
+
 }

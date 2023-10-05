@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CONFIG } from './app.config';
+import { OChartModule } from 'ontimize-web-ngx-charts';
 
 // Standard providers...
 // Defining custom providers (if needed)...

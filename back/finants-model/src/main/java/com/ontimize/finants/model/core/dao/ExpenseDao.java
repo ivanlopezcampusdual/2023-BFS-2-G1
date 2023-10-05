@@ -15,4 +15,6 @@ public class ExpenseDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_EX_AMOUNT = "EX_AMOUNT";
     public static final String ATTR_EX_DATE = "EX_DATE";
     public static final String ATTR_CA_EX_ID = "CA_EX_ID";
+    public static final String QUERY_TOTAL_AMOUNT = "totalAmountDay";
+
 }
