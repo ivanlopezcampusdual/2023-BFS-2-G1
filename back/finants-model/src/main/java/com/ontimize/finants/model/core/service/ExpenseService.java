@@ -7,8 +7,11 @@ import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.security.Security;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +32,8 @@ public class ExpenseService implements IExpenseService {
 
     @Override
     public EntityResult expenseQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.query(this.expenseDao, keyMap, attrList);
     }
 
@@ -38,11 +43,15 @@ public class ExpenseService implements IExpenseService {
         if( localDate == null){
             attrMap.put(ExpenseDao.ATTR_EX_DATE, LocalDate.now());
         }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        attrMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.insert(this.expenseDao, attrMap);
     }
 
     @Override
     public EntityResult expenseUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.update(this.expenseDao, attrMap, keyMap);
     }
 
@@ -53,6 +62,8 @@ public class ExpenseService implements IExpenseService {
 
     @Override
     public EntityResult totalAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.query(this.expenseDao, keyMap, attrList,ExpenseDao.QUERY_TOTAL_AMOUNT );
     }
 
