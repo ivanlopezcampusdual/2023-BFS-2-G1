@@ -1,6 +1,20 @@
-<div fxLayout="row" layout-padding fxLayoutAlign="center center">
-  <div class="btn_expenses">
-    <a href="http://localhost:4200/main/expenses/new"><o-button attr="stroked4" type="STROKED" label="ADD_EXPENSES"
-        layout-padding></o-button></a>
+<div fxFlex>
+  <div fxLayout="row" layout-padding fxLayoutAlign="start center">
+    <div class="btn_expenses">
+      <a href="http://localhost:4200/main/expenses/new"><o-button attr="stroked4" type="STROKED" label="ADD_EXPENSES"
+          layout-padding></o-button></a>
+    </div>
+  
+
+  
+    <div class="btn_expenses">
+      <a href="http://localhost:4200/main/incomes/new"><o-button attr="stroked4" type="STROKED" label="ADD_INCOMES"
+          layout-padding></o-button></a>
+    </div>
   </div>
+<div fxFill fxLayout="row"  fxLayoutAlign="space-around start" layout-padding>
+ <app-expenses-chart></app-expenses-chart>
+ <app-incomes-chart></app-incomes-chart>
+  
+</div>
 </div>
