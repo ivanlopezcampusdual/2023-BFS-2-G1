@@ -12,6 +12,7 @@ const routes: Routes = [
     path: ":EXPENSESID",
     component: ExpensesNewComponent,
   },
+  
 ];
 
 @NgModule({

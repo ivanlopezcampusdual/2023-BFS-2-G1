@@ -11,14 +11,7 @@
    </div>
  </div>
 
-  <div layout="column" fxFlex>
-    <div fxLayout="row" fxFlexFill>
-      <o-chart   attr = "chartTotalAmountDay" fxFlex type="discreteBar" x-label="axis x" y-label="axis y" service="expenses" entity="totalAmountDay"
-        x-axis="DATE_SUM_AMOUNT" y-axis="SUM_AMOUNT"  x-data-type=date format="L" y-data-type="currency"  keys="DATE_SUM_AMOUNT" columns="SUM_AMOUNT" visible-columns="SUM_AMOUNT;DATE_SUM_AMOUNT"
-        show-label ="yes"  >
-      </o-chart>
-    </div>
-  </div>
+ <app-expenses-chart></app-expenses-chart>
 </div>
 
 
