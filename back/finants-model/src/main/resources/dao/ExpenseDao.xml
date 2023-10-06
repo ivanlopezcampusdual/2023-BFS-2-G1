@@ -18,12 +18,14 @@
                 <![CDATA[
 					WITH  SUM_TABLE AS
                         (SELECT
-                            SUM(EX_AMOUNT) suma,
-                           TO_CHAR(EX_DATE, 'YYYY-MM-DD') fecha
+                            SUM(EX_AMOUNT) SUM_AMOUNT,
+                           TO_CHAR(EX_DATE, 'YYYY-MM-DD') DATE_SUM_AMOUNT,
+                           USER_
                         FROM
                             ${mainschema}.EXPENSES ex
-                        GROUP BY fecha
-                        ORDER BY suma DESC)
+                        GROUP BY DATE_SUM_AMOUNT, USER_
+                        ORDER BY DATE_SUM_AMOUNT
+                 )
 					SELECT #COLUMNS# FROM SUM_TABLE #WHERE#
 					]]>
             </Sentence>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartSeries, PieChartConfiguration } from 'ontimize-web-ngx-charts';
+import { Component, OnInit   } from '@angular/core';
+import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
 import { D3LocaleService } from '../../../shared/d3-locale/d3Locale.service';
 
 
@@ -8,9 +8,8 @@ import { D3LocaleService } from '../../../shared/d3-locale/d3Locale.service';
   templateUrl: './expenses-home.component.html',
   styleUrls: ['./expenses-home.component.css']
 })
-export class ExpensesHomeComponent implements OnInit {
+export class ExpensesHomeComponent implements OnInit  {
   public movementTypesChartParams: PieChartConfiguration;
-  
 
 
   constructor(
@@ -18,10 +17,11 @@ export class ExpensesHomeComponent implements OnInit {
   ) {
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this._configurePieChart(d3Locale);
+
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
 
   private _configurePieChart(locale: any): void {
     this.movementTypesChartParams = new PieChartConfiguration();
@@ -32,8 +32,20 @@ export class ExpensesHomeComponent implements OnInit {
     this.movementTypesChartParams.legendPosition = 'bottom';
     this.movementTypesChartParams.legend.vers = 'furious';
     this.movementTypesChartParams.labelType = 'value';
-    this.movementTypesChartParams.valueType = locale.numberFormat('$,.2f');
+    this.movementTypesChartParams.valueType = locale.numberFormat('$,.3f');
+
+    
   }
+
+ 
+
+
+
+ 
+
+  
+
+
 
 
 
