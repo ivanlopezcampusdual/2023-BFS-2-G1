@@ -10,5 +10,8 @@ export const SERVICE_CONFIG: Object = {
   },
   categoryIncomes: {
     path: "/categoryIncomes"
+  },
+  users: {
+    path: "/users",
   }
 };
