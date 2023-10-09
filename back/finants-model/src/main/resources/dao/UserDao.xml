@@ -55,5 +55,30 @@
                 ]]>
             </Sentence>
         </Query>
+        <Query id="balance">
+            <Sentence>
+                <![CDATA[
+                    WITH user_balance AS
+                    (
+                         SELECT
+                            SUM(e.EX_AMOUNT) EX_TOTAL,
+                            SUM(i.IN_AMOUNT) IN_TOTAL,
+                            e.USER_
+                         FROM
+                            ${mainschema}.EXPENSES e
+                         LEFT JOIN ${mainschema}.INCOMES i
+                         ON
+                            e.user_ = i.user_
+                         GROUP BY
+                            e.user_
+                    )
+                    SELECT
+                        (IN_TOTAL - EX_TOTAL) BALANCE, user_
+                    FROM
+                        user_balance
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

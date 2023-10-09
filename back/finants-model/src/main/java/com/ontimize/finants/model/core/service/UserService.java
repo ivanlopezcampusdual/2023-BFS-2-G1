@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ontimize.finants.api.core.service.IUserService;
@@ -48,6 +51,13 @@ public class UserService implements IUserService {
 		Map<Object, Object> attrMap = new HashMap<>();
 		attrMap.put("user_down_date", new Timestamp(Calendar.getInstance().getTimeInMillis()));
 		return this.daoHelper.update(this.userDao, attrMap, keyMap);
+	}
+
+	@Override
+	public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		keyMap.put(UserDao.USER_, authentication.getName());
+		return this.daoHelper.query(this.userDao, keyMap, attrList,UserDao.BALANCE_QUERY );
 	}
 
 }

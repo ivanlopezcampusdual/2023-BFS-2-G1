@@ -6,7 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { ExpensesModule } from '../expenses/expenses.module';
 import { IncomesModule } from '../incomes/incomes.module';
-
+import { OChartModule } from 'ontimize-web-ngx-charts';
 
 
 
@@ -16,7 +16,8 @@ import { IncomesModule } from '../incomes/incomes.module';
     OntimizeWebModule,
     HomeRoutingModule, 
     ExpensesModule,
-    IncomesModule
+    IncomesModule,
+    OChartModule
     
   ],
   declarations: [
