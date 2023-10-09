@@ -58,25 +58,30 @@
         <Query id="balance">
             <Sentence>
                 <![CDATA[
-                    WITH user_balance AS
-                    (
-                         SELECT
-                            SUM(e.EX_AMOUNT) EX_TOTAL,
-                            SUM(i.IN_AMOUNT) IN_TOTAL,
-                            e.USER_
-                         FROM
-                            ${mainschema}.EXPENSES e
-                         LEFT JOIN ${mainschema}.INCOMES i
-                         ON
-                            e.user_ = i.user_
-                         GROUP BY
-                            e.user_
-                    )
-                    SELECT
-                        (IN_TOTAL - EX_TOTAL) BALANCE, user_
-                    FROM
-                        user_balance
-                    #WHERE#
+                WITH USER_BALANCE AS
+                (
+	             SELECT
+		            SUM(e.EX_AMOUNT) EX_TOTAL,
+		            SUM(i.IN_AMOUNT) IN_TOTAL,
+		            EXTRACT(MONTH FROM EX_DATE) AS EX_MONTH,
+		            EXTRACT(MONTH FROM IN_DATE) AS IN_MONTH,
+		            EXTRACT(YEAR FROM EX_DATE) AS EX_YEAR,
+		            EXTRACT(YEAR FROM IN_DATE)AS IN_YEAR,
+		            e.USER_
+	             FROM EXPENSES e
+	             LEFT JOIN INCOMES i ON e.USER_ = i.USER_
+	             GROUP BY
+	               e.USER_,
+                    EXTRACT(MONTH FROM EX_DATE),
+                    EXTRACT(MONTH FROM IN_DATE),
+                    EXTRACT(YEAR FROM EX_DATE),
+                    EXTRACT(YEAR FROM IN_DATE)
+                 )
+                 SELECT
+                    (IN_TOTAL - EX_TOTAL) BALANCE, user_
+                 FROM
+                    USER_BALANCE
+                 #WHERE#
                 ]]>
             </Sentence>
         </Query>

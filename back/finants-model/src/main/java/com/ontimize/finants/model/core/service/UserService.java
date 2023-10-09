@@ -2,12 +2,12 @@ package com.ontimize.finants.model.core.service;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
@@ -54,9 +54,13 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+	public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		keyMap.put(UserDao.USER_, authentication.getName());
+		keyMap.put("EX_MONTH", LocalDate.now().getMonthValue());
+		keyMap.put("IN_MONTH", LocalDate.now().getMonthValue());
+		keyMap.put("EX_YEAR", LocalDate.now().getYear());
+		keyMap.put("IN_YEAR", LocalDate.now().getYear());
 		return this.daoHelper.query(this.userDao, keyMap, attrList,UserDao.BALANCE_QUERY );
 	}
 
