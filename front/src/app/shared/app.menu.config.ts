@@ -6,14 +6,14 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: "expenses",
     name: "EXPENSES",
     route: "/main/expenses",
-    icon: "",
+    icon: "trending_down",
     confirm: "yes",
   },
   {
     id: "incomes",
     name: "INCOMES",
     route: "/main/incomes",
-    icon: "",
+    icon: "trending_up",
     confirm: "yes",
   },
   {

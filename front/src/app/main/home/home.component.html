@@ -1,26 +1,33 @@
 <div fxFlex>
-  <div> 
-    <div fxFlex fxLayout="row" >
+  <div class="cont-balance">
+    <div fxFlex fxLayout="row" class="box-balance">
       <p>{{MONTHLY_BALANCE | oTranslate}}</p>
       <p>{{balance}}</p>
     </div>
   </div>
-  <div fxLayout="row" layout-padding fxLayoutAlign="start center">
-    <o-button (click)="buttonExpenses()" attr="stroked4" type="STROKED" label="ADD_EXPENSES" layout-padding></o-button>
+
+
+  <div fxFill fxLayout="row" fxLayoutAlign="space-around stretch" layout-padding>
+
+
+    <div fxLayout="column" layout-padding fxLayoutAlign="center stretch" style="width:50%;">
+      <div fxflex fxLayoutAlign="center center">
+        <o-button (click)="buttonExpenses()" attr="stroked4" type="STROKED" label="ADD_EXPENSES"
+          layout-padding></o-button>
+      </div>
+
+      <app-expenses-chart></app-expenses-chart>
+    </div>
+
+    <div fxLayout="column" layout-padding fxLayoutAlign="center stretch" style="width:50%;">
+      <div fxflex fxLayoutAlign="center center">
+        <o-button (click)="buttonIncomes()" attr="stroked4" type="STROKED" label="ADD_INCOMES"
+          layout-padding></o-button>
+      </div>
+
+      <app-incomes-chart></app-incomes-chart>
+    </div>
   </div>
-  <div>
-    <o-button (click)="buttonIncomes()" attr="stroked4" type="STROKED" label="ADD_INCOMES" layout-padding></o-button>
-  </div>
-  <div fxFill fxLayout="row"  fxLayoutAlign="space-around start" layout-padding>
-    <app-expenses-chart></app-expenses-chart>
-    <app-incomes-chart></app-incomes-chart>
-  </div>
+
+
 </div>
-
- 
-
-
-
-
-
-
