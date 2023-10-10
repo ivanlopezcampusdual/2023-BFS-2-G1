@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpensesChartComponent implements OnInit {
 
+  public data; 
+
   constructor() { }
 
   ngOnInit() {
   }
 
+ 
 }
