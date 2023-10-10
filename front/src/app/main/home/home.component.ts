@@ -16,4 +16,12 @@ export class HomeComponent implements OnInit {
   navigate() {
     this.router.navigate(["../", "login"], { relativeTo: this.actRoute });
   }
+
+  buttonExpenses() {
+    this.router.navigate(['/main/expenses/expenses-new']);
+  }
+  buttonIncomes(){
+    this.router.navigate(['/main/incomes/incomes-new']);
+  }
+
 }
