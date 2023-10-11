@@ -14,7 +14,7 @@ export class ExpensesNewComponent implements OnInit {
 
   constructor() {
     this.validatorAmount.push(
-      OValidators.patternValidator(/^\d+([,.]\d+)?$/, 'negativeNumber')
+      OValidators.patternValidator(/^\d+([,.]\d+)?$/, 'negativeNumber'),
     );
   }
 

@@ -1,6 +1,8 @@
-import { Component, OnInit   } from '@angular/core';
+import { Component, OnInit , AfterViewInit,ElementRef   } from '@angular/core';
 import { PieChartConfiguration } from 'ontimize-web-ngx-charts';
 import { D3LocaleService } from '../../../shared/d3-locale/d3Locale.service';
+import { OTableComponent } from 'ontimize-web-ngx';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
@@ -10,19 +12,38 @@ import { D3LocaleService } from '../../../shared/d3-locale/d3Locale.service';
 })
 export class ExpensesHomeComponent implements OnInit  {
   public movementTypesChartParams: PieChartConfiguration;
-
+  datosTabla: any[] = [];
+  private expenseTable: OTableComponent;
+  
 
   constructor(
-    private d3LocaleService: D3LocaleService
+    private d3LocaleService: D3LocaleService,  private el: ElementRef
   ) {
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this._configurePieChart(d3Locale);
+  
 
    }
 
-  ngOnInit() { }
+   ngAfterViewInit(): void {
+    this.expenseTable = this.el.nativeElement.querySelector('#expenseTable');
+    if (this.expenseTable) {
+      const datosTabla = this.expenseTable.dataArray;
+      console.log('Datos de la tabla:', datosTabla);
+      
+    }
+   }
 
+  ngOnInit() {
+    
+   }
+   onClickObtenerDatosTabla(): void {
+    if (this.expenseTable) {
+    const datosTabla = this.expenseTable.dataArray;
+    console.log('Datos de la tabla:', datosTabla);
+    }
 
+  }
   private _configurePieChart(locale: any): void {
     this.movementTypesChartParams = new PieChartConfiguration();
     this.movementTypesChartParams.margin.top = 0;
@@ -34,20 +55,10 @@ export class ExpensesHomeComponent implements OnInit  {
     this.movementTypesChartParams.labelType = 'value';
     this.movementTypesChartParams.valueType = locale.numberFormat('$,.3f');
 
+
+
     
   }
-
- 
-
-
-
- 
-
-  
-
-
-
-
 
 }
 

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+.input-padding {
+  margin-right: 15px;
+}
+.cont-balance {
+  max-width: 14%;
+}
+.box-balance {
+  width: auto;
+  border: 1px solid;
+  border-radius: 10px;
+}
+.box-balance p {
+  margin: 10px;
+}
+.o-button button.mat-stroked-button {
+  border: none;
+}

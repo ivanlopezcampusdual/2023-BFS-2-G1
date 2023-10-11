@@ -33,5 +33,7 @@
   "INCOME": "Ingreso",
   "INCOMES": "Ingresos",
   "INCOMES_FORM": "Formulario de ingresos",
-  "ADD_INCOMES": "Añadir ingresos"
+  "ADD_INCOMES": "Añadir ingresos", 
+  "MONTHLY_BALANCE": "Balance mensual",
+  "NON_NUM": "Por favor, introduce un valor numérico"
 }

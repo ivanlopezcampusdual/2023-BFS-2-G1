@@ -1,9 +1,10 @@
 <div layout="column" fxFlex>
-    <P>{{'INCOMES' | oTranslate }}</P>
-    <div fxLayout="row" fxFlexFill>
-      <o-chart   attr = "chartTotalIncomeDay" fxFlex type="discreteBar" x-label="axis x" y-label="axis y" service="incomes" entity="totalIncomeDay"
-        x-axis="DATE_SUM_INCOMES" y-axis="SUM_INCOMES"  x-data-type=date format="L" y-data-type="currency"  keys="DATE_SUM_INCOMES" columns="SUM_INCOMES" visible-columns="SUM_INCOMES;DATE_SUM_INCOMES"
-        show-label ="yes" >
-      </o-chart>
-    </div>
+  <p>{{'INCOMES' | oTranslate }}</p>
+  <div fxLayout="row" fxFlexFill>
+    <o-chart attr="chartTotalIncomeDay" fxFlex type="discreteBar" x-label="axis x" y-label="axis y" service="incomes"
+      entity="totalIncomeDay" x-axis="DATE_SUM_INCOMES" y-axis="SUM_INCOMES" x-data-type=date format="L"
+      y-data-type="currency" keys="DATE_SUM_INCOMES" columns="SUM_INCOMES"
+      visible-columns="SUM_INCOMES;DATE_SUM_INCOMES" show-label="yes" [chart-parameters]="chartParameters">
+    </o-chart>
   </div>
+</div>
