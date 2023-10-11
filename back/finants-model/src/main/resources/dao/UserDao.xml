@@ -63,6 +63,7 @@
 	             SELECT
 		            SUM(e.EX_AMOUNT) EX_TOTAL,
 		            SUM(i.IN_AMOUNT) IN_TOTAL,
+		            SUM(i.IN_AMOUNT)- SUM(e.EX_AMOUNT) as BALANCE,
 		            EXTRACT(MONTH FROM EX_DATE) AS EX_MONTH,
 		            EXTRACT(MONTH FROM IN_DATE) AS IN_MONTH,
 		            EXTRACT(YEAR FROM EX_DATE) AS EX_YEAR,
@@ -78,12 +79,70 @@
                     EXTRACT(YEAR FROM IN_DATE)
                  )
                  SELECT
-                    (IN_TOTAL - EX_TOTAL) BALANCE, user_
+                   #COLUMNS#
                  FROM
                     USER_BALANCE
                  #WHERE#
                 ]]>
             </Sentence>
         </Query>
+
+        <Query id="getTotalExpensesForCurrentMounth">
+            <Sentence>
+                <![CDATA[
+                WITH TOTAL_EXPENSES AS
+                (
+                SELECT
+                SUM(EX_AMOUNT) AS BALANCE,
+                USER_,
+                EXTRACT(MONTH FROM EX_DATE) as  EX_MONTH,
+                 EXTRACT(YEAR FROM EX_DATE) as EX_YEAR
+                FROM
+                EXPENSES
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM EX_DATE),
+                EXTRACT(YEAR FROM EX_DATE)
+
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_EXPENSES
+                 #WHERE#
+
+        ]]>
+            </Sentence>
+        </Query>
+
+        <Query id="getTotalIncomesForCurrentMounth">
+            <Sentence>
+                <![CDATA[
+                WITH TOTAL_INCOMES AS
+                (
+                SELECT
+                SUM(IN_AMOUNT) AS BALANCE,
+                USER_,
+                EXTRACT(MONTH FROM IN_DATE) as  IN_MONTH,
+                 EXTRACT(YEAR FROM IN_DATE) as IN_YEAR
+                FROM
+                INCOMES
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM IN_DATE),
+                EXTRACT(YEAR FROM IN_DATE)
+
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_INCOMES
+                 #WHERE#
+
+        ]]>
+            </Sentence>
+        </Query>
+
+
     </Queries>
 </JdbcEntitySetup>

@@ -19,4 +19,5 @@ public class ExpenseDao extends OntimizeJdbcDaoSupport {
     public static final String QUERY_TOTAL_AMOUNT = "totalAmountDay";
 
 
+
 }

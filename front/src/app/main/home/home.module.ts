@@ -7,8 +7,8 @@ import { HomeComponent } from './home.component';
 import { ExpensesModule } from '../expenses/expenses.module';
 import { IncomesModule } from '../incomes/incomes.module';
 import { OChartModule } from 'ontimize-web-ngx-charts';
-import { IBalance } from './Ibalance.service';
 
+import { BalanceColorDirective } from './balance-color.directive';
 
 
 @NgModule({
@@ -22,10 +22,8 @@ import { IBalance } from './Ibalance.service';
 
   ],
   declarations: [
-    HomeComponent
-  ], 
-  providers: [
-    IBalance
+    HomeComponent,
+    BalanceColorDirective
   ]
 })
 export class HomeModule { }

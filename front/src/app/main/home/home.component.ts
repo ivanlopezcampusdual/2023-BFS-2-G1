@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Injector, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IBalance } from "./Ibalance.service"; 
-import { HttpHeaders } from '@angular/common/http';
+import { OntimizeService } from "ontimize-web-ngx";
 
 
 @Component({
@@ -10,24 +9,33 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  public balance: any; 
+  protected service: OntimizeService;
+  public balance: number; 
   public MONTHLY_BALANCE:string = "MONTHLY_BALANCE"; 
+  servicePath='/users/balance'; 
   httpOptions:any; 
-  constructor(private router: Router, private actRoute: ActivatedRoute, private balanceService: IBalance) {
+  constructor(private router: Router, private actRoute: ActivatedRoute,  protected injector: Injector) {
+    this.service = this.injector.get(OntimizeService); 
   }
 
-
   ngOnInit() {
-    this.balanceService.query({}, )
-      .subscribe(
-        arg => {
-          console.log(arg.data[0].BALANCE); 
-          this.balance = arg.data[0].BALANCE; 
+    const filter = {}; 
+    const columns = ['user_', 'balance'];  
+    this.configureService(); 
+    this.service.query(filter, columns, 'balance').subscribe(resp=>{
+      if(resp.code === 0){
+        this.getBalance(resp.data); 
+      }
+      })
+  }
 
-        } 
-        );
-    
-    
+  getBalance(data: { balance: number; }[]){
+    this.balance = data[0].balance; 
+  }
+
+  protected configureService() {
+    const conf = this.service.getDefaultServiceConfiguration('users');
+    this.service.configureService(conf);
   }
 
   navigate() {

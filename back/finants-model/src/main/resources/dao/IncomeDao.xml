@@ -26,7 +26,7 @@
                         GROUP BY DATE_SUM_INCOMES, USER_
                         ORDER BY DATE_SUM_INCOMES
                  )
-					SELECT #COLUMNS# FROM SUM_TABLE #WHERE#
+					SELECT #COLUMNS# FROM SUM_TABLE #WHERE# LIMIT 7
 					]]>
             </Sentence>
         </Query>

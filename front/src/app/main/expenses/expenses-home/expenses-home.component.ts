@@ -60,29 +60,6 @@ export class ExpensesHomeComponent implements OnInit  {
     
   }
 
-  
-
- 
-  public getData(data:any): void{
-
-    if(data){
-      
-      console.log(data[0]); 
-    }
-
-   
-  }
-
-
-
- 
-
-  
-
-
-
-
-
 }
 
 

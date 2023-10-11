@@ -1,11 +1,20 @@
 package com.ontimize.finants.model.core.dao;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.ontimize.jee.server.dao.common.ConfigurationFile;
 import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Lazy
@@ -13,8 +22,17 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 @ConfigurationFile(
 	configurationFile = "dao/UserDao.xml",
 	configurationFilePlaceholder = "dao/placeholders.properties")
+
+
+
 public class UserDao extends OntimizeJdbcDaoSupport {
 
+
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Autowired
+	public UserDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
 	public static final String USR_EMAIL    = "user_email";
 	public static final String USR_PASSWORD = "user_password";
 
@@ -28,5 +46,25 @@ public class UserDao extends OntimizeJdbcDaoSupport {
 	public static final String DOWN_DATE     = "user_down_date";
 	public static final String USER_         = "user_";
 	public static final String BALANCE_QUERY    = "balance";
+
+	/*public List<Map<String, Object>> getTotalExpensesForCurrentMounth(){
+		String sql = "dao:getTotalExpensesForCurrentMounth";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> params = new HashMap<>();
+		params.put(UserDao.USER_, authentication.getName());
+		params.put("EX_MONTH", LocalDate.now().getMonthValue());
+		params.put("EX_YEAR", LocalDate.now().getYear());
+		return namedParameterJdbcTemplate.queryForList(sql, params);
+	}
+
+	public List<Map<String, Object>> getTotalIncomesForCurrentMounth(){
+		String sql = "dao:getTotalIncomesForCurrentMounth";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> params = new HashMap<>();
+		params.put(UserDao.USER_, authentication.getName());
+		params.put("IN_MONTH", LocalDate.now().getMonthValue());
+		params.put("IN_YEAR", LocalDate.now().getYear());
+		return namedParameterJdbcTemplate.queryForList(sql, params);
+	}*/
 
 }
