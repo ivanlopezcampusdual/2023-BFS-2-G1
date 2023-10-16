@@ -36,6 +36,10 @@ public class IncomeService implements IIncomeService {
 
     @Override
     public EntityResult incomeInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+        Object localDate = attrMap.get(IncomeDao.ATTR_IN_DATE);
+        if( localDate == null){
+            attrMap.put(IncomeDao.ATTR_IN_DATE, LocalDate.now());
+        }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         attrMap.put(IncomeDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.insert(this.incomeDao, attrMap);
