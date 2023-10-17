@@ -8,7 +8,7 @@ const routes: Routes = [{
   component: IncomesHomeComponent
 },
 {
-  path: ":INCOMEID",
+  path: "new",
   component: IncomesNewComponent
 }
 ];

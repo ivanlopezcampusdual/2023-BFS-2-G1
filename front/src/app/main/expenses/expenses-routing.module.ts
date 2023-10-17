@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ExpensesHomeComponent,
   },
   {
-    path: ":EXPENSESID",
+    path: "new",
     component: ExpensesNewComponent,
   },
   
