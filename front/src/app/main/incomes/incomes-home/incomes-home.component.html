@@ -1,14 +1,14 @@
-<div fxFill fxLayout ="column" >
-    <div>
-        <div fxFill fxLayout="column" fxLayoutAlign="start">
+<div class="grid-ex-in">
+  <div fxFill fxLayout="column" fxLayoutAlign="stretch ">
+    <h2>{{'INCOME LIST' | oTranslate }}</h2>
     <o-table attr="incomeTable" service="incomes" entity="income" keys="IN_ID"
-        columns="IN_ID;IN_CONCEPT;IN_AMOUNT;IN_DATE;USER_" visible-columns="IN_CONCEPT;IN_AMOUNT;IN_DATE" query-rows="20">
-        <o-table-column attr="IN_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
-        <o-table-column attr="IN_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
-            content-align="center"></o-table-column>
-        <o-table-column attr="IN_DATE" title="DATE" type="date" format="L"></o-table-column>
+      columns="IN_ID;IN_CONCEPT;IN_AMOUNT;IN_DATE;USER_" visible-columns="IN_CONCEPT;IN_AMOUNT;IN_DATE" query-rows="20"
+      pagination-controls="false" virtual-scroll="yes">
+      <o-table-column attr="IN_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+      <o-table-column attr="IN_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+        content-align="center"></o-table-column>
+      <o-table-column attr="IN_DATE" title="DATE" type="date" format="L"></o-table-column>
     </o-table>
-</div>
-</div>
-    <app-incomes-chart></app-incomes-chart>
+  </div>
+  <app-incomes-chart></app-incomes-chart>
 </div>

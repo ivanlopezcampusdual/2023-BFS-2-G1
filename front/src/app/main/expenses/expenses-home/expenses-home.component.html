@@ -1,46 +1,15 @@
-<div fxFill fxLayout ="column" >
-  <div>
-   <div fxFill fxLayout="column" fxLayoutAlign="start">
-     <o-table  #expenseTable attr="expenseTable" service="expenses" entity="expense" keys="EX_ID"
-       columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE" visible-columns="EX_CONCEPT;EX_AMOUNT;EX_DATE" query-rows="10" (onDataLoaded)="getData($event)" >
-       <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
-       <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
-         content-align="center"></o-table-column>
-       <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column >
-     </o-table>
-   </div>
-   
- </div>
-
-
-
-
-
-
- <app-expenses-chart></app-expenses-chart>
+<div class="grid-ex-in">
+  <div fxFill fxLayout="column" fxLayoutAlign="stretch ">
+    <h2>{{'EXPENSE LIST' | oTranslate }}</h2>
+    <o-table #expenseTable attr="expenseTable" service="expenses" entity="expense" keys="EX_ID"
+      columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE;CA_EX_ID" visible-columns="EX_CONCEPT;EX_AMOUNT;EX_DATE;CA_EX_ID"
+      pagination-controls="false" virtual-scroll="yes">
+      <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+      <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+        content-align="center"></o-table-column>
+      <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column>
+      <o-table-column attr="CA_EX_ID" title="CATEGORY" content-align="center"></o-table-column>
+    </o-table>
+  </div>
+  <app-expenses-chart></app-expenses-chart>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-

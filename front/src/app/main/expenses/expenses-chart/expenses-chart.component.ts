@@ -13,9 +13,8 @@ export class ExpensesChartComponent implements OnInit {
     this.chartParameters = new DiscreteBarChartConfiguration();
     this.chartParameters.showXAxis = true;
     this.chartParameters.showYAxis = true;
-    this.chartParameters.x1Axis.axisLabel = "DATE";
-    this.chartParameters.y1Axis.axisLabel = "AMOUNT";
-    this.chartParameters.margin.left = 100;
+    this.chartParameters.margin.left = 70;
+    this.chartParameters.margin.bottom = 15;
   }
 
   ngOnInit() {}
