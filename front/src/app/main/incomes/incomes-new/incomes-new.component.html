@@ -1,7 +1,5 @@
 <o-form service="incomes" entity="income" keys="IN_ID" header-actions="R;I;U;D" show-header-navigation="no"
-  emitEvent="false" changeType="0">
-
-  <o-text-input attr="INCOMES_FORM" sql-type="INTEGER" enabled="no"></o-text-input>
+  emitEvent="false" changeType="0" label-header="INCOMES_FORM" >
   <o-row>
     <o-column title-label="INCOMES_FORM" fxFlex>
       <o-row>
@@ -11,8 +9,7 @@
           [validators]="validatorAmount" currency-symbol="€" [locale]="'es-ES'">
           <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
         </o-currency-input>
-        <o-date-input attr="IN_DATE" label="DATE" fxFlex="20"></o-date-input>
-
+        <o-date-input #dateInput attr="IN_DATE" label="DATE" fxFlex="20"></o-date-input>
       </o-row>
       <o-row>
         <o-combo attr="CA_IN_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categoryIncomes"

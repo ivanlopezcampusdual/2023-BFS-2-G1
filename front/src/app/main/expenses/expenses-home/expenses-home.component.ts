@@ -15,35 +15,17 @@ export class ExpensesHomeComponent implements OnInit  {
   datosTabla: any[] = [];
   private expenseTable: OTableComponent;
   
-
   constructor(
     private d3LocaleService: D3LocaleService,  private el: ElementRef
   ) {
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     this._configurePieChart(d3Locale);
-  
-
-   }
-
-   ngAfterViewInit(): void {
-    this.expenseTable = this.el.nativeElement.querySelector('#expenseTable');
-    if (this.expenseTable) {
-      const datosTabla = this.expenseTable.dataArray;
-      console.log('Datos de la tabla:', datosTabla);
-      
-    }
    }
 
   ngOnInit() {
     
    }
-   onClickObtenerDatosTabla(): void {
-    if (this.expenseTable) {
-    const datosTabla = this.expenseTable.dataArray;
-    console.log('Datos de la tabla:', datosTabla);
-    }
 
-  }
   private _configurePieChart(locale: any): void {
     this.movementTypesChartParams = new PieChartConfiguration();
     this.movementTypesChartParams.margin.top = 0;
