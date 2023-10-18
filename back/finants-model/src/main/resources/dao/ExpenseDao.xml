@@ -13,6 +13,25 @@
     </UpdateKeys>
     <GeneratedKey>ex_id</GeneratedKey>
     <Queries>
+        <Query id="categoriesWithNames">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="CA_EX_ID" prefix="ex" />
+                <AmbiguousColumn name="CA_EX_ID" prefix="cex" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.EXPENSES ex
+                    LEFT JOIN
+                        ${mainschema}.CATEGORIES_EXPENSES cex
+                    ON
+                        ex.CA_EX_ID = cex.CA_EX_ID
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
         <Query id="totalAmountDay">
             <Sentence>
                 <![CDATA[
