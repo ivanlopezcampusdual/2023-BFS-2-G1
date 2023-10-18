@@ -7,36 +7,35 @@ import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Lazy
+@Service("GroupService")
 public class GroupService implements IGroupService {
 
     @Autowired
     private GroupDao groupDao;
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
+
     @Override
     public EntityResult groupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.query(this.groupDao, keyMap, attrList);
     }
 
     @Override
     public EntityResult groupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        attrMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.insert(this.groupDao, attrMap);
     }
 
     @Override
     public EntityResult groupUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
         return this.daoHelper.update(this.groupDao, attrMap, keyMap);
     }
 
