@@ -37,5 +37,6 @@
   "MONTHLY_BALANCE": "Balance mensual",
   "NON_NUM": "Por favor, introduce un valor numérico",
   "EXPENSE LIST": "Lista de gastos",
-  "INCOME LIST": "Lista de ingresos"
+  "INCOME LIST": "Lista de ingresos",
+  "CATEGORY": "Categoría"
 }

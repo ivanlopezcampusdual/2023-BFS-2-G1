@@ -37,5 +37,6 @@
   "NON_NUM": "Please enter a numeric value.",
 
   "EXPENSE LIST": "Expense list",
-  "INCOME LIST": "Income list"
+  "INCOME LIST": "Income list", 
+  "CATEGORY": "Category"
 }

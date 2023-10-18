@@ -13,6 +13,25 @@
     </UpdateKeys>
     <GeneratedKey>in_id</GeneratedKey>
     <Queries>
+        <Query id="categoriesWithNames">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="CA_IN_ID" prefix="inco" />
+                <AmbiguousColumn name="CA_IN_ID" prefix="cin" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.INCOMES inco
+                    LEFT JOIN
+                        ${mainschema}.CATEGORIES_INCOMES cin
+                    ON
+                        inco.CA_IN_ID = cin.CA_IN_ID
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
         <Query id="totalIncomeDay">
             <Sentence>
                 <![CDATA[
