@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ValidatorFn} from "@angular/forms";
 import { DatePipe } from '@angular/common';
 import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
@@ -9,7 +9,7 @@ import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
   styleUrls: ["./expenses-new.component.css"],
  
 })
-export class ExpensesNewComponent implements OnInit, AfterViewInit {
+export class ExpensesNewComponent implements OnInit {
   validatorAmount: ValidatorFn[] = [];
   @ViewChild("dateInput", {static:false}) fieldFecha: ODateInputComponent;
 
@@ -22,10 +22,9 @@ export class ExpensesNewComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
-  ngAfterViewInit(): void {  
-    setTimeout(()=>{
-      this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"))
-    },50)
+
+  public addCurrentDate(event){
+    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd")); 
   }
   
 

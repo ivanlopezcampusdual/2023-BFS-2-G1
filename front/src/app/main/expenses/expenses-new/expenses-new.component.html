@@ -1,5 +1,5 @@
  <o-form #newExpense service="expenses" entity="expense" keys="EX_ID" header-actions="I" show-header-navigation="no"
-  emitEvent="false" changeType="0" label-header="EXPENSES_FORM">
+  emitEvent="false" changeType="0" label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)">
   <o-row>
     <o-column fxFlex>
       <o-row fxFlex>
