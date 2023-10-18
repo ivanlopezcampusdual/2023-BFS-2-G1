@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ValidatorFn } from "@angular/forms";
 import { DatePipe } from '@angular/common';
 import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
@@ -22,10 +22,8 @@ export class IncomesNewComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngAfterViewInit(): void {  
-    setTimeout(()=>{
-      this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"))
-    },50)
+  public addCurrentDate(event){
+    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd")); 
   }
 
 }
