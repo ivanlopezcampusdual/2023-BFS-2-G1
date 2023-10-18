@@ -4,11 +4,20 @@
   margin-right: 15px;
 }
 
-
 .box-balance p {
   margin: 10px;
 }
 
 .o-button button.mat-stroked-button {
   border: none;
+}
+.grid-ex-in {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 3%;
+}
+.grid-ex-in h2 {
+  margin: 0;
 }
