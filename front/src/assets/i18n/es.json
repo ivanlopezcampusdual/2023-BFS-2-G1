@@ -38,5 +38,8 @@
   "NON_NUM": "Por favor, introduce un valor numérico",
   "EXPENSE LIST": "Lista de gastos",
   "INCOME LIST": "Lista de ingresos",
-  "CATEGORY": "Categoría"
+  "CATEGORY": "Categoría",
+
+  "GROUPS": "Grupos",
+  "NAME_GROUP": "Nombres de grupos"
 }
