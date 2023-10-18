@@ -7,6 +7,8 @@ import { ExpensesNewComponent } from "./expenses-new/expenses-new.component";
 import { OChartModule } from 'ontimize-web-ngx-charts';
 import { SharedModule } from "src/app/shared/shared.module";
 import { ExpensesChartComponent } from './expenses-chart/expenses-chart.component';
+import { DatePipe } from '@angular/common';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -16,10 +18,12 @@ import { ExpensesChartComponent } from './expenses-chart/expenses-chart.componen
       SharedModule,
       OntimizeWebModule,
       ExpensesRoutingModule,
-      OChartModule
+      OChartModule, 
+      FormsModule
     ],
   exports: [
     ExpensesChartComponent
-  ]
+  ], 
+  providers:[DatePipe]
 })
 export class ExpensesModule {}

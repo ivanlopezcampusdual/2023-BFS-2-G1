@@ -10,27 +10,27 @@ import { OntimizeService } from "ontimize-web-ngx";
 })
 export class HomeComponent implements OnInit {
   protected service: OntimizeService;
-  public balance: number; 
-  public MONTHLY_BALANCE:string = "MONTHLY_BALANCE"; 
-  servicePath='/users/balance'; 
-  httpOptions:any; 
+  public balance: number;
+  public MONTHLY_BALANCE:string = "MONTHLY_BALANCE";
+  servicePath='/users/balance';
+  httpOptions:any;
   constructor(private router: Router, private actRoute: ActivatedRoute,  protected injector: Injector) {
-    this.service = this.injector.get(OntimizeService); 
+    this.service = this.injector.get(OntimizeService);
   }
 
   ngOnInit() {
-    const filter = {}; 
-    const columns = ['user_', 'balance'];  
-    this.configureService(); 
+    const filter = {};
+    const columns = ['user_', 'balance'];
+    this.configureService();
     this.service.query(filter, columns, 'balance').subscribe(resp=>{
       if(resp.code === 0){
-        this.getBalance(resp.data); 
+        this.getBalance(resp.data);
       }
       })
   }
 
   getBalance(data: { balance: number; }[]){
-    this.balance = data[0].balance; 
+    this.balance = data[0].balance;
   }
 
   protected configureService() {
@@ -43,11 +43,11 @@ export class HomeComponent implements OnInit {
   }
 
   buttonExpenses() {
-    this.router.navigate(['/main/expenses/expenses-new']);
+    this.router.navigate([ "../../expenses", 'new'],  { relativeTo: this.actRoute });
   }
   buttonIncomes(){
-    this.router.navigate(['/main/incomes/incomes-new']);
+    this.router.navigate([ "../../incomes", 'new'], { relativeTo: this.actRoute });
   }
 
- 
+
 }
