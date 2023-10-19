@@ -32,7 +32,6 @@ public class CategoryExpenseService implements ICategoryExpenseService {
 
     @Override
     public EntityResult categoryExpenseInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-
         return this.daoHelper.insert(this.categoryExpenseDao, attrMap);
     }
 
