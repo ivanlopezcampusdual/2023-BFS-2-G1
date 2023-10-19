@@ -3,6 +3,7 @@ package com.ontimize.finants.model.core.service;
 import com.ontimize.finants.api.core.service.IIncomeService;
 import com.ontimize.finants.model.core.dao.ExpenseDao;
 import com.ontimize.finants.model.core.dao.IncomeDao;
+import com.ontimize.finants.model.core.dao.UserDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -29,8 +30,7 @@ public class IncomeService implements IIncomeService {
 
     @Override
     public EntityResult incomeQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(IncomeDao.ATTR_USER_, authentication.getName());
+        keyMap.put(IncomeDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.incomeDao, keyMap, attrList);
     }
 
@@ -40,15 +40,13 @@ public class IncomeService implements IIncomeService {
         if( localDate == null){
             attrMap.put(IncomeDao.ATTR_IN_DATE, LocalDate.now());
         }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        attrMap.put(IncomeDao.ATTR_USER_, authentication.getName());
+        attrMap.put(IncomeDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.insert(this.incomeDao, attrMap);
     }
 
     @Override
     public EntityResult incomeUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(IncomeDao.ATTR_USER_, authentication.getName());
+        keyMap.put(IncomeDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.update(this.incomeDao, attrMap, keyMap);
     }
 
@@ -59,9 +57,14 @@ public class IncomeService implements IIncomeService {
 
     @Override
     public EntityResult totalIncomeDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(IncomeDao.ATTR_USER_, authentication.getName());
-        return this.daoHelper.query(this.incomeDao, keyMap, attrList,IncomeDao.QUERY_INCOME_AMOUNT );
+        keyMap.put(IncomeDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.incomeDao, keyMap, attrList,IncomeDao.QUERY_SUM_AMOUNT_FOR_DAY );
     }
+
+    @Override
+    public EntityResult totalIncomeForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.incomeDao, keyMap, attrList, IncomeDao.QUERY_SUM_AMOUNT_FOR_MONTH );
+    }
+
 
 }

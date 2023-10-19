@@ -2,6 +2,7 @@ package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.IExpenseService;
 import com.ontimize.finants.model.core.dao.ExpenseDao;
+import com.ontimize.finants.model.core.dao.UserDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -32,8 +33,7 @@ public class ExpenseService implements IExpenseService {
 
     @Override
     public EntityResult expenseQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.expenseDao, keyMap, attrList);
     }
 
@@ -43,15 +43,13 @@ public class ExpenseService implements IExpenseService {
         if( localDate == null){
             attrMap.put(ExpenseDao.ATTR_EX_DATE, LocalDate.now());
         }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        attrMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
+        attrMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.insert(this.expenseDao, attrMap);
     }
 
     @Override
     public EntityResult expenseUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.update(this.expenseDao, attrMap, keyMap);
     }
 
@@ -62,9 +60,13 @@ public class ExpenseService implements IExpenseService {
 
     @Override
     public EntityResult totalAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        keyMap.put(ExpenseDao.ATTR_USER_, authentication.getName());
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.expenseDao, keyMap, attrList,ExpenseDao.QUERY_TOTAL_AMOUNT );
+    }
+
+    @Override
+    public EntityResult totalExpensesForCurrentMounth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.expenseDao, keyMap, attrList,ExpenseDao.QUERY_SUM_AMOUNT_FOR_MONTH );
     }
 
 }

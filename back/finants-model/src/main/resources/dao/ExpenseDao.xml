@@ -30,5 +30,32 @@
 					]]>
             </Sentence>
         </Query>
+        <Query id="totalExpensesForCurrentMounth">
+            <Sentence>
+                <![CDATA[
+                WITH TOTAL_EXPENSES AS
+                (
+                SELECT
+                SUM(EX_AMOUNT) AS EX_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM EX_DATE) as  EX_MONTH,
+                EXTRACT(YEAR FROM EX_DATE) as EX_YEAR
+                FROM
+                EXPENSES
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM EX_DATE),
+                EXTRACT(YEAR FROM EX_DATE)
+
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_EXPENSES
+                 #WHERE#
+
+        ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

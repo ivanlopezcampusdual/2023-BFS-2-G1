@@ -115,34 +115,5 @@
             </Sentence>
         </Query>
 
-        <Query id="getTotalIncomesForCurrentMounth">
-            <Sentence>
-                <![CDATA[
-                WITH TOTAL_INCOMES AS
-                (
-                SELECT
-                SUM(IN_AMOUNT) AS BALANCE,
-                USER_,
-                EXTRACT(MONTH FROM IN_DATE) as  IN_MONTH,
-                 EXTRACT(YEAR FROM IN_DATE) as IN_YEAR
-                FROM
-                INCOMES
-                GROUP BY
-                USER_,
-                EXTRACT(MONTH FROM IN_DATE),
-                EXTRACT(YEAR FROM IN_DATE)
-
-                )
-                SELECT
-                   #COLUMNS#
-                 FROM
-                    TOTAL_INCOMES
-                 #WHERE#
-
-        ]]>
-            </Sentence>
-        </Query>
-
-
     </Queries>
 </JdbcEntitySetup>
