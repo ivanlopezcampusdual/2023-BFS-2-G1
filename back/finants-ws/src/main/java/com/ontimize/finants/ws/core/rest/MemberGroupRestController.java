@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/memberGroup")
+@RequestMapping("/memberGroups")
 public class MemberGroupRestController extends ORestController<IMemberGroupService> {
     @Autowired
     private IMemberGroupService memberGroupService;

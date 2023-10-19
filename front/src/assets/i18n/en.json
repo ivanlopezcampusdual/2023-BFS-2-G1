@@ -34,10 +34,10 @@
   "INCOMES_FORM": "Incomes form",
   "ADD_INCOMES": "Add incomes",
   "MONTHLY_BALANCE": "Monthly balance",
-  "NON_NUM": "Please enter a numeric value.",
+  "NON_NUM": "Please enter a numeric value."
 
   "EXPENSE LIST": "Expense list",
-  "INCOME LIST": "Income list", 
+  "INCOME LIST": "Income list",
   "CATEGORY": "Category",
 
   "GROUPS": "Groups",
