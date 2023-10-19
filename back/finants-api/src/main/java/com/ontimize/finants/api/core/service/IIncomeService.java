@@ -14,4 +14,5 @@ public interface IIncomeService {
     public EntityResult incomeDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult totalIncomeDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult categoriesWithNamesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult totalIncomeForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 }

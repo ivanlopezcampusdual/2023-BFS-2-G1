@@ -45,26 +45,5 @@ public class UserDao extends OntimizeJdbcDaoSupport {
 	public static final String CREATION_DATE = "user_creation_date";
 	public static final String DOWN_DATE     = "user_down_date";
 	public static final String USER_         = "user_";
-	public static final String BALANCE_QUERY    = "balance";
-
-	/*public List<Map<String, Object>> getTotalExpensesForCurrentMounth(){
-		String sql = "dao:getTotalExpensesForCurrentMounth";
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Map<String, Object> params = new HashMap<>();
-		params.put(UserDao.USER_, authentication.getName());
-		params.put("EX_MONTH", LocalDate.now().getMonthValue());
-		params.put("EX_YEAR", LocalDate.now().getYear());
-		return namedParameterJdbcTemplate.queryForList(sql, params);
-	}
-
-	public List<Map<String, Object>> getTotalIncomesForCurrentMounth(){
-		String sql = "dao:getTotalIncomesForCurrentMounth";
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Map<String, Object> params = new HashMap<>();
-		params.put(UserDao.USER_, authentication.getName());
-		params.put("IN_MONTH", LocalDate.now().getMonthValue());
-		params.put("IN_YEAR", LocalDate.now().getYear());
-		return namedParameterJdbcTemplate.queryForList(sql, params);
-	}*/
 
 }

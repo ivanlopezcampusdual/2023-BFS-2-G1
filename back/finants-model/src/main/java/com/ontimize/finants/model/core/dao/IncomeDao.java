@@ -18,4 +18,6 @@ public class IncomeDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_USER_ = "USER_";
     public static final String QUERY_INCOME_AMOUNT = "totalIncomeDay";
     public static final String QUERY_CATEGORY_NAMES = "categoriesWithNames";
+    public static final String QUERY_SUM_AMOUNT_FOR_DAY = "totalIncomeDay";
+    public static final String QUERY_SUM_AMOUNT_FOR_MONTH = "totalIncomeForCurrentMonth";
 }

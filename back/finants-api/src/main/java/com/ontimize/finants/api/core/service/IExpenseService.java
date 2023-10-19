@@ -14,5 +14,6 @@ public interface IExpenseService {
     public EntityResult expenseDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult totalAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult categoriesWithNamesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+    public EntityResult totalExpensesForCurrentMounth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 
 }
