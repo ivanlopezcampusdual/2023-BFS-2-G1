@@ -41,5 +41,8 @@
   "CATEGORY": "Categoría",
 
   "GROUPS": "Grupos",
-  "NAME_GROUP": "Nombres de grupos"
+  "GROUP": "Grupo",
+  "NAME_GROUP": "Nombres de grupos",
+  "MG_USER": "Usuario",
+  "MG_IS_ADMIN": "Administrador"
 }

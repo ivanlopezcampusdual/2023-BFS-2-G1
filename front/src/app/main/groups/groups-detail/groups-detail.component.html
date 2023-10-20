@@ -1,1 +1,19 @@
-<p>groups-detail works!</p>
+<o-column>
+    <o-row>
+        <o-form #groupsTable attr="groupMembersTable"  service="groups" entity="group" keys="GR_ID" show-header="false" parent-keys="GR_ID" keys-sql-types="INTEGER">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+                <o-integer-input attr="GR_ID" label="ID" content-align="center" read-only="true"></o-integer-input>
+                <o-text-input attr="GR_NAME" label="NAME" content-align="center" read-only="true"></o-text-input>
+                <o-date-input attr="GR_CREATION_DATE" label="CREATION_DATE" content-align="center" read-only="true"></o-date-input>
+            </div>
+        </o-form>
+    </o-row>
+    <o-row>
+        <o-table #groupsTable attr="memberGroupsTable" service="memberGroups" entity="memberGroup" keys="GR_ID"
+            columns="MG_ID;GR_ID;USER_;MG_IS_ADMIN" visible-columns="USER_;MG_IS_ADMIN" pagination-controls="false"
+            virtual-scroll="yes">
+            <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
+            <o-table-column attr="MG_IS_ADMIN" title="MG_IS_ADMIN" content-align="center"></o-table-column>
+        </o-table>
+    </o-row>
+</o-column>
