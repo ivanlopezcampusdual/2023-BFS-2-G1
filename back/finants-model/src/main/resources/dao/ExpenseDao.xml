@@ -49,7 +49,7 @@
 					]]>
             </Sentence>
         </Query>
-        <Query id="totalExpensesForCurrentMounth">
+        <Query id="totalExpensesForCurrentMonth">
             <Sentence>
                 <![CDATA[
                 WITH TOTAL_EXPENSES AS

@@ -18,7 +18,7 @@ public class ExpenseDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_USER_ = "USER_";
     public static final String QUERY_TOTAL_AMOUNT = "totalAmountDay";
     public static final String QUERY_CATEGORY_NAMES = "categoriesWithNames";
-    public static final String QUERY_SUM_AMOUNT_FOR_MONTH = "totalExpensesForCurrentMounth";
+    public static final String QUERY_SUM_AMOUNT_FOR_MONTH = "totalExpensesForCurrentMonth";
 
 
 
