@@ -1,10 +1,13 @@
 <o-column>
     <o-row>
-        <o-form #groupsTable attr="groupMembersTable"  service="groups" entity="group" keys="GR_ID" show-header="false" parent-keys="GR_ID" keys-sql-types="INTEGER">
+        <o-form #groupsTable attr="groupMembersTable" service="groups" entity="group" keys="GR_ID" show-header="false"
+            parent-keys="GR_ID" keys-sql-types="INTEGER">
             <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
-                <o-integer-input attr="GR_ID" label="ID" content-align="center" read-only="true"></o-integer-input>
-                <o-text-input attr="GR_NAME" label="NAME" content-align="center" read-only="true"></o-text-input>
-                <o-date-input attr="GR_CREATION_DATE" label="CREATION_DATE" content-align="center" read-only="true"></o-date-input>
+                <!--<o-integer-input attr="GR_ID" label="ID" content-align="center" read-only="true"></o-integer-input>-->
+                <o-text-input attr="GR_NAME" label="GR_NAME" fxFlex="70" content-align="center"
+                    read-only="true"></o-text-input>
+                <o-date-input attr="GR_CREATION_DATE" label="GR_CREATION_DATE" fxFlex="25" content-align="center"
+                    read-only="true"></o-date-input>
             </div>
         </o-form>
     </o-row>

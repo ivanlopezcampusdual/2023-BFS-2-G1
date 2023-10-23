@@ -44,5 +44,7 @@
   "GROUP": "Group",
   "NAME_GROUP": "Group names",
   "MG_USER": "User",
-  "MG_IS_ADMIN": "Admin"
+  "MG_IS_ADMIN": "Admin",
+  "GR_NAME": "Group",
+  "GR_CREATION_DATE": "Creation Date"
 }
