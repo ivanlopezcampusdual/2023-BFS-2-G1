@@ -46,5 +46,7 @@
   "MG_USER": "Usuario",
   "MG_IS_ADMIN": "Administrador",
   "GR_NAME": "Grupo",
-  "GR_CREATION_DATE": "Fecha de creación"
+  "GR_CREATION_DATE": "Fecha de creación",
+  "GR_ADD_MEMBER": "Añadir participante",
+  "GROUP_FORM": "Formulario de grupos"
 }
