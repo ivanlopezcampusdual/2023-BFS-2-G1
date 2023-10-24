@@ -23,6 +23,11 @@ public class GroupService implements IGroupService {
     private GroupDao groupDao;
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
+    private final MemberGroupService memberGroupService;
+
+    public GroupService(MemberGroupService memberGroupService) {
+        this.memberGroupService = memberGroupService;
+    }
 
     @Override
     public EntityResult groupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
@@ -31,7 +36,26 @@ public class GroupService implements IGroupService {
 
     @Override
     public EntityResult groupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-        return this.daoHelper.insert(this.groupDao, attrMap);
+        Object localDate = attrMap.get(GroupDao.ATTR_GR_CREATION_DATE);
+        if( localDate == null){
+            attrMap.put(GroupDao.ATTR_GR_CREATION_DATE, LocalDate.now());
+        }
+        EntityResult result = this.daoHelper.insert(this.groupDao, attrMap);
+
+        /*METER USUARIO EN GRUPO*/
+        Object lista = result.get(GroupDao.ATTR_GR_ID);
+        Integer groupId = (Integer)lista;
+
+        for (Object o : (List<Object>)attrMap.get(GroupDao.ATTR_GR_CHOOSE_MEMBERS)){
+            Map<String, Object> attrMapMembers = new HashMap<>();
+            attrMapMembers.put(MemberGroupDao.ATTR_GR_ID, groupId);
+            attrMapMembers.put(MemberGroupDao.ATTR_USER_, o);
+            attrMapMembers.put(MemberGroupDao.ATTR_IS_ADMIN, false);
+
+            this.memberGroupService.memberGroupInsert(attrMapMembers);
+        }
+
+        return result;
     }
 
     @Override

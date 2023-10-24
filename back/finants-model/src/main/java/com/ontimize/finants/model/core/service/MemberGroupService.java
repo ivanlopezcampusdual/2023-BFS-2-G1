@@ -23,19 +23,17 @@ public class MemberGroupService implements IMemberGroupService {
     private DefaultOntimizeDaoHelper daoHelper;
     @Override
     public EntityResult memberGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(UserDao.USER_,daoHelper.getUser().getUsername());
+        keyMap.put(UserDao.USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.memberGroupDao, keyMap, attrList);
     }
 
     @Override
     public EntityResult memberGroupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-        attrMap.put(UserDao.USER_,daoHelper.getUser().getUsername());
         return this.daoHelper.insert(this.memberGroupDao, attrMap);
     }
 
     @Override
     public EntityResult memberGroupUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        attrMap.put(UserDao.USER_,daoHelper.getUser().getUsername());
         return this.daoHelper.update(this.memberGroupDao, attrMap, keyMap);
     }
 
