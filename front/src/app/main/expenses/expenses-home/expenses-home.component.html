@@ -6,11 +6,11 @@
     <div>
       <o-table class="expense-table" #expenseTable attr="expenseTable" service="expenses" entity="categoriesWithNames"
         keys="EX_ID" columns="EX_ID;EX_CONCEPT;EX_AMOUNT;EX_DATE;CA_EX_ID;USER_;CA_EX_ID;CA_EX_NAME"
-        visible-columns="EX_CONCEPT;CA_EX_NAME;EX_AMOUNT;EX_DATE" virtual-scroll="no">
+        visible-columns="EX_CONCEPT;CA_EX_NAME;EX_AMOUNT;EX_DATE" virtual-scroll="no" page-index="20">
         <o-table-column attr="CA_EX_NAME" title="CATEGORY" content-align="center"></o-table-column>
         <o-table-column attr="EX_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
         <o-table-column attr="EX_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
-          content-align="center"></o-table-column>
+          currency-symbol-position="right" content-align="center"></o-table-column>
         <o-table-column attr="EX_DATE" title="DATE" type="date" format="L"></o-table-column>
       </o-table>
     </div>

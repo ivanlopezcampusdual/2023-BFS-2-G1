@@ -2,6 +2,7 @@
 :root {
   --var-expense-color: rgba(192, 145, 145);
   --var-income-color: rgba(145, 192, 158);
+  --var-normal-color: rgba(88, 180, 183);
 }
 
 .input-padding {
@@ -25,6 +26,9 @@
 .income-table thead {
   background-color: var(--var-income-color);
 }
+.group-table thead {
+  background-color: var(--var-normal-color);
+}
 o-data-toolbar.o-grid-toolbar button.o-grid-button:first-child,
 o-data-toolbar.o-list-toolbar button.o-list-button:first-child,
 o-data-toolbar.o-table-toolbar .buttons .o-table-button:first-child,
@@ -36,4 +40,32 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child {
 }
 .mat-drawer-opened .o-app-sidenav-image .o-app-sidenav-image-container {
   padding-bottom: 20px;
+}
+.o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper {
+  border-radius: 0 10px 10px 10px;
+}
+
+.o-form,
+.o-form form.form-no-toolbar,
+.o-column,
+.o-form-layout-manager {
+  height: 100%;
+}
+.mat-sort-header-button,
+.mat-footer-cell {
+  color: white !important;
+}
+
+.mat-cell {
+  font-weight: bolder !important;
+}
+
+.o-form-toolbar .mat-toolbar {
+  box-shadow: none !important;
+}
+
+.o-container-title {
+  color: #032a38 !important;
+  font-weight: bold !important;
+  font-size: 1.8rem;
 }
