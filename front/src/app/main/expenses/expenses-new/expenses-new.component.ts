@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { ValidatorFn} from "@angular/forms";
 import { DatePipe } from '@angular/common';
-import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
+import { ODateInputComponent, OValidators, OFormComponent } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-expenses-new",
@@ -10,8 +10,10 @@ import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
  
 })
 export class ExpensesNewComponent implements OnInit {
+  public userHasMadeChanges : boolean = false;
   validatorAmount: ValidatorFn[] = [];
   @ViewChild("dateInput", {static:false}) fieldFecha: ODateInputComponent;
+  @ViewChild('newExpense', { static: false }) oForm: OFormComponent;
 
   constructor(private datePipe: DatePipe) {
     this.validatorAmount.push(
@@ -20,14 +22,27 @@ export class ExpensesNewComponent implements OnInit {
     
   }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    
+  }
 
   public addCurrentDate(event){
-    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd")); 
+    if (event === 1) {
+      this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+      this.userHasMadeChanges = false;
+    } 
   }
+
+  public onUserChange(): void {
+    this.userHasMadeChanges = true;
+  }
+  
+  }
+
+ 
+
   
 
   
   
-}
+

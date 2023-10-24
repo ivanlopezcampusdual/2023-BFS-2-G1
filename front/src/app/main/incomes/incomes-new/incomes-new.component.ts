@@ -9,6 +9,7 @@ import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
   styleUrls: ["./incomes-new.component.css"]
 })
 export class IncomesNewComponent implements OnInit {
+  public userHasMadeChanges : boolean = false;
   valor: number = 0;
   validatorAmount: ValidatorFn[] = [];
   @ViewChild("dateInput", {static:false}) fieldFecha: ODateInputComponent;
@@ -23,7 +24,14 @@ export class IncomesNewComponent implements OnInit {
   }
 
   public addCurrentDate(event){
-    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd")); 
+    if (event === 1) {
+      this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+      this.userHasMadeChanges = false;
+    } 
+  }
+
+  public onUserChange(): void {
+    this.userHasMadeChanges = true;
   }
 
 }
