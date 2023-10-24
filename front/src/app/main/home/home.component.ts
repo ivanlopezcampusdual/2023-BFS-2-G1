@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   protected service: OntimizeService;
   public balance: number;
   public MONTHLY_BALANCE:string = "MONTHLY_BALANCE";
-  servicePath='/balance';
+  servicePath='/balances';
   httpOptions:any;
   constructor(private router: Router, private actRoute: ActivatedRoute,  protected injector: Injector) {
     this.service = this.injector.get(OntimizeService);
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected configureService() {
-    const conf = this.service.getDefaultServiceConfiguration('balance');
+    const conf = this.service.getDefaultServiceConfiguration('balances');
     this.service.configureService(conf);
   }
 
