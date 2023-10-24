@@ -1,7 +1,6 @@
 <div>
-  <o-chart class="incomes-graph graph-container " attr="chartTotalIncomeDay" fxFlex type="discreteBar" service="incomes"
-    entity="totalIncomeDay" x-axis="DATE_SUM_INCOMES" y-axis="SUM_INCOMES" x-data-type="dd/MM/yyyy"
-    y-data-type="currency" keys="DATE_SUM_INCOMES" columns="SUM_INCOMES" visible-columns="SUM_INCOMES;DATE_SUM_INCOMES"
-    show-label="yes" [chart-parameters]="chartParameters">
+  <o-chart class="incomes-graph graph-container " #discreteBar attr="chartTotalIncomeDay" fxFlex type="discreteBar"
+    entity="totalIncomeDay" x-axis="DATE_SUM_INCOMES" y-axis="SUM_INCOMES" columns="SUM_INCOMES"
+    visible-columns="SUM_INCOMES;DATE_SUM_INCOMES" [data]="data" [chart-parameters]="chart">
   </o-chart>
 </div>
