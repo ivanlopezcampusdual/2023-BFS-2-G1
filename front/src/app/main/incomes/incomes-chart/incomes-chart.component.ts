@@ -1,9 +1,8 @@
-import { Component, OnInit, Injector } from "@angular/core";
+import { Component, OnInit, Injector, ViewChild } from "@angular/core";
 import { OntimizeService, OTranslateService } from "ontimize-web-ngx";
 
 import {
-  ChartService,
-  DiscreteBarChartConfiguration,
+  ChartService, OChartComponent
 } from "ontimize-web-ngx-charts";
 import { D3LocaleService } from "src/app/shared/d3-locale/d3Locale.service";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
@@ -15,12 +14,12 @@ import { D3Locales } from "src/app/shared/d3-locale/locales";
   providers: [ChartService],
 })
 export class IncomesChartComponent implements OnInit {
+  @ViewChild('discreteBar', { static: false })  discreteBar: OChartComponent; 
   protected data: Array<Object>;
   protected yAxis: string = "SUM_INCOMES";
   protected xAxis: string = "DATE_SUM_INCOMES";
   protected service: OntimizeService;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
-  public chart: DiscreteBarChartConfiguration;
 
   constructor(
     protected injector: Injector,
@@ -32,7 +31,6 @@ export class IncomesChartComponent implements OnInit {
       this.queryData();
     });
     this.queryData();
-    this.chart = new DiscreteBarChartConfiguration();
   }
   protected configureService() {
     const conf = this.service.getDefaultServiceConfiguration("incomes");
@@ -47,6 +45,7 @@ export class IncomesChartComponent implements OnInit {
     service.query(filter, columns, "totalIncomeDay").subscribe((resp) => {
       if (resp.code === 0) {
         this.adaptResult(resp.data);
+        this.formater(); 
       } else {
         alert("Impossible to query data!");
       }
@@ -82,4 +81,13 @@ export class IncomesChartComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  public formater(){
+    const chartService = this.discreteBar.getChartService(); 
+    const chartOps = chartService.getChartOptions(); 
+    chartOps['yAxis']['tickFormat'] = (d) => {
+      return d.toLocaleString('es-ES', {style:'currency', currency: 'EUR'}); 
+
+    }
+  }
 }

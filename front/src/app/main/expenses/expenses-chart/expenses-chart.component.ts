@@ -1,6 +1,6 @@
-import { Component, OnInit, Injector } from "@angular/core";
+import { Component, OnInit, Injector, ViewChild } from "@angular/core";
 import { OntimizeService, OTranslateService } from "ontimize-web-ngx";
-import { ChartService } from "ontimize-web-ngx-charts";
+import { ChartService, OChartComponent } from "ontimize-web-ngx-charts";
 import { D3LocaleService } from "src/app/shared/d3-locale/d3Locale.service";
 import { D3Locales } from "src/app/shared/d3-locale/locales";
 
@@ -11,11 +11,15 @@ import { D3Locales } from "src/app/shared/d3-locale/locales";
   providers: [ChartService],
 })
 export class ExpensesChartComponent implements OnInit {
+  @ViewChild('discreteBar', { static: false })  discreteBar: OChartComponent; 
   protected data: Array<Object>;
   protected yAxis: string = "SUM_AMOUNT";
   protected xAxis: string = "DATE_SUM_AMOUNT";
   protected service: OntimizeService;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
+
+  
+
   constructor(
     protected injector: Injector,
     private d3LocaleService: D3LocaleService,
@@ -40,6 +44,7 @@ export class ExpensesChartComponent implements OnInit {
     service.query(filter, columns, "totalAmountDay").subscribe((resp) => {
       if (resp.code === 0) {
         this.adaptResult(resp.data);
+        this.formater()
       } else {
         alert("Impossible to query data!");
       }
@@ -60,8 +65,8 @@ export class ExpensesChartComponent implements OnInit {
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     var self = this;
     const format_x = (d) => {
-      let date = new Date(d);
-      const format =
+    let date = new Date(d);
+    const format =
         D3Locales[this.translateService.getCurrentLang().toUpperCase()]["date"];
       return d3Locale.timeFormat(format)(date);
     };
@@ -75,4 +80,19 @@ export class ExpensesChartComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  public formater(){
+    const chartService = this.discreteBar.getChartService(); 
+    const chartOps = chartService.getChartOptions(); 
+    chartOps['yAxis']['tickFormat'] = (d) => {
+      return d.toLocaleString('es-ES', {style:'currency', currency: 'EUR'}); 
+
+    }
+  }
+  
 }
+
+
+
+
+
