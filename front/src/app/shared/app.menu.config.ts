@@ -1,11 +1,11 @@
 import { MenuRootItem } from "ontimize-web-ngx";
 
 export const MENU_CONFIG: MenuRootItem[] = [
-  { 
-    id: "home", 
-    name: "HOME", 
-    icon: "home", 
-    route: "/main/home" 
+  {
+    id: "home",
+    name: "HOME",
+    icon: "home",
+    route: "/main/home",
   },
   {
     id: "expenses",
@@ -25,7 +25,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: "groups",
     name: "GROUPS",
     route: "/main/groups",
-    icon: "",
+    icon: "diversity_1",
     confirm: "yes",
   },
   {

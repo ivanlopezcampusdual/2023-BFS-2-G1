@@ -1,14 +1,22 @@
-<div class="grid-ex-in">
-  <div fxFill fxLayout="column" fxLayoutAlign="stretch ">
+<div fxFlex fxLayout="column" fxLayoutAlign="stretch " class="container-margin">
+  <div>
     <h2>{{'INCOME LIST' | oTranslate }}</h2>
-    <o-table attr="incomeTable" service="incomes" entity="categoriesWithNames" keys="IN_ID"
-      columns="IN_ID;IN_CONCEPT;IN_AMOUNT;IN_DATE;CA_IN_ID;USER_;CA_IN_ID;CA_IN_NAME" visible-columns="IN_CONCEPT;CA_IN_NAME;IN_AMOUNT;IN_DATE" query-rows="20"
-      pagination-controls="false" virtual-scroll="yes">
-      <o-table-column attr="CA_IN_NAME" title="CATEGORY" content-align="center"></o-table-column>
-      <o-table-column attr="IN_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
-      <o-table-column attr="IN_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€" content-align="center"></o-table-column>
-      <o-table-column attr="IN_DATE" title="DATE" type="date" format="L"></o-table-column>
-    </o-table>
   </div>
-  <app-incomes-chart></app-incomes-chart>
+  <div fxFlex fxLayout="column" fxLayoutGap="20px">
+    <div>
+      <o-table class="income-table" attr="incomeTable" service="incomes" entity="categoriesWithNames" keys="IN_ID"
+        columns="IN_ID;IN_CONCEPT;IN_AMOUNT;IN_DATE;CA_IN_ID;USER_;CA_IN_ID;CA_IN_NAME"
+        visible-columns="IN_CONCEPT;CA_IN_NAME;IN_AMOUNT;IN_DATE" query-rows="20" virtual-scroll="no">
+        <o-table-column attr="CA_IN_NAME" title="CATEGORY" content-align="center"></o-table-column>
+        <o-table-column attr="IN_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+        <o-table-column attr="IN_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+          content-align="center"></o-table-column>
+        <o-table-column attr="IN_DATE" title="DATE" type="date" format="L"></o-table-column>
+      </o-table>
+    </div>
+    <div>
+      <app-incomes-chart></app-incomes-chart>
+    </div>
+  </div>
+
 </div>

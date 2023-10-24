@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --var-expense-color: rgba(192, 145, 145);
+  --var-income-color: rgba(145, 192, 158);
+}
 
 .input-padding {
   margin-right: 15px;
@@ -11,13 +15,22 @@
 .o-button button.mat-stroked-button {
   border: none;
 }
-.grid-ex-in {
-  padding: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  grid-gap: 3%;
+.graph-container {
+  border-radius: 10px;
 }
-.grid-ex-in h2 {
-  margin: 0;
+
+.expense-table thead {
+  background-color: var(--var-expense-color);
+}
+.income-table thead {
+  background-color: var(--var-income-color);
+}
+o-data-toolbar.o-grid-toolbar button.o-grid-button:first-child,
+o-data-toolbar.o-list-toolbar button.o-list-button:first-child,
+o-data-toolbar.o-table-toolbar .buttons .o-table-button:first-child,
+o-data-toolbar.o-table-toolbar .buttons button:first-child {
+  border-radius: 10px;
+}
+.container-margin {
+  padding: 0px 20px 20px 20px;
 }
