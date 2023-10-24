@@ -70,7 +70,7 @@ public class ExpenseService implements IExpenseService {
     }
 
     @Override
-    public EntityResult totalExpensesForCurrentMounth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult totalExpensesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.expenseDao, keyMap, attrList,ExpenseDao.QUERY_SUM_AMOUNT_FOR_MONTH );
     }
 

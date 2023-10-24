@@ -35,18 +35,18 @@
         <Query id="totalIncomeDay">
             <Sentence>
                 <![CDATA[
-					WITH SUM_TABLE AS
-                        (SELECT
+					WITH SUM_TABLE AS (
+					    SELECT
                             SUM(IN_AMOUNT) SUM_INCOMES,
-                           TO_CHAR(IN_DATE, 'YYYY-MM-DD') DATE_SUM_INCOMES,
-                           USER_
+                            TO_CHAR(IN_DATE, 'YYYY-MM-DD') DATE_SUM_INCOMES,
+                            USER_
                         FROM
                             ${mainschema}.INCOMES
                         GROUP BY DATE_SUM_INCOMES, USER_
                         ORDER BY DATE_SUM_INCOMES
-                 )
+                    )
 					SELECT #COLUMNS# FROM SUM_TABLE #WHERE# LIMIT 7
-					]]>
+                ]]>
             </Sentence>
         </Query>
         <Query id="totalIncomeForCurrentMonth">

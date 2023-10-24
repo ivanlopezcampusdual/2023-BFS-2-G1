@@ -11,4 +11,5 @@ public interface IGroupService {
     public EntityResult groupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
     public EntityResult groupUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult groupDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+    EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
 }

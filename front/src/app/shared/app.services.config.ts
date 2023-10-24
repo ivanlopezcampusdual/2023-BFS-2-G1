@@ -19,5 +19,8 @@ export const SERVICE_CONFIG: Object = {
   },
   balance: {
     path: "/balances",
+  },
+  memberGroups: {
+    path: "/memberGroups"
   }
 };

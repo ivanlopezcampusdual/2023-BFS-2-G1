@@ -12,4 +12,38 @@
         <Column>GR_ID</Column>
     </UpdateKeys>
     <GeneratedKey>gr_id</GeneratedKey>
+    <Queries>
+        <Query id="getGroupMembers">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="GR_ID" prefix="GROUP_DATA" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                    WITH GROUP_DATA AS (
+                        SELECT
+                            g.GR_ID,
+                            g.GR_NAME,
+                            g.GR_CREATION_DATE,
+                            t.USER_,
+                            mg.MG_IS_ADMIN
+                        FROM
+                            GROUPS g
+                        INNER JOIN
+                            MEMBER_GROUP mg
+                        ON
+                            g.GR_ID = mg.GR_ID
+                        INNER JOIN
+                            TUSER t
+                        ON
+                            t.USER_ = mg.USER_
+                    )
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        GROUP_DATA
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

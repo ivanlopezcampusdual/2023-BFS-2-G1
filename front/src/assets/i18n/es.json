@@ -41,5 +41,16 @@
   "CATEGORY": "Categoría",
 
   "GROUPS": "Grupos",
-  "NAME_GROUP": "Nombres de grupos"
+  "GROUP": "Grupo",
+  "NAME_GROUP": "Nombres de grupos",
+  "USER_": "Usuario",
+  "MG_USER": "Usuario",
+  "MG_IS_ADMIN": "Administrador",
+  "ISADMIN": "Es administrador",
+  "GR_NAME": "Grupo",
+  "GR_CREATION_DATE": "Fecha de creación",
+  "GR_ADD_MEMBER": "Añadir participante",
+  "GROUP_FORM": "Formulario de grupos",
+  "GR_CHOOSE_MEMBERS": "Elige el usuario a añadir",
+  "ADD_MEMBERS_FORM": "Formulario añadir miembros"
 }

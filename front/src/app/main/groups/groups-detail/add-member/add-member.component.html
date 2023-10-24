@@ -1,0 +1,6 @@
+<o-form #addMembers service="memberGroups" entity="memberGroup" keys="MG_ID" header-actions="I" show-header-navigation="no" label-header="ADD_MEMBERS_FORM">
+    <o-combo attr="USER_" label="GR_CHOOSE_MEMBERS" service="users" entity="user" keys="USER_"
+        value-column="USER_" columns="USER_;PASSWORD;NAME;SURNAME;EMAIL;NIF;USERBLOCKED;LASTPASSWORDUPDATE;FIRSTLOGIN"
+        visible-columns="USER_;" required="yes" read-only="no" multiple="no" null-selection="yes"
+        searchable="yes"></o-combo>
+</o-form>

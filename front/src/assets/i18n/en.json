@@ -34,12 +34,23 @@
   "INCOMES_FORM": "Incomes form",
   "ADD_INCOMES": "Add incomes",
   "MONTHLY_BALANCE": "Monthly balance",
-  "NON_NUM": "Please enter a numeric value."
+  "NON_NUM": "Please enter a numeric value.",
 
   "EXPENSE LIST": "Expense list",
   "INCOME LIST": "Income list",
   "CATEGORY": "Category",
 
   "GROUPS": "Groups",
-  "NAME_GROUP": "Group names"
+  "GROUP": "Group",
+  "NAME_GROUP": "Group names",
+  "USER_": "User",
+  "MG_USER": "User",
+  "MG_IS_ADMIN": "Admin",
+  "ISADMIN": "Is admin",
+  "GR_NAME": "Group",
+  "GR_CREATION_DATE": "Creation Date",
+  "GR_ADD_MEMBER": "Add member",
+  "GROUP_FORM": "Group form",
+  "GR_CHOOSE_MEMBERS": "Choose an user to add",
+  "ADD_MEMBERS_FORM": "Add user form"
 }

@@ -80,7 +80,7 @@ public class BalanceService implements IBalanceService {
         keyMap.put("EX_YEAR", LocalDate.now().getYear());
         attrList.add("EX_TOTAL_AMOUNT");
         attrList.add("user_");
-        EntityResult totalExpensesForCurrentMonth = expenseService.totalExpensesForCurrentMounth(keyMap,attrList);
+        EntityResult totalExpensesForCurrentMonth = expenseService.totalExpensesForCurrentMonth(keyMap,attrList);
         List<Object> balanceColumnExpenses = (List<Object>) totalExpensesForCurrentMonth.get("EX_TOTAL_AMOUNT");
         return balanceColumnExpenses != null? new BigDecimal(String.valueOf(balanceColumnExpenses.get(0))): new BigDecimal("0");
     }
