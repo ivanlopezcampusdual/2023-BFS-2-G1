@@ -42,20 +42,20 @@ public class GroupService implements IGroupService {
         }
         EntityResult result = this.daoHelper.insert(this.groupDao, attrMap);
 
-        /*METER USUARIO EN GRUPO*/
-        Object lista = result.get(GroupDao.ATTR_GR_ID);
-        Integer groupId = (Integer)lista;
-
-        for (Object o : (List<Object>)attrMap.get(GroupDao.ATTR_GR_CHOOSE_MEMBERS)){
-            Map<String, Object> attrMapMembers = new HashMap<>();
-            attrMapMembers.put(MemberGroupDao.ATTR_GR_ID, groupId);
-            attrMapMembers.put(MemberGroupDao.ATTR_USER_, o);
-            attrMapMembers.put(MemberGroupDao.ATTR_IS_ADMIN, false);
-
-            this.memberGroupService.memberGroupInsert(attrMapMembers);
-        }
+        //Adding current user as the group's creator/admin
+        addOwnerToGroup(result);
 
         return result;
+    }
+
+    private void addOwnerToGroup(EntityResult result) {
+        Object objId = result.get(GroupDao.ATTR_GR_ID);
+        Integer groupId = (Integer)objId;
+        Map<String, Object> attrMapMembers = new HashMap<>();
+        attrMapMembers.put(MemberGroupDao.ATTR_GR_ID, groupId);
+        attrMapMembers.put(MemberGroupDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
+        attrMapMembers.put(MemberGroupDao.ATTR_IS_ADMIN, true);
+        this.memberGroupService.memberGroupInsert(attrMapMembers);
     }
 
     @Override

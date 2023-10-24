@@ -50,5 +50,7 @@
   "GR_NAME": "Grupo",
   "GR_CREATION_DATE": "Fecha de creación",
   "GR_ADD_MEMBER": "Añadir participante",
-  "GROUP_FORM": "Formulario de grupos"
+  "GROUP_FORM": "Formulario de grupos",
+  "GR_CHOOSE_MEMBERS": "Elige el usuario a añadir",
+  "ADD_MEMBERS_FORM": "Formulario añadir miembros"
 }

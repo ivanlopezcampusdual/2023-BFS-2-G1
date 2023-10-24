@@ -5,11 +5,5 @@
                 <o-text-input attr="GR_NAME" label="GR_NAME" fxFlex="70" content-align="center" required="yes"></o-text-input>
             </div>
         </o-row>
-        <o-row>
-            <o-combo 
-                attr="GR_CHOOSE_MEMBERS" label="GR_CHOOSE_MEMBERS" service="users"
-                entity="user" keys="USER_" value-column="USER_" columns="USER_;PASSWORD;NAME;SURNAME;EMAIL;NIF;USERBLOCKED;LASTPASSWORDUPDATE;FIRSTLOGIN" 
-                visible-columns="USER_;" required="yes" read-only="no" multiple="yes" null-selection="yes" searchable="yes"></o-combo>
-        </o-row>
     </o-column>
 </o-form>

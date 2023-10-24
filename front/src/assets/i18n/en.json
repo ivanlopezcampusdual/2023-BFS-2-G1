@@ -50,5 +50,7 @@
   "GR_NAME": "Group",
   "GR_CREATION_DATE": "Creation Date",
   "GR_ADD_MEMBER": "Add member",
-  "GROUP_FORM": "Group form"
+  "GROUP_FORM": "Group form",
+  "GR_CHOOSE_MEMBERS": "Choose an user to add",
+  "ADD_MEMBERS_FORM": "Add user form"
 }
