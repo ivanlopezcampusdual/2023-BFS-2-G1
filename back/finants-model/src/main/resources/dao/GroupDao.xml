@@ -15,10 +15,7 @@
     <Queries>
         <Query id="getGroupMembers">
             <AmbiguousColumns>
-                <AmbiguousColumn name="GR_ID" prefix="g" />
-                <AmbiguousColumn name="GR_ID" prefix="mg" />
-                <AmbiguousColumn name="USER_" prefix="mg" />
-                <AmbiguousColumn name="USER_" prefix="t" />
+                <AmbiguousColumn name="GR_ID" prefix="GROUP_DATA" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -30,7 +27,7 @@
                             t.USER_,
                             mg.MG_IS_ADMIN
                         FROM
-                            ${mainschema}.GROUPS g
+                            GROUPS g
                         INNER JOIN
                             MEMBER_GROUP mg
                         ON
@@ -38,7 +35,7 @@
                         INNER JOIN
                             TUSER t
                         ON
-                            mg.USER_ = t.USER_
+                            t.USER_ = mg.USER_
                     )
                     SELECT
                         #COLUMNS#

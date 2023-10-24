@@ -2,21 +2,23 @@
     <o-row>
         <o-form #groupsTable attr="groupMembersTable" service="groups" entity="group" keys="GR_ID" show-header="false"
             parent-keys="GR_ID" keys-sql-types="INTEGER">
-            <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
-                <!--<o-integer-input attr="GR_ID" label="ID" content-align="center" read-only="true"></o-integer-input>-->
-                <o-text-input attr="GR_NAME" label="GR_NAME" fxFlex="70" content-align="center"
-                    read-only="true"></o-text-input>
-                <o-date-input attr="GR_CREATION_DATE" label="GR_CREATION_DATE" fxFlex="25" content-align="center"
-                    read-only="true"></o-date-input>
-            </div>
+            <o-row>
+                <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+                    <!--<o-integer-input attr="GR_ID" label="ID" content-align="center" read-only="true"></o-integer-input>-->
+                    <o-text-input attr="GR_NAME" label="GR_NAME" fxFlex="70" content-align="center"
+                        read-only="true"></o-text-input>
+                    <o-date-input attr="GR_CREATION_DATE" label="GR_CREATION_DATE" fxFlex="25" content-align="center"
+                        read-only="true"></o-date-input>
+                </div>
+            </o-row>
+            <o-row>
+            <o-table #groupsTable attr="memberGroupsTable" service="groups" entity="getGroupMembers" keys="GR_ID"
+                columns="GR_ID;GR_NAME;GR_CREATION_DATE;USER_;MG_IS_ADMIN" visible-columns="USER_;MG_IS_ADMIN" parent-keys="GR_ID"
+                pagination-controls="false" virtual-scroll="yes">
+                <o-table-column attr="USER_" title="USER_" content-align="center"></o-table-column>
+                <o-table-column attr="MG_IS_ADMIN" title="ISADMIN" content-align="center"></o-table-column>
+            </o-table>
+            </o-row>
         </o-form>
-    </o-row>
-    <o-row>
-        <o-table #groupsTable attr="memberGroupsTable" service="memberGroups" entity="memberGroup" keys="GR_ID"
-            columns="MG_ID;GR_ID;USER_;MG_IS_ADMIN" visible-columns="USER_;MG_IS_ADMIN" pagination-controls="false"
-            virtual-scroll="yes">
-            <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
-            <o-table-column attr="MG_IS_ADMIN" title="MG_IS_ADMIN" content-align="center"></o-table-column>
-        </o-table>
     </o-row>
 </o-column>
