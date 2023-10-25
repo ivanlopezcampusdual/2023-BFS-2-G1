@@ -1,6 +1,6 @@
 <div fxFlex fxLayout="column" fxLayoutGap="20px" class="container-margin ">
   <div class="cont-balance">
-    <div fxFlex class="box-balance">
+    <div fxFlex class="box-balance" [appBalanceBoxShadow]="balance">
       <p class="mat-body-strong">{{MONTHLY_BALANCE | oTranslate}}</p>
       <p fxLayoutAlign="end center" [appBalanceColor]="balance">{{balance}}€</p>
     </div>

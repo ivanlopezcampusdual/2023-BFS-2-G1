@@ -47,6 +47,9 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child,
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
   background-color: white !important;
 }
+.o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
+  background-color: white !important;
+}
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary:hover {
   background-color: #deece2 !important;
   border: none;
