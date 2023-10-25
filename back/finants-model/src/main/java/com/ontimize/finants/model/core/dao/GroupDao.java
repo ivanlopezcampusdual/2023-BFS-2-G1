@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 public class GroupDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_GR_ID = "GR_ID";
     public static final String ATTR_GR_NAME = "GR_NAME";
+    public static final String ATTR_USER_ = "USER_";
     public static final String ATTR_GR_CREATION_DATE = "GR_CREATION_DATE";
     public static final String ATTR_GR_CHOOSE_MEMBERS = "GR_CHOOSE_MEMBERS";
+    public static final String QUERY_GET_GROUPS_BY_MEMBER = "getGroupsByMember";
     public static final String QUERY_GET_GROUP_MEMBERS = "getGroupMembers";
 }

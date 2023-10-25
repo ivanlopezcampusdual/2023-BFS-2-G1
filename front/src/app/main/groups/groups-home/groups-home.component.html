@@ -1,7 +1,6 @@
 <o-form-layout-manager mode="tab" label-columns="GR_NAME">
-  <o-table class="group-table" #groupsTable attr="groupsTable" service="groups" entity="group" keys="GR_ID"
-    columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" pagination-controls="yes" query-rows="20"
-    virtual-scroll="yes">
+  <o-table class="group-table" #groupsTable attr="groupsTable" service="groups" entity="getGroupsByMember" keys="GR_ID"
+    columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" pagination-controls="yes" query-rows="20" virtual-scroll="yes">
     <o-table-column attr="GR_NAME" title="NAME_GROUP" content-align="center"></o-table-column>
   </o-table>
 </o-form-layout-manager>
