@@ -32,11 +32,22 @@
 o-data-toolbar.o-grid-toolbar button.o-grid-button:first-child,
 o-data-toolbar.o-list-toolbar button.o-list-button:first-child,
 o-data-toolbar.o-table-toolbar .buttons .o-table-button:first-child,
-o-data-toolbar.o-table-toolbar .buttons button:first-child {
+o-data-toolbar.o-table-toolbar .buttons button:first-child,
+.o-form .o-form-toolbar button.mat-stroked-button,
+.ontimize-table.o-table
+  .o-table-container
+  .o-table-toolbar
+  .buttons
+  .o-table-button
+  button.mat-stroked-button {
   border-radius: 10px;
 }
-.container-margin {
-  padding: 0px 20px 20px 20px;
+.o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
+  background-color: white !important;
+}
+.o-form-toolbar button:not([disabled]).mat-button-base.mat-primary:hover {
+  background-color: #deece2 !important;
+  border: none;
 }
 .mat-drawer-opened .o-app-sidenav-image .o-app-sidenav-image-container {
   padding-bottom: 20px;
@@ -64,8 +75,10 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child {
   box-shadow: none !important;
 }
 
-.o-container-title {
-  color: #032a38 !important;
-  font-weight: bold !important;
-  font-size: 1.8rem;
+.mat-row:hover {
+  background-color: rgba(88, 180, 183, 0.1) !important;
+}
+
+.mat-cell:hover {
+  background-color: rgba(88, 180, 183, 0.11) !important;
 }
