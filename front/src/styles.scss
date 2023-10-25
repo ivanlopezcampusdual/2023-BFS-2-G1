@@ -42,13 +42,7 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child,
   button.mat-stroked-button {
   border-radius: 10px;
 }
-.o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
-  background-color: white !important;
-}
-.o-form-toolbar button:not([disabled]).mat-button-base.mat-primary:hover {
-  background-color: #deece2 !important;
-  border: none;
-}
+
 .mat-drawer-opened .o-app-sidenav-image .o-app-sidenav-image-container {
   padding-bottom: 20px;
 }
