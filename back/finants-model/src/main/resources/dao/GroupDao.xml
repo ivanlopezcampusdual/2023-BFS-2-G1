@@ -13,6 +13,25 @@
     </UpdateKeys>
     <GeneratedKey>gr_id</GeneratedKey>
     <Queries>
+        <Query id="getGroupsByMember">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="GR_ID" prefix="g"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.GROUPS g
+                    INNER JOIN
+                        ${mainschema}.MEMBER_GROUP mg
+                    ON
+                        g.GR_ID = mg.GR_ID
+                    #WHERE#
+                    #ORDER#
+                ]]>
+            </Sentence>
+        </Query>
         <Query id="getGroupMembers">
             <AmbiguousColumns>
                 <AmbiguousColumn name="GR_ID" prefix="GROUP_DATA" />
@@ -27,9 +46,9 @@
                             t.USER_,
                             mg.MG_IS_ADMIN
                         FROM
-                            GROUPS g
+                            ${mainschema}.GROUPS g
                         INNER JOIN
-                            MEMBER_GROUP mg
+                            ${mainschema}.MEMBER_GROUP mg
                         ON
                             g.GR_ID = mg.GR_ID
                         INNER JOIN
