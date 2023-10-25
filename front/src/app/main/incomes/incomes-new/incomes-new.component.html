@@ -1,4 +1,4 @@
-<o-form service="incomes" entity="income" keys="IN_ID" header-actions="I" show-header-navigation="no"
+<o-form service="incomes" after-insert-mode="detail"  stay-in-record-after-insert ="no" entity="income" keys="IN_ID" header-actions="I" show-header-navigation="no"
   emitEvent="false" changeType="0" label-header="INCOMES_FORM" (onFormModeChange)="addCurrentDate($event)"
   [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'">
   <o-row>
