@@ -6,7 +6,7 @@
     <div>
       <o-table class="income-table" attr="incomeTable" service="movements" entity="incomesForCategories" keys="MOV_ID"
         columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME"
-        visible-columns="MOV_CONCEPT;CA_NAME;MOV_AMOUNT;MOV_DATE" virtual-scroll="no">
+        visible-columns="MOV_CONCEPT;CA_NAME;MOV_AMOUNT;MOV_DATE" query-rows="20" virtual-scroll="no">
         <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
         <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
         <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
@@ -18,5 +18,4 @@
       <app-incomes-chart></app-incomes-chart>
     </div>
   </div>
-
 </div>

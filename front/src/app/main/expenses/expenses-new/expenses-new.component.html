@@ -1,20 +1,20 @@
-<o-form #newExpense service="expenses" after-insert-mode="detail" entity="expense" keys="EX_ID" header-actions="I"
-  show-header-navigation="no" emitEvent="false" label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"
-  [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)">
+<o-form #newExpense service="movements" after-insert-mode="detail" entity="insertExpense" keys="MOV_ID" header-actions="I" show-header-navigation="no"
+  emitEvent="false"  label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"  [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'">
   <o-row>
     <o-column fxFlex>
       <o-row fxFlex>
-        <o-text-input class="input-padding" attr="EX_CONCEPT" label="CONCEPT" fxFlex="40" required="yes" max-length="30"
-          (onChange)="onUserChange()"></o-text-input>
-        <o-currency-input class="input-padding" attr="EX_AMOUNT" label="AMOUNT" fxFlex="40" required="yes"
+        <o-text-input class="input-padding" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="40" required="yes"
+          max-length="30" (onChange)="onUserChange()"></o-text-input>
+        <o-currency-input class="input-padding" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="40" required="yes"
           [validators]="validatorAmount" currency-symbol="€" locale="es-ES" (change)="onUserChange()">
-        <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
+          <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
         </o-currency-input>
-        <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"  > </o-date-input>
+        <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"> </o-date-input>
       </o-row>
+      <!--<o-integer-input attr="CA_ID"></o-integer-input>-->
       <o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categories"
-        entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME" value-column="CA_ID"
-        multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>
+        entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+        value-column="CA_ID" multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>
     </o-column>
   </o-row>
 </o-form>
