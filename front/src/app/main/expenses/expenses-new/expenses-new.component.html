@@ -11,10 +11,10 @@
         </o-currency-input>
         <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"> </o-date-input>
       </o-row>
-      <o-integer-input attr="CA_ID"></o-integer-input>
-      <!--<o-combo attr="CA_EX_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categoryExpenses"
-        entity="categoryExpense" keys="CA_EX_ID" columns="CA_EX_ID;CA_EX_NAME" visible-columns="CA_EX_NAME"
-        value-column="CA_EX_ID" multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>-->
+      <!--<o-integer-input attr="CA_ID"></o-integer-input>-->
+      <o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categories"
+        entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+        value-column="CA_ID" multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>
     </o-column>
   </o-row>
 </o-form>

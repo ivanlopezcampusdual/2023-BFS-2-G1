@@ -26,5 +26,8 @@ export const SERVICE_CONFIG: Object = {
 
   movements: {
     path: "/movements"
+  },
+  categories: {
+    path: "/categories"
   }
 };

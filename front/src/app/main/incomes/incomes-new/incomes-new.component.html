@@ -13,10 +13,9 @@
         <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"></o-date-input>
       </o-row>
       <o-row>
-        <!--<o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categoryIncomes"
-          entity="categoryIncome" keys="CA_IN_ID" columns="CA_IN_ID;CA_IN_NAME" visible-columns="CA_IN_NAME"
-          value-column="CA_IN_ID" multiple="false" required="yes" (onChange)="onUserChange()"></o-combo>-->
-          <o-integer-input attr="CA_ID"></o-integer-input>
+        <o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categories"
+          entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+          value-column="CA_ID" multiple="false" required="yes" (onChange)="onUserChange()"></o-combo>
       </o-row>
     </o-column>
   </o-row>
