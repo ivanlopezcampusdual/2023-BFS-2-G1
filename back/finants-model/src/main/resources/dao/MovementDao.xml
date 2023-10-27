@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+        xmlns="http://www.ontimize.com/schema/jdbc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+        catalog="" schema="${mainschema}" table="MOVEMENTS"
+        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>MOV_ID</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>MOV_ID</Column>
+    </UpdateKeys>
+    <GeneratedKey>mov_id</GeneratedKey>
+
+<Queries>
+
+    <Query id="totalMovementsForCurrentMonth">
+    <Sentence>
+        <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 #WHERE#
+        ]]>
+
+    </Sentence>
+    </Query>
+    <Query id="totalIncomesForCurrentMonth">
+        <Sentence>
+            <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 WHERE MOV_AMOUNT >= 0;
+        ]]>
+        </Sentence>
+    </Query>
+
+    <Query id="totalExpensesForCurrentMonth">
+        <Sentence>
+            <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 WHERE MOV_AMOUNT < 0;
+        ]]>
+        </Sentence>
+    </Query>
+
+    <Query id="totalExpensesAmountDay">
+        <Sentence>
+            <![CDATA[
+                WITH SUM_TABLE AS (
+                    SELECT
+                        ABS(SUM(MOV_AMOUNT)) AS SUM_AMOUNT,
+                        TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
+                        USER_
+                    FROM
+                        ${mainschema}.MOVEMENTS
+                    WHERE
+                        MOV_AMOUNT < 0
+                    GROUP BY
+                        DATE_SUM_AMOUNT,
+                        USER_
+                    ORDER BY
+                        DATE_SUM_AMOUNT
+                )
+                SELECT
+                    #COLUMNS#
+                FROM
+                    SUM_TABLE
+                #WHERE#
+           ]]>
+
+        </Sentence>
+    </Query>
+
+    <Query id="totalIncomesAmountDay">
+        <Sentence>
+            <![CDATA[
+                WITH SUM_TABLE AS (
+                    SELECT
+                        SUM(MOV_AMOUNT) AS SUM_AMOUNT,
+                        TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
+                        USER_
+                    FROM
+                        ${mainschema}.MOVEMENTS
+                    WHERE
+                        MOV_AMOUNT >= 0
+                    GROUP BY
+                        DATE_SUM_AMOUNT,
+                        USER_
+                    ORDER BY
+                        DATE_SUM_AMOUNT
+                )
+                SELECT
+                    #COLUMNS#
+                FROM
+                    SUM_TABLE
+                #WHERE#
+           ]]>
+
+        </Sentence>
+    </Query>
+
+    <Query id="expensesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+                    SELECT #COLUMNS#
+                    FROM
+                        (SELECT
+                            MOV_ID,
+                            MOV_CONCEPT,
+                            ABS(MOV_AMOUNT) MOV_AMOUNT,
+                            MOV_DATE,
+                            CA_ID,
+                            USER_
+                        FROM
+                            ${mainschema}.MOVEMENTS
+                        WHERE
+                            MOV_AMOUNT < 0) AS mov_filtered
+                        LEFT JOIN
+                            ${mainschema}.CATEGORIES ca
+                        ON
+                        mov_filtered.CA_ID = ca.CA_ID
+                    #WHERE#
+
+
+                ]]>
+        </Sentence>
+    </Query>
+
+    <Query id="incomesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+                    SELECT #COLUMNS#
+                    FROM
+                        (SELECT
+                            *
+                        FROM
+                            ${mainschema}.MOVEMENTS
+                        WHERE
+                            MOV_AMOUNT >= 0) AS mov_filtered
+                        LEFT JOIN
+                            ${mainschema}.CATEGORIES ca
+                        ON
+                        mov_filtered.CA_ID = ca.CA_ID
+                    #WHERE#
+                ]]>
+        </Sentence>
+    </Query>
+    <Query id="balance">
+        <Sentence>
+            <![CDATA[
+                WITH BALANCE AS
+                (
+                    SELECT
+                        SUM(MOV_AMOUNT) AS balance,
+                        MOV_ID,
+                        MOV_CONCEPT,
+                        MOV_AMOUNT,
+                        MOV_DATE,
+                        CA_ID,
+                        USER_
+                    FROM ${mainschema}.MOVEMENTS
+                    GROUP BY
+                        MOV_ID,
+                        MOV_CONCEPT,
+                        MOV_AMOUNT,
+                        MOV_DATE,
+                        CA_ID,
+                        USER_
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    BALANCE
+                 #WHERE#
+        ]]>
+
+        </Sentence>
+    </Query>
+</Queries>
+
+</JdbcEntitySetup>

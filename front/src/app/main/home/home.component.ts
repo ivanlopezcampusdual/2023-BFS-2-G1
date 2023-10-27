@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected configureService() {
-    const conf = this.service.getDefaultServiceConfiguration('balances');
+    const conf = this.service.getDefaultServiceConfiguration('movements');
     this.service.configureService(conf);
   }
 

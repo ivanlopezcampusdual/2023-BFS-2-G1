@@ -22,5 +22,12 @@ export const SERVICE_CONFIG: Object = {
   },
   memberGroups: {
     path: "/memberGroups"
+  },
+
+  movements: {
+    path: "/movements"
+  },
+  categories: {
+    path: "/categories"
   }
 };
