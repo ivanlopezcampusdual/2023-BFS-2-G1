@@ -12,9 +12,16 @@
         </o-currency-input>
         <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"></o-date-input>
       </o-row>
+      <o-row>
         <o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categories"
           entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
           value-column="CA_ID" multiple="false" required="yes" (onChange)="onUserChange()"></o-combo>
+
+          <o-combo attr="GR_ID" label="GROUPS" class="input-padding" fxFlex="20" service="groups"
+          entity="group" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
+          multiple="false" required="no" fxFlex="25" (onChange)="onUserChange()">
+          </o-combo>
+        </o-row>
     </o-column>
   </o-row>
 </o-form>

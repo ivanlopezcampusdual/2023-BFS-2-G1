@@ -156,6 +156,7 @@
         <AmbiguousColumns>
             <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
             <AmbiguousColumn name="CA_ID" prefix="ca" />
+            <AmbiguousColumn name="GR_ID" prefix="gr" />
         </AmbiguousColumns>
         <Sentence>
             <![CDATA[
@@ -167,7 +168,8 @@
                             ABS(MOV_AMOUNT) MOV_AMOUNT,
                             MOV_DATE,
                             CA_ID,
-                            USER_
+                            USER_,
+                            GR_ID
                         FROM
                             ${mainschema}.MOVEMENTS
                         WHERE
@@ -176,6 +178,11 @@
                             ${mainschema}.CATEGORIES ca
                         ON
                         mov_filtered.CA_ID = ca.CA_ID
+                        LEFT JOIN
+                            ${mainschema}.GROUPS gr
+                        ON
+                        mov_filtered.GR_ID = gr.GR_ID
+
                     #WHERE#
 
 
@@ -187,6 +194,7 @@
         <AmbiguousColumns>
             <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
             <AmbiguousColumn name="CA_ID" prefix="ca" />
+            <AmbiguousColumn name="GR_ID" prefix="gr" />
         </AmbiguousColumns>
         <Sentence>
             <![CDATA[
@@ -202,6 +210,10 @@
                             ${mainschema}.CATEGORIES ca
                         ON
                         mov_filtered.CA_ID = ca.CA_ID
+                         LEFT JOIN
+                            ${mainschema}.GROUPS gr
+                        ON
+                        mov_filtered.GR_ID = gr.GR_ID
                     #WHERE#
                 ]]>
         </Sentence>
