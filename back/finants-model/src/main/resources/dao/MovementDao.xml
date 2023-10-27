@@ -123,6 +123,89 @@
 
         </Sentence>
     </Query>
+
+    <Query id="totalIncomesAmountDay">
+        <Sentence>
+            <![CDATA[
+                WITH SUM_TABLE AS (
+                    SELECT
+                        SUM(MOV_AMOUNT) AS SUM_AMOUNT,
+                        TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
+                        USER_
+                    FROM
+                        ${mainschema}.MOVEMENTS
+                    WHERE
+                        MOV_AMOUNT >= 0
+                    GROUP BY
+                        DATE_SUM_AMOUNT,
+                        USER_
+                    ORDER BY
+                        DATE_SUM_AMOUNT
+                )
+                SELECT
+                    #COLUMNS#
+                FROM
+                    SUM_TABLE
+                #WHERE#
+           ]]>
+
+        </Sentence>
+    </Query>
+
+    <Query id="expensesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+                    SELECT #COLUMNS#
+                    FROM
+                        (SELECT
+                            MOV_ID,
+                            MOV_CONCEPT,
+                            ABS(MOV_AMOUNT) MOV_AMOUNT,
+                            MOV_DATE,
+                            CA_ID,
+                            USER_
+                        FROM
+                            ${mainschema}.MOVEMENTS
+                        WHERE
+                            MOV_AMOUNT < 0) AS mov_filtered
+                        LEFT JOIN
+                            ${mainschema}.CATEGORIES ca
+                        ON
+                        mov_filtered.CA_ID = ca.CA_ID
+                    #WHERE#
+
+
+                ]]>
+        </Sentence>
+    </Query>
+
+    <Query id="incomesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+                    SELECT #COLUMNS#
+                    FROM
+                        (SELECT
+                            *
+                        FROM
+                            ${mainschema}.MOVEMENTS
+                        WHERE
+                            MOV_AMOUNT >= 0) AS mov_filtered
+                        LEFT JOIN
+                            ${mainschema}.CATEGORIES ca
+                        ON
+                        mov_filtered.CA_ID = ca.CA_ID
+                    #WHERE#
+                ]]>
+        </Sentence>
+    </Query>
 </Queries>
 
 </JdbcEntitySetup>

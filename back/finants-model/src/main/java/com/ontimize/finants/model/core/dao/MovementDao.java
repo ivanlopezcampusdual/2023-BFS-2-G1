@@ -20,5 +20,8 @@ public class MovementDao extends OntimizeJdbcDaoSupport  {
         public static final String QUERY_SUM_AMOUNT_FOR_MONTH = "totalMovementsForCurrentMonth";
         public static final String QUERY_SUM_INCOMES_AMOUNT_FOR_MONTH ="totalIncomesForCurrentMonth";
         public static final String QUERY_SUM_EXPENSES_AMOUNT_FOR_MONTH ="totalExpensesForCurrentMonth";
-        public static final String QUERY_TOTAL_AMOUNT_DAY = "totalExpensesAmountDay";
-    }
+        public static final String QUERY_TOTAL_EXPENSES_AMOUNT_DAY = "totalExpensesAmountDay";
+        public static final String QUERY_TOTAL_INCOMES_AMOUNT_DAY = "totalIncomesAmountDay";
+        public static final String QUERY_EXPENSES_FOR_CATEGORIES = "expensesForCategories";
+        public static final String QUERY_INCOMES_FOR_CATEGORIES = "incomesForCategories";
+}
