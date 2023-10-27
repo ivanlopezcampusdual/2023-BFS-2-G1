@@ -8,6 +8,7 @@ import { ODateInputComponent, OValidators } from "ontimize-web-ngx";
   templateUrl: "./incomes-new.component.html",
   styleUrls: ["./incomes-new.component.css"]
 })
+
 export class IncomesNewComponent implements OnInit {
   public userHasMadeChanges : boolean = false;
   valor: number = 0;
@@ -34,4 +35,8 @@ export class IncomesNewComponent implements OnInit {
     this.userHasMadeChanges = true;
   }
 
+  public resetCurrentDate(event): void{
+    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+    this.userHasMadeChanges = false;
+  }
 }

@@ -7,7 +7,6 @@ import { ODateInputComponent, OValidators, OFormComponent } from "ontimize-web-n
   selector: "app-expenses-new",
   templateUrl: "./expenses-new.component.html",
   styleUrls: ["./expenses-new.component.css"],
- 
 })
 export class ExpensesNewComponent implements OnInit {
   public userHasMadeChanges : boolean = false;
@@ -23,7 +22,6 @@ export class ExpensesNewComponent implements OnInit {
   }
 
   ngOnInit() {
-    
   }
 
   public addCurrentDate(event){
@@ -36,8 +34,12 @@ export class ExpensesNewComponent implements OnInit {
   public onUserChange(): void {
     this.userHasMadeChanges = true;
   }
-  
-  }
+
+  public resetCurrentDate(event): void{
+    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+    this.userHasMadeChanges = false;
+  } 
+}
 
  
 
