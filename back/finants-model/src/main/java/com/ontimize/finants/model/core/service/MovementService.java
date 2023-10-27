@@ -98,5 +98,11 @@ public class MovementService implements IMovementService {
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_INCOMES_FOR_CATEGORIES);
     }
 
+    @Override
+    public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_BALANCE);
+    }
+
 
 }
