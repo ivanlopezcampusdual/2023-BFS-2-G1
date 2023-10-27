@@ -1,7 +1,6 @@
 package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.IMovementService;
-import com.ontimize.finants.model.core.dao.ExpenseDao;
 import com.ontimize.finants.model.core.dao.MovementDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
@@ -74,33 +73,33 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult totalExpensesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_EXPENSES_AMOUNT_DAY);
     }
 
     @Override
     public EntityResult totalIncomesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         EntityResult totalIncomesAmountDay = this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_INCOMES_AMOUNT_DAY);
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_INCOMES_AMOUNT_DAY);
     }
 
     @Override
     public EntityResult expensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_EXPENSES_FOR_CATEGORIES);
 
     }
 
     @Override
     public EntityResult incomesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_INCOMES_FOR_CATEGORIES);
     }
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_BALANCE);
     }
 
