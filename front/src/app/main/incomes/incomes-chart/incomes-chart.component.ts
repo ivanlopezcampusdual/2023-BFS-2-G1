@@ -18,8 +18,8 @@ import { D3Locales } from "src/app/shared/d3-locale/locales";
 export class IncomesChartComponent implements OnInit {
   @ViewChild("discreteBar", { static: false }) discreteBar: OChartComponent;
   protected data: Array<Object>;
-  protected yAxis: string = "SUM_INCOMES";
-  protected xAxis: string = "DATE_SUM_INCOMES";
+  protected yAxis: string = "SUM_AMOUNT";
+  protected xAxis: string = "DATE_SUM_AMOUNT";
   protected service: OntimizeService;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
   protected chartParameters: DiscreteBarChartConfiguration;
@@ -37,16 +37,16 @@ export class IncomesChartComponent implements OnInit {
     this.queryData();
   }
   protected configureService() {
-    const conf = this.service.getDefaultServiceConfiguration("incomes");
+    const conf = this.service.getDefaultServiceConfiguration("movements");
     this.service.configureService(conf);
   }
 
   queryData() {
     let service: OntimizeService = this.injector.get(OntimizeService);
     const filter = {};
-    const columns = ["SUM_INCOMES", "DATE_SUM_INCOMES", "USER_"];
+    const columns = ["SUM_AMOUNT", "DATE_SUM_AMOUNT", "USER_"];
     this.configureService();
-    service.query(filter, columns, "totalIncomeDay").subscribe((resp) => {
+    service.query(filter, columns, "totalIncomesAmountDay").subscribe((resp) => {
       if (resp.code === 0) {
         this.adaptResult(resp.data);
         this.formater();

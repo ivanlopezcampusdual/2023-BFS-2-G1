@@ -75,7 +75,14 @@ public class MovementService implements IMovementService {
     @Override
     public EntityResult totalExpensesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
-        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_AMOUNT_DAY );
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_EXPENSES_AMOUNT_DAY);
+    }
+
+    @Override
+    public EntityResult totalIncomesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        EntityResult totalIncomesAmountDay = this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_INCOMES_AMOUNT_DAY);
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_INCOMES_AMOUNT_DAY);
     }
 
 
