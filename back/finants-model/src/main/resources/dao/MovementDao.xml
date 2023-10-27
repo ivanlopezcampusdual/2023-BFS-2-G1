@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+        xmlns="http://www.ontimize.com/schema/jdbc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+        catalog="" schema="${mainschema}" table="MOVEMENTS"
+        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>MOV_ID</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>MOV_ID</Column>
+    </UpdateKeys>
+    <GeneratedKey>mov_id</GeneratedKey>
+
+<Queries>
+
+    <Query id="totalMovementsForCurrentMonth">
+    <Sentence>
+        <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 #WHERE#
+        ]]>
+
+    </Sentence>
+    </Query>
+    <Query id="totalIncomesForCurrentMonth">
+        <Sentence>
+            <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 WHERE MOV_AMOUNT >= 0;
+        ]]>
+        </Sentence>
+    </Query>
+
+    <Query id="totalExpensesForCurrentMonth">
+        <Sentence>
+            <![CDATA[
+                WITH TOTAL_MOVEMENTS AS
+                (
+                SELECT
+                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                MOV_AMOUNT
+                FROM
+                MOVEMENTS
+                GROUP BY
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE),
+                EXTRACT(YEAR FROM MOV_DATE)
+                )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    TOTAL_MOVEMENTS
+                 WHERE MOV_AMOUNT < 0;
+        ]]>
+        </Sentence>
+    </Query>
+</Queries>
+
+</JdbcEntitySetup>
