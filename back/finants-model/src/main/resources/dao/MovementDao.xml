@@ -95,6 +95,34 @@
         ]]>
         </Sentence>
     </Query>
+
+    <Query id="totalExpensesAmountDay">
+        <Sentence>
+            <![CDATA[
+                WITH SUM_TABLE AS (
+                    SELECT
+                        ABS(SUM(MOV_AMOUNT)) AS SUM_AMOUNT,
+                        TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
+                        USER_
+                    FROM
+                        ${mainschema}.MOVEMENTS
+                    WHERE
+                        MOV_AMOUNT < 0
+                    GROUP BY
+                        DATE_SUM_AMOUNT,
+                        USER_
+                    ORDER BY
+                        DATE_SUM_AMOUNT
+                )
+                SELECT
+                    #COLUMNS#
+                FROM
+                    SUM_TABLE
+                #WHERE#
+           ]]>
+
+        </Sentence>
+    </Query>
 </Queries>
 
 </JdbcEntitySetup>

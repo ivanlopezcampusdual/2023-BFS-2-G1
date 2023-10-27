@@ -1,6 +1,7 @@
 package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.IMovementService;
+import com.ontimize.finants.model.core.dao.ExpenseDao;
 import com.ontimize.finants.model.core.dao.MovementDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
@@ -64,13 +65,18 @@ public class MovementService implements IMovementService {
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_SUM_EXPENSES_AMOUNT_FOR_MONTH);
     }
 
-    public EntityResult insertExpenseInsert (Map<String,Object> attrMap){
+    public EntityResult insertExpenseInsert (Map<String,Object> attrMap) throws OntimizeJEERuntimeException{
         Float movAmount = (Float)attrMap.get(MovementDao.ATTR_MOV_AMOUNT);
         Double expenseAmount = movAmount.doubleValue() * -1;
         attrMap.put(MovementDao.ATTR_MOV_AMOUNT, expenseAmount);
         return movementInsert(attrMap);
     }
 
+    @Override
+    public EntityResult totalExpensesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(ExpenseDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_AMOUNT_DAY );
+    }
 
 
 }

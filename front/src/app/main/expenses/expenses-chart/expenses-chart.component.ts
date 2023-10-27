@@ -36,7 +36,7 @@ export class ExpensesChartComponent implements OnInit {
     this.queryData();
   }
   protected configureService() {
-    const conf = this.service.getDefaultServiceConfiguration("expenses");
+    const conf = this.service.getDefaultServiceConfiguration("movements");
     this.service.configureService(conf);
   }
 
@@ -45,7 +45,7 @@ export class ExpensesChartComponent implements OnInit {
     const filter = {};
     const columns = ["SUM_AMOUNT", "DATE_SUM_AMOUNT", "USER_"];
     this.configureService();
-    service.query(filter, columns, "totalAmountDay").subscribe((resp) => {
+    service.query(filter, columns, "totalExpensesAmountDay").subscribe((resp) => {
       if (resp.code === 0) {
         this.adaptResult(resp.data);
         this.formater();
