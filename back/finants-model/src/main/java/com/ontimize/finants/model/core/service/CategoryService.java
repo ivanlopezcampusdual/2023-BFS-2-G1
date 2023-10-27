@@ -2,8 +2,6 @@ package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.ICategoryService;
 import com.ontimize.finants.model.core.dao.CategoryDao;
-import com.ontimize.finants.model.core.dao.CategoryIncomeDao;
-import com.ontimize.finants.model.core.dao.ExpenseDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
