@@ -17,7 +17,7 @@
         multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>
 
         <o-combo attr="GR_ID" label="GROUPS" class="input-padding" fxFlex="20" service="groups"
-        entity="group" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
+        entity="getGroupsByMember" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
         multiple="false" required="no" fxFlex="25" (onChange)="onUserChange()">
         </o-combo>
       </o-row>
