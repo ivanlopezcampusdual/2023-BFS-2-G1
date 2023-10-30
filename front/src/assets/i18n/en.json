@@ -54,5 +54,6 @@
   "GROUP_FORM": "Group form",
   "GR_CHOOSE_MEMBERS": "Choose an user to add",
   "ADD_MEMBERS_FORM": "Add user form",
-  "DUPLICATED_MEMBER_ERROR": "Error: Selected usuer is already a member of this group"
+  "DUPLICATED_MEMBER_ERROR": "Error: Selected usuer is already a member of this group",
+  "MEMBER_BALANCE": "Member balance"
 }

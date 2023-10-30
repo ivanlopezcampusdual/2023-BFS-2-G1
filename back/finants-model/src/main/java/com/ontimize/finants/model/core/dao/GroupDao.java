@@ -16,4 +16,5 @@ public class GroupDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_GR_CHOOSE_MEMBERS = "GR_CHOOSE_MEMBERS";
     public static final String QUERY_GET_GROUPS_BY_MEMBER = "getGroupsByMember";
     public static final String QUERY_GET_GROUP_MEMBERS = "getGroupMembers";
+    public static final String QUERY_GET_GROUP_MEMBERS_WITH_BALANCE = "getGroupMembersWithBalance";
 }

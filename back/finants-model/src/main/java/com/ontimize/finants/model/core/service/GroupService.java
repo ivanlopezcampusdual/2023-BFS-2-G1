@@ -78,4 +78,9 @@ public class GroupService implements IGroupService {
     public EntityResult getGroupMembersQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MEMBERS);
     }
+
+    @Override
+    public EntityResult getGroupMembersWithBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MEMBERS_WITH_BALANCE);
+    }
 }
