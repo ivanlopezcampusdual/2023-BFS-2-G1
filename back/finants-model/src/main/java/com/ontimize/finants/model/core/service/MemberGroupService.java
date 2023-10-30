@@ -4,10 +4,12 @@ import com.ontimize.finants.api.core.service.IMemberGroupService;
 import com.ontimize.finants.model.core.dao.MemberGroupDao;
 import com.ontimize.finants.model.core.dao.UserDao;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,14 @@ public class MemberGroupService implements IMemberGroupService {
 
     @Override
     public EntityResult memberGroupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-        return this.daoHelper.insert(this.memberGroupDao, attrMap);
+        try {
+            return this.daoHelper.insert(this.memberGroupDao, attrMap);
+        } catch (DuplicateKeyException ex) {
+            EntityResult res = new EntityResultMapImpl();
+            res.setCode(EntityResult.OPERATION_WRONG);
+            res.setMessage(MemberGroupDao.DUPLICATED_MEMBER_ERROR);
+            return res;
+        }
     }
 
     @Override

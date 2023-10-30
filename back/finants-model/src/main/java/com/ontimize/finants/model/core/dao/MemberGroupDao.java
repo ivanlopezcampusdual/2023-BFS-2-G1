@@ -14,4 +14,5 @@ public class MemberGroupDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_GR_ID = "GR_ID";
     public static final String ATTR_USER_ = "USER_";
     public static final String ATTR_IS_ADMIN = "MG_IS_ADMIN";
+    public static final String DUPLICATED_MEMBER_ERROR = "DUPLICATED_MEMBER_ERROR";
 }

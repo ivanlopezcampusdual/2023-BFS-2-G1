@@ -53,5 +53,6 @@
   "GR_ADD_MEMBER": "Add member",
   "GROUP_FORM": "Group form",
   "GR_CHOOSE_MEMBERS": "Choose an user to add",
-  "ADD_MEMBERS_FORM": "Add user form"
+  "ADD_MEMBERS_FORM": "Add user form",
+  "DUPLICATED_MEMBER_ERROR": "Error: Selected usuer is already a member of this group"
 }
