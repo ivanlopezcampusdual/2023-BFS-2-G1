@@ -64,5 +64,62 @@
                 ]]>
             </Sentence>
         </Query>
+        <Query id="getGroupMembersWithBalance">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="GR_ID" prefix="g" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+                    WITH MEMBER_COUNT as (
+                        SELECT
+                            COUNT(user_) QUANTITY
+                        FROM
+                            MEMBER_GROUP g
+                        #WHERE#
+                    ),
+
+                    GROUP_MOVEMENTS AS (
+                        SELECT
+                            g.USER_,
+		                    g.MOV_AMOUNT
+                        FROM
+                            MOVEMENTS g
+                        #WHERE#
+                    ),
+
+                    GROUP_BALANCE AS (
+                        SELECT
+                            SUM(MOV_AMOUNT) / (SELECT QUANTITY FROM MEMBER_COUNT mc) MEMBER_BALANCE
+                        FROM
+                            GROUP_MOVEMENTS gm
+                    ),
+
+                    MEMBER_BALANCE AS (
+                        SELECT
+                            mg.USER_,
+                            (SELECT MEMBER_BALANCE FROM GROUP_BALANCE gb) - COALESCE(SUM(gm.MOV_AMOUNT), 0) MEMBER_BALANCE
+                        FROM
+                            GROUPS g
+                        INNER JOIN
+                            MEMBER_GROUP mg
+                        ON
+                            g.GR_ID = mg.GR_ID
+                        LEFT JOIN
+                            GROUP_MOVEMENTS gm
+                        ON
+                            mg.USER_ = gm.USER_
+                        #WHERE#
+                        GROUP BY
+                            mg.USER_
+                    )
+
+                    SELECT
+                        mb.USER_,
+                        mb.MEMBER_BALANCE
+                    FROM
+                        MEMBER_BALANCE mb
+                ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>
