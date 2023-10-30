@@ -5,11 +5,14 @@ import com.ontimize.finants.model.core.dao.MovementDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -88,8 +91,9 @@ public class MovementService implements IMovementService {
     public EntityResult expensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_EXPENSES_FOR_CATEGORIES);
-
     }
+
+
 
     @Override
     public EntityResult incomesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
@@ -99,9 +103,37 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
-        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_BALANCE);
+        EntityResult resultBalance = this.movementQuery(keyMap, attrList).clone();
+        List<BigDecimal> listMovAmount = (List<BigDecimal>) resultBalance.get(MovementDao.ATTR_MOV_AMOUNT);
+        BigDecimal balance = calcBalance(listMovAmount);
+        setResultBalance(resultBalance, balance);
+        return resultBalance;
     }
 
+    private static void setResultBalance(EntityResult resultBalance, BigDecimal balance) {
+        List<Object> balanceTotal  = new ArrayList<>();
+        List<Object> USER_ = (List<Object>) resultBalance.get(MovementDao.ATTR_USER_);
+        balanceTotal.add(balance);
+        resultBalance.clear();
+        resultBalance.put(MovementDao.ATTR_BALANCE, balanceTotal);
+        resultBalance.put(MovementDao.ATTR_USER_, USER_);
+    }
+
+    @NotNull
+    private static BigDecimal calcBalance(List<BigDecimal> listMovAmount) {
+        BigDecimal balance = listMovAmount.stream()
+                .reduce(BigDecimal.ZERO,BigDecimal::add );
+        return balance;
+    }
+
+    @Override
+    public EntityResult expensesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.movementUpdate(attrMap,keyMap);
+    }
+
+    @Override
+    public EntityResult expensesForCategoriesDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.movementDelete(keyMap);
+    }
 
 }
