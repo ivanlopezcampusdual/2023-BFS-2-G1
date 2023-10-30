@@ -3,7 +3,7 @@
   <o-column>
     <o-row>
       <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
-        <o-text-input class="text-detail-group" attr="GR_NAME" label="GR_NAME" fxFlex="70" content-align="center"
+        <o-text-input class="text-detail-group" attr="GR_NAME" label="GR_GROUP_NAME" fxFlex="70" content-align="center"
           read-only="true"></o-text-input>
         <o-date-input class="text-detail-group" attr="GR_CREATION_DATE" label="GR_CREATION_DATE" fxFlex="25"
           content-align="center" read-only="true"></o-date-input>
@@ -14,7 +14,7 @@
         entity="getGroupMembers" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE;USER_;MG_IS_ADMIN"
         visible-columns="USER_;MG_IS_ADMIN" parent-keys="GR_ID" pagination-controls="true" query-rows="20"
         virtual-scroll="yes">
-        <o-table-column attr="USER_" title="USER_" content-align="center"></o-table-column>
+        <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
         <o-table-column attr="MG_IS_ADMIN" title="ISADMIN" content-align="center"></o-table-column>
       </o-table>
     </o-form-layout-manager>

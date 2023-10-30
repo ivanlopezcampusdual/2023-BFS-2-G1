@@ -1,11 +1,12 @@
-<o-form service="movements" after-insert-mode="detail"  stay-in-record-after-insert ="no" entity="movement" keys="MOV_ID" header-actions="I" show-header-navigation="no"
-  emitEvent="false" changeType="0" label-header="INCOMES_FORM" (onFormModeChange)="addCurrentDate($event)"
-  [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)">
+<o-form service="movements" after-insert-mode="detail" stay-in-record-after-insert="no" entity="movement" keys="MOV_ID"
+  header-actions="I" show-header-navigation="no" emitEvent="false" changeType="0" label-header="INCOMES_FORM"
+  (onFormModeChange)="addCurrentDate($event)" [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'"
+  (click)="resetCurrentDate($event)">
   <o-row>
     <o-column title-label="INCOMES_FORM" fxFlex>
       <o-row>
-        <o-text-input class="input-padding" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="40" required="yes"max-length="30"
-        (onChange)="onUserChange()"></o-text-input>
+        <o-text-input class="input-padding" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="40" required="yes"
+          max-length="30" (onChange)="onUserChange()"></o-text-input>
         <o-currency-input class="input-padding" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="40" required="yes"
           [validators]="validatorAmount" currency-symbol="€" [locale]="'es-ES'" (onChange)="onUserChange()">
           <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
@@ -13,15 +14,15 @@
         <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="20"></o-date-input>
       </o-row>
       <o-row>
-        <o-combo attr="CA_ID" label="CATEGORIES" class="input-padding" fxFlex="20" service="categories"
-          entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-          value-column="CA_ID" multiple="false" required="yes" (onChange)="onUserChange()"></o-combo>
+        <o-combo attr="CA_ID" label="CATEGORY" class="input-padding" fxFlex="20" service="categories"
+          entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME" value-column="CA_ID"
+          multiple="false" required="yes" (onChange)="onUserChange()"></o-combo>
 
-          <o-combo attr="GR_ID" label="GROUPS" class="input-padding" fxFlex="20" service="groups"
-          entity="getGroupsByMember" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
+        <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding" fxFlex="20" service="groups" entity="group"
+          keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
           multiple="false" required="no" fxFlex="25" (onChange)="onUserChange()">
-          </o-combo>
-        </o-row>
+        </o-combo>
+      </o-row>
     </o-column>
   </o-row>
 </o-form>
