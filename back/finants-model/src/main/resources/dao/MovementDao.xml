@@ -218,37 +218,6 @@
                 ]]>
         </Sentence>
     </Query>
-    <Query id="balance">
-        <Sentence>
-            <![CDATA[
-                WITH BALANCE AS
-                (
-                    SELECT
-                        SUM(MOV_AMOUNT) AS balance,
-                        MOV_ID,
-                        MOV_CONCEPT,
-                        MOV_AMOUNT,
-                        MOV_DATE,
-                        CA_ID,
-                        USER_
-                    FROM ${mainschema}.MOVEMENTS
-                    GROUP BY
-                        MOV_ID,
-                        MOV_CONCEPT,
-                        MOV_AMOUNT,
-                        MOV_DATE,
-                        CA_ID,
-                        USER_
-                )
-                SELECT
-                   #COLUMNS#
-                 FROM
-                    BALANCE
-                 #WHERE#
-        ]]>
-
-        </Sentence>
-    </Query>
 </Queries>
 
 </JdbcEntitySetup>
