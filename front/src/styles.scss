@@ -87,3 +87,11 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child,
 .mat-cell:hover {
   background-color: rgba(88, 180, 183, 0.11) !important;
 }
+
+.expensesDetailsTable {
+  -webkit-text-fill-color: rgba(192, 145, 145, 1);
+}
+
+.expensesDetailsTable svg {
+ color: rgba(192, 145, 145, 1);
+}

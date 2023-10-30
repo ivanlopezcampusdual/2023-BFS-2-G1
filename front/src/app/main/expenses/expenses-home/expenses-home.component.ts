@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-expenses-home",
@@ -6,7 +7,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./expenses-home.component.css"],
 })
 export class ExpensesHomeComponent implements OnInit {
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+
+}
 }

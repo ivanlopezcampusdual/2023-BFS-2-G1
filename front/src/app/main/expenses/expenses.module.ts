@@ -9,10 +9,11 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { ExpensesChartComponent } from './expenses-chart/expenses-chart.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from "@angular/forms";
+import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
 
 
 @NgModule({
-  declarations: [ExpensesHomeComponent, ExpensesNewComponent, ExpensesChartComponent],
+  declarations: [ExpensesHomeComponent, ExpensesNewComponent, ExpensesChartComponent, ExpensesDetailComponent],
   imports: [
       CommonModule, 
       SharedModule,

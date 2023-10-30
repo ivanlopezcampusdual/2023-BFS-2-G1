@@ -54,5 +54,6 @@
   "GROUP_FORM": "Formulario de grupos",
   "GR_CHOOSE_MEMBERS": "Elige el usuario a añadir",
   "ADD_MEMBERS_FORM": "Formulario añadir miembros",
-  "DUPLICATED_MEMBER_ERROR": "Error: El usuario seleccionado ya es miembro del grupo"
+  "DUPLICATED_MEMBER_ERROR": "Error: El usuario seleccionado ya es miembro del grupo", 
+  "EXPENSES_DETAILS": "Detalle de gastos"
 }
