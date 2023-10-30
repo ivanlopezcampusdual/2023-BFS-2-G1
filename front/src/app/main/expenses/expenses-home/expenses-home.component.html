@@ -1,18 +1,19 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="stretch" class="container-margin">
   <div>
-    <h2>{{'EXPENSE LIST' | oTranslate }}</h2>
+    <h2>{{'EXPENSE_LIST' | oTranslate }}</h2>
   </div>
   <div fxFlex fxLayout="column" fxLayoutGap="20px">
     <div>
-      <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements" entity="expensesForCategories"
-        keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
+      <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements"
+        entity="expensesForCategories" keys="MOV_ID"
+        columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
         visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" page-index="20">
         <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
         <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
         <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
           currency-symbol-position="right" content-align="center"></o-table-column>
         <o-table-column attr="MOV_DATE" title="DATE" type="date" format="L"></o-table-column>
-        <o-table-column attr="GR_NAME" title="GROUP" content-align="center" ></o-table-column>
+        <o-table-column attr="GR_NAME" title="GROUP" content-align="center"></o-table-column>
       </o-table>
     </div>
     <app-expenses-chart></app-expenses-chart>
