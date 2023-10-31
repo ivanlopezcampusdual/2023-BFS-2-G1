@@ -70,34 +70,10 @@
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
-                    WITH MEMBER_COUNT as (
-                        SELECT
-                            COUNT(user_) QUANTITY
-                        FROM
-                            MEMBER_GROUP g
-                        #WHERE#
-                    ),
-
-                    GROUP_MOVEMENTS AS (
-                        SELECT
-                            g.USER_,
-		                    g.MOV_AMOUNT
-                        FROM
-                            MOVEMENTS g
-                        #WHERE#
-                    ),
-
-                    GROUP_BALANCE AS (
-                        SELECT
-                            SUM(MOV_AMOUNT) / (SELECT QUANTITY FROM MEMBER_COUNT mc) MEMBER_BALANCE
-                        FROM
-                            GROUP_MOVEMENTS gm
-                    ),
-
-                    MEMBER_BALANCE AS (
+                    WITH GROUP_MEMBERS_EXPENSES as (
                         SELECT
                             mg.USER_,
-                            (SELECT MEMBER_BALANCE FROM GROUP_BALANCE gb) - COALESCE(SUM(gm.MOV_AMOUNT), 0) MEMBER_BALANCE
+                            COALESCE(SUM(m.MOV_AMOUNT), 0) EXPENSES
                         FROM
                             GROUPS g
                         INNER JOIN
@@ -105,19 +81,38 @@
                         ON
                             g.GR_ID = mg.GR_ID
                         LEFT JOIN
-                            GROUP_MOVEMENTS gm
+                            MOVEMENTS m
                         ON
-                            mg.USER_ = gm.USER_
+                            mg.USER_ = m.USER_
                         #WHERE#
                         GROUP BY
                             mg.USER_
+                    ),
+
+                    GROUP_BALANCE AS (
+                        SELECT
+                            SUM(EXPENSES) / (SELECT COUNT(USER_) FROM GROUP_MEMBERS_EXPENSES gm) USER_TOTAL
+                        FROM GROUP_MEMBERS_EXPENSES gme
+                    ),
+
+                    MEMBER_BALANCE AS (
+                        SELECT
+                            me.user_,
+                            (
+                                SELECT
+                                    gb.USER_TOTAL
+                                FROM
+                                    GROUP_BALANCE gb
+                            ) - me.EXPENSES MEMBER_BALANCE
+                        from
+                            GROUP_MEMBERS_EXPENSES me
                     )
 
                     SELECT
                         mb.USER_,
                         mb.MEMBER_BALANCE
                     FROM
-                        MEMBER_BALANCE mb
+                        MEMBER_BALANCE mb;
                 ]]>
             </Sentence>
         </Query>
