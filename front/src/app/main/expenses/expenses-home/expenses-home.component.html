@@ -6,7 +6,7 @@
     <div>
       <o-form label-columns="MOV_CONCEPT" >
         <div fxFill>
-      <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements"
+      <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements" delete-button="false"
         entity="expensesForCategories" keys="MOV_ID"
         columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
         visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" page-index="20">
