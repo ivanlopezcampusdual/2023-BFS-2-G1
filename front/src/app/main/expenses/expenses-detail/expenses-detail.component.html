@@ -4,12 +4,15 @@
     <o-row>
       <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
         <o-date-input class="text-detail-expense" attr="MOV_DATE" label="DATE" fxFlex="10"
-          content-align="center"></o-date-input>
-        <o-text-input class="text-detail-expense" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" content-align="center"></o-text-input>
-        <o-currency-input class="text-detail-expense" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10"></o-currency-input>
+          content-align="center" required="yes"></o-date-input>
+        <o-text-input class="text-detail-expense" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" content-align="center" required="yes"></o-text-input>
+        <o-currency-input class="text-detail-expense" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10"
+        [validators]="validatorAmount" currency-symbol="€" locale="es-ES" required="yes" >
+        <o-validator error-name="negativeNumber" error-text="NONEGATIVE" required="yes"></o-validator>
+      </o-currency-input>
         <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20" service="categories"
           entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-          value-column="CA_ID" multiple="false" required="yes" fxFlex="20" ></o-combo>
+          value-column="CA_ID" multiple="false" required="yes" fxFlex="20" required="yes"></o-combo>
         <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding" fxFlex="20" service="groups" entity="group"
           keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
           multiple="false" required="no" fxFlex="25">
