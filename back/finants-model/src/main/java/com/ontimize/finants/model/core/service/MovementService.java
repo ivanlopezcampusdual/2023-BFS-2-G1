@@ -135,6 +135,7 @@ public class MovementService implements IMovementService {
         Float movAmount = (Float)attrMap.get(MovementDao.ATTR_MOV_AMOUNT);
         Double expenseAmount = movAmount.doubleValue() * -1;
         attrMap.put(MovementDao.ATTR_MOV_AMOUNT, expenseAmount);
+
         return this.movementUpdate(attrMap,keyMap);
     }
 
