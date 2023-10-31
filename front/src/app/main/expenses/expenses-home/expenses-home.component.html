@@ -4,7 +4,7 @@
   </div>
   <div fxFlex fxLayout="column" fxLayoutGap="20px">
     <div>
-      <o-form-layout-manager mode="tab" label-columns="MOV_CONCEPT" >
+      <o-form label-columns="MOV_CONCEPT" >
         <div fxFill>
       <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements"
         entity="expensesForCategories" keys="MOV_ID"
@@ -18,7 +18,7 @@
         <o-table-column attr="GR_NAME" title="GROUP" content-align="center"></o-table-column>
       </o-table>
     </div>
-  </o-form-layout-manager>
+  </o-form>
     <app-expenses-chart></app-expenses-chart>
   </div>
 </div>
