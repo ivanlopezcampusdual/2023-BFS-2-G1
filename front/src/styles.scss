@@ -89,9 +89,18 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child,
 }
 
 .expensesDetailsTable {
-  -webkit-text-fill-color: rgba(192, 145, 145, 1);
+  -webkit-text-fill-color: var(--var-expense-color);
 }
 
 .expensesDetailsTable svg {
- color: rgba(192, 145, 145, 1);
+ color: var(--var-expense-color);
 }
+
+.text-detail-incomes{
+  -webkit-text-fill-color: var(--var-income-color); 
+}
+
+.text-detail-incomes svg{
+  color: var(--var-income-color); 
+}
+

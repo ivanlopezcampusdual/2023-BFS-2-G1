@@ -103,7 +103,7 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        EntityResult resultBalance = this.movementQuery(keyMap, attrList).clone();
+        EntityResult resultBalance = this.movementQuery(keyMap, attrList);
         List<BigDecimal> listMovAmount = (List<BigDecimal>) resultBalance.get(MovementDao.ATTR_MOV_AMOUNT);
         BigDecimal balance = calcBalance(listMovAmount);
         setResultBalance(resultBalance, balance);
@@ -120,19 +120,36 @@ public class MovementService implements IMovementService {
     }
 
     @NotNull
-    private static BigDecimal calcBalance(List<BigDecimal> listMovAmount) {
-        BigDecimal balance = listMovAmount.stream()
-                .reduce(BigDecimal.ZERO,BigDecimal::add );
-        return balance;
+    private static BigDecimal calcBalance(List<BigDecimal> listMovAmount)  {
+        if(listMovAmount == null || listMovAmount.isEmpty()){
+            return BigDecimal.ZERO;
+        }else{
+            BigDecimal balance = listMovAmount.stream()
+                    .reduce(BigDecimal.ZERO,BigDecimal::add );
+            return balance;
+        }
     }
 
     @Override
     public EntityResult expensesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        Float movAmount = (Float)attrMap.get(MovementDao.ATTR_MOV_AMOUNT);
+        Double expenseAmount = movAmount.doubleValue() * -1;
+        attrMap.put(MovementDao.ATTR_MOV_AMOUNT, expenseAmount);
         return this.movementUpdate(attrMap,keyMap);
     }
 
     @Override
     public EntityResult expensesForCategoriesDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.movementDelete(keyMap);
+    }
+
+    @Override
+    public EntityResult incomesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        return this.movementUpdate(attrMap,keyMap);
+    }
+
+    @Override
+    public EntityResult incomesForCategoriesDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.movementDelete(keyMap);
     }
 

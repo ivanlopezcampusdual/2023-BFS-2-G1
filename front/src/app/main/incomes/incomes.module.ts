@@ -8,9 +8,10 @@ import { OChartModule } from 'ontimize-web-ngx-charts';
 import { SharedModule } from "src/app/shared/shared.module";
 import { IncomesChartComponent } from './incomes-chart/incomes-chart.component';
 import { DatePipe } from '@angular/common';
+import { IncomesDetailComponent } from './incomes-detail/incomes-detail.component';
 
 @NgModule({
-  declarations: [IncomesHomeComponent, IncomesNewComponent, IncomesChartComponent],
+  declarations: [IncomesHomeComponent, IncomesNewComponent, IncomesChartComponent,IncomesDetailComponent],
   imports: [
     CommonModule,
     OntimizeWebModule,
