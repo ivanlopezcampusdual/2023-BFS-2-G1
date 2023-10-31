@@ -2,6 +2,7 @@ package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.IMovementService;
 import com.ontimize.finants.model.core.dao.MovementDao;
+import com.ontimize.jee.common.db.NullValue;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -110,13 +111,14 @@ public class MovementService implements IMovementService {
         return resultBalance;
     }
 
-    private static void setResultBalance(EntityResult resultBalance, BigDecimal balance) {
+    private void setResultBalance(EntityResult resultBalance, BigDecimal balance) {
         List<Object> balanceTotal  = new ArrayList<>();
-        List<Object> USER_ = (List<Object>) resultBalance.get(MovementDao.ATTR_USER_);
+        List<Object> user  = new ArrayList<>();
+        user.add(this.daoHelper.getUser().getUsername());
         balanceTotal.add(balance);
         resultBalance.clear();
         resultBalance.put(MovementDao.ATTR_BALANCE, balanceTotal);
-        resultBalance.put(MovementDao.ATTR_USER_, USER_);
+        resultBalance.put(MovementDao.ATTR_USER_, user);
     }
 
     @NotNull
@@ -132,11 +134,23 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult expensesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        Float movAmount = (Float)attrMap.get(MovementDao.ATTR_MOV_AMOUNT);
-        Double expenseAmount = movAmount.doubleValue() * -1;
-        attrMap.put(MovementDao.ATTR_MOV_AMOUNT, expenseAmount);
-
+        changeSignMovAmount(attrMap);
+        checkIdGroup(attrMap);
         return this.movementUpdate(attrMap,keyMap);
+    }
+
+    private static void checkIdGroup(Map<String, Object> attrMap) {
+        if(attrMap.get(MovementDao.ATTR_GR_ID) instanceof NullValue){
+            attrMap.replace(MovementDao.ATTR_GR_ID, null);
+        }
+    }
+
+    private static void changeSignMovAmount(Map<String, Object> attrMap) {
+        Float movAmount = (Float) attrMap.get(MovementDao.ATTR_MOV_AMOUNT);
+        if(movAmount != null){
+            Double expenseAmount = movAmount.doubleValue() * -1;
+            attrMap.put(MovementDao.ATTR_MOV_AMOUNT, expenseAmount);
+        }
     }
 
     @Override
@@ -146,6 +160,7 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult incomesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        checkIdGroup(attrMap);
         return this.movementUpdate(attrMap,keyMap);
     }
 
