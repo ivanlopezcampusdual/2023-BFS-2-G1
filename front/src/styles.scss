@@ -31,19 +31,11 @@
 .group-table thead {
   background-color: var(--var-normal-color);
 }
-o-data-toolbar.o-grid-toolbar button.o-grid-button:first-child,
-o-data-toolbar.o-list-toolbar button.o-list-button:first-child,
-o-data-toolbar.o-table-toolbar .buttons .o-table-button:first-child,
-o-data-toolbar.o-table-toolbar .buttons button:first-child,
-.o-form .o-form-toolbar button.mat-stroked-button,
-.ontimize-table.o-table
-  .o-table-container
-  .o-table-toolbar
-  .buttons
-  .o-table-button
-  button.mat-stroked-button {
-  border-radius: 10px;
+button,
+mat-dialog-container {
+  border-radius: 10px !important;
 }
+
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
   background-color: white !important;
 }
@@ -57,6 +49,10 @@ o-data-toolbar.o-table-toolbar .buttons button:first-child,
 }
 .o-form-layout-tabgroup .mat-tab-group .mat-tab-body-wrapper {
   border-radius: 0 10px 10px 10px;
+}
+
+.mat-toolbar {
+  padding: 10px !important;
 }
 
 .o-form,
