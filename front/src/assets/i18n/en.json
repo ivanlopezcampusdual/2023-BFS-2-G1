@@ -19,6 +19,8 @@
   "FORGOT_PWD": "Forgot your password?",
   "PRIVACY_POLICY": "Policy Privacy",
   "TERMS_AND_CONDITIONS": "Terms and conditions",
+  "AGREE": "Agree",
+  "DECLINE": "Decline",
 
   "EXPENSES": "Expenses",
   "CATEGORIES": "Categories",
@@ -56,6 +58,6 @@
   "ADD_MEMBERS_FORM": "Add user form",
   "DUPLICATED_MEMBER_ERROR": "Error: Selected usuer is already a member of this group",
   "EXPENSES_DETAILS": "Detail of expenses",
-  "MEMBER_BALANCE": "Member balance", 
+  "MEMBER_BALANCE": "Member balance",
   "INCOMES_DETAILS": "Detail of incomes"
 }

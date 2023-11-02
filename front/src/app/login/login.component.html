@@ -1,57 +1,45 @@
 <div class="full-page">
-  <div class="login-outer-container">
-
-    <div class="login-bg-container">
-    </div>
-
-    <div class="wrapp-login">
-      <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-
-          <div class="login-title-container" fxLayout="column">
-            <p class="session-expired text" *ngIf="sessionExpired">{{ 'ERROR_SESSION_EXPIRED' | oTranslate }}</p>
-            <span class="title_text">{{ 'LOGIN_TITLE' | oTranslate }}:</span>
-          </div>
-
-          <div fxLayout="column" fxLayoutGap="10px">
-            <mat-form-field fxFill class="m-top-24">
-              <input matInput class="mat-input" #user placeholder="{{ 'USERNAME' | oTranslate }}" id="username" [formControl]="userCtrl">
-              <mat-error *ngIf="userCtrl.hasError('required')">
-                {{ 'ERROR_USER_REQUIRED' | oTranslate }}
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field fxFill class="m-top-24">
-              <input matInput class="mat-input" #password placeholder="{{ 'PASSWORD' | oTranslate }}" id="password" type="password"
-                [formControl]="pwdCtrl">
-              <mat-error *ngIf="pwdCtrl.hasError('required')">
-                {{ 'ERROR_PASS_REQUIRED' | oTranslate }}
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" class="m-top-24">
-            <mat-checkbox class="text">{{ 'REMEMBER_ME' | oTranslate }}</mat-checkbox>
-          </div>
-
-          <button mat-raised-button color="primary" type="submit">{{ 'LOGIN' | oTranslate }}</button>
-          <div layout-padding></div>
-          <div layout-padding></div>
-          <div fxLayout="column" fxLayoutAlign="center center" layout-padding>
-            <span class="login_info">{{ 'EXAMPLE_LOGIN_INFO' | oTranslate }}:</span>
-            <span class="dark_text">{{ 'USERNAME' | oTranslate }} : demo</span>
-            <span class="dark_text">{{ 'PASSWORD' | oTranslate }} : demouser</span>
-          </div>
-        </form>
-      </div>
-
-    </div>
+  <div class="login-title">
+    <img src="../../assets/images/logo/login-title.png" alt="">
   </div>
+  <div class="container-main-form">
+    <div class="image-container">
+      <ng-container *ngIf="!showImage; else hiddenImage">
+        <img src="../../assets/images/logo/login-logo.png" alt="ANT_LOGO">
+        <img #leftEye src="../../assets/images/logo/left-eye.png" alt="LEFT_EYE" class="left-eye">
+        <img #rightEye src="../../assets/images/logo/right-eye.png" alt="RIGHT_EYE" class="right-eye">
+      </ng-container>
+      <ng-template #hiddenImage>
+        <img class="hidden-image" [src]="currentImage" alt="Hidden Image">
+      </ng-template>
 
-  <div id="footer" class="footer-container">
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <span>{{ 'FOOTER_CREATED_BY' | oTranslate }}</span>
-      <span> &copy; 2021 </span>
-      <span>{{ 'FOOTER_RIGHTS' | oTranslate }}</span>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-container">
+      <mat-form-field>
+        <input matInput #user placeholder="{{'USERNAME'|oTranslate}}" id="username" [formControl]="userCtrl">
+        <mat-error *ngIf="userCtrl.hasError('required')">
+          {{'ERROR_USER_REQUIRED' | oTranslate}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput #password placeholder="{{'PASSWORD'|oTranslate}}" id="password" [formControl]="pwdCtrl"
+          [type]="showPassword ? 'text' : 'password'">
+        <mat-icon matSuffix class="icon-button login-input" (click)="togglePasswordVisibility()">
+          {{ showPassword ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+        <mat-error *ngIf="pwdCtrl.hasError('required')">
+          {{'ERROR_PASS_REQUIRED' | oTranslate}}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="remeber_me">
+        <mat-checkbox>{{'REMEMBER_ME' | oTranslate}}</mat-checkbox>
+      </div>
+      <button mat-raised-button type="submit" class="submit-btn">{{'LOGIN'|oTranslate}}</button>
+    </form>
+    <div class="term-container">
+      <p (click)="buttonTerms()">{{'PRIVACY_POLICY'| oTranslate}}</p>
+      <p (click)="buttonTerms()">{{'TERMS_AND_CONDITIONS'| oTranslate}}</p>
     </div>
   </div>
 

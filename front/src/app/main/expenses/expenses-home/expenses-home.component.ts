@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-expenses-home",
@@ -9,8 +9,5 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpensesHomeComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    
-
-}
+  ngOnInit() {}
 }
