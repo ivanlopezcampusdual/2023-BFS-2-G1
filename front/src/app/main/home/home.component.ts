@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const filter = {};
-    const columns = ['user_', 'MOV_AMOUNT'];
+    const columns = ['user_', 'balance'];
     this.configureService();
     this.service.query(filter, columns, 'balance').subscribe(resp=>{
       if(resp.code === 0){

@@ -6,14 +6,11 @@ import com.ontimize.jee.common.db.NullValue;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +55,6 @@ public class MovementService implements IMovementService {
     public EntityResult totalMovementsForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_SUM_AMOUNT_FOR_MONTH );
     }
-
 
     @Override
     public EntityResult totalIncomesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
@@ -112,31 +108,9 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        EntityResult resultBalance = this.movementQuery(keyMap, attrList);
-        List<BigDecimal> listMovAmount = (List<BigDecimal>) resultBalance.get(MovementDao.ATTR_MOV_AMOUNT);
-        BigDecimal balance = calcBalance(listMovAmount);
-        setResultBalance(resultBalance, balance);
-        return resultBalance;
-    }
-
-    private void setResultBalance(EntityResult resultBalance, BigDecimal balance) {
-        List<Object> balanceTotal  = new ArrayList<>();
-        List<Object> user  = new ArrayList<>();
-        user.add(this.daoHelper.getUser().getUsername());
-        balanceTotal.add(balance);
-        resultBalance.clear();
-        resultBalance.put(MovementDao.ATTR_BALANCE, balanceTotal);
-        resultBalance.put(MovementDao.ATTR_USER_, user);
-    }
-
-    @NotNull
-    private static BigDecimal calcBalance(List<BigDecimal> listMovAmount)  {
-        if(listMovAmount == null || listMovAmount.isEmpty()){
-            return BigDecimal.ZERO;
-        }else{
-            return listMovAmount.stream()
-                    .reduce(BigDecimal.ZERO,BigDecimal::add );
-        }
+        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.ATTR_BALANCE);
     }
 
     @Override
@@ -147,20 +121,18 @@ public class MovementService implements IMovementService {
             Double movAmountSignNegative = changeSignMovAmount(movAmount);
             attrMapForThisQuery.put(MovementDao.ATTR_MOV_AMOUNT, movAmountSignNegative);
         }
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 
-    private static boolean isIdGroupNull(Map<String, Object> attrMapForThisQuery) {
+    private static boolean isIdGroupNullValue(Map<String, Object> attrMapForThisQuery) {
         return attrMapForThisQuery.get(MovementDao.ATTR_GR_ID) instanceof NullValue;
-    }
-    private static Object changeFromNullValueToNull(Map<String, Object> attrMapForThisQuery){
-      return (MovementService.isIdGroupNull(attrMapForThisQuery))? null : attrMapForThisQuery.get(MovementDao.ATTR_GR_ID);
     }
 
     private static Double changeSignMovAmount(Float movAmount) {
-          double movAmountCastAndSignNegative = movAmount *= -1;
+          double movAmountCastAndSignNegative = movAmount *-1;
           return movAmountCastAndSignNegative;
     }
 
@@ -172,8 +144,9 @@ public class MovementService implements IMovementService {
     @Override
     public EntityResult incomesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         Map<String, Object> attrMapForThisQuery =  new HashMap<>(attrMap);
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 

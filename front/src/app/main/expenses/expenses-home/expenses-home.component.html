@@ -33,7 +33,8 @@
 <div>
   <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements" entity="expensesForCategories"
     keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
-    visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" page-index="20">
+    visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" page-index="20"
+    delete-button="no">
     <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
     <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
     <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
