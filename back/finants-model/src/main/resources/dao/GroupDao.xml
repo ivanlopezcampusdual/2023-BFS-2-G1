@@ -116,5 +116,16 @@
                 ]]>
             </Sentence>
         </Query>
+        <Query id="getGroupMovements">
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        MOVEMENTS m
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>
