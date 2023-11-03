@@ -1,24 +1,21 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="stretch" class="container-margin">
   <div>
-    <h2>{{'EXPENSE LIST' | oTranslate }}</h2>
+    <h2>{{'EXPENSE_LIST' | oTranslate }}</h2>
   </div>
-
 
     <o-form editable-detail="no" show-header="no" layout-direction="column" class="formFilterExpenses">
       <div  fxLayout="column" layout-padding fxFlex="80" fxLayout="row" >
         <label class="input-comp-title"></label>
         <o-row layout-align="start" layout-gap="35px" fxFlex>
         <o-daterange-input attr="daterange" fxFlex="20"  label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}" read-only="no"
-          required="no" [data]="getValue()" show-ranges="true" format="DD/MM/YYYY" separator=" to " touch-ui="yes"
+          required="no" show-ranges="true" format="DD/MM/YYYY"  touch-ui="yes"
           mode="desktop">
         </o-daterange-input>
-
-
-          <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}"  fxFlex="20" read-only="no" service="categories"
+          <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}"  fxFlex="40" read-only="no" service="categories"
           entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-          value-column="CA_ID" multiple="true" required="no"></o-combo>
+          value-column="CA_ID" multiple="true" required="no" searchable="true"></o-combo>
         </o-row>
-      </div>
+    
       <o-row layout-align="end" layout-gap="20px">
         <o-button class="buttonFilter" attr="filter" [oFilterBuilderQuery]="filterBuilder"  type="RAISED" label="{{ 'FILTER' | oTranslate }}"
           class="filter-button">
@@ -29,10 +26,8 @@
       </o-row>
       <o-filter-builder #filterBuilder attr="thefilter" filters="date_range2:daterange;CA_ID:CA_ID" [target]="expenseTable"
         query-on-change="no" query-on-change-delay="300" [expression-builder]="createFilter"></o-filter-builder>
+      </div>
     </o-form>
-
-
-
 
 <div fxFlex fxLayout="column" fxLayoutGap="20px">
 <div>
