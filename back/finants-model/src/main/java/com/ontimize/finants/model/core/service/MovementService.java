@@ -22,10 +22,11 @@ import java.util.Map;
 @Lazy
 @Service("MovementService")
 public class MovementService implements IMovementService {
-    @Autowired
-    private MovementDao movementDao;
+
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
+    @Autowired
+    private MovementDao movementDao;
 
     @Override
     public EntityResult movementQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
