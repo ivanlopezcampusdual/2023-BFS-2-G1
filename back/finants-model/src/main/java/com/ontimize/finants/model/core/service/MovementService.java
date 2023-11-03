@@ -49,7 +49,7 @@ public class MovementService implements IMovementService {
     public EntityResult movementDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.movementDao, keyMap);
     }
-    
+
     @Override
     public EntityResult totalMovementsForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_SUM_AMOUNT_FOR_MONTH );
@@ -120,16 +120,14 @@ public class MovementService implements IMovementService {
             Double movAmountSignNegative = changeSignMovAmount(movAmount);
             attrMapForThisQuery.put(MovementDao.ATTR_MOV_AMOUNT, movAmountSignNegative);
         }
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 
-    private static boolean isIdGroupNull(Map<String, Object> attrMapForThisQuery) {
+    private static boolean isIdGroupNullValue(Map<String, Object> attrMapForThisQuery) {
         return attrMapForThisQuery.get(MovementDao.ATTR_GR_ID) instanceof NullValue;
-    }
-    private static Object changeFromNullValueToNull(Map<String, Object> attrMapForThisQuery){
-      return (MovementService.isIdGroupNull(attrMapForThisQuery))? null : attrMapForThisQuery.get(MovementDao.ATTR_GR_ID);
     }
 
     private static Double changeSignMovAmount(Float movAmount) {
@@ -145,8 +143,9 @@ public class MovementService implements IMovementService {
     @Override
     public EntityResult incomesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         Map<String, Object> attrMapForThisQuery =  new HashMap<>(attrMap);
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 
