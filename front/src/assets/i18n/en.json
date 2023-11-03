@@ -59,5 +59,9 @@
   "DUPLICATED_MEMBER_ERROR": "Error: Selected usuer is already a member of this group",
   "EXPENSES_DETAILS": "Detail of expenses",
   "MEMBER_BALANCE": "Member balance",
-  "INCOMES_DETAILS": "Detail of incomes"
+  "INCOMES_DETAILS": "Detail of incomes",
+  "INPUT.BUTTON.DATERANGE": "Date range",
+  "FILTER": "Filter",
+  "CLEAR": "Clear"
+
 }

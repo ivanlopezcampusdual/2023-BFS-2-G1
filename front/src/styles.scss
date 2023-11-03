@@ -104,3 +104,23 @@ mat-dialog-container {
 .text-detail-incomes svg {
   color: var(--var-income-color);
 }
+
+.formFilter .o-button button.mat-raised-button{
+  color: rgba(145, 192, 158, 1);
+}
+
+.formFilter .mat-raised-button:not([class*=mat-elevation-z]),.formFilterExpenses .mat-raised-button:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
+.formFilter .o-button button.mat-raised-button:hover{
+  background-color: rgba(145, 192, 158, 0.2)!important;
+}
+
+.formFilterExpenses .o-button button.mat-raised-button{
+  color: var(--var-expense-color);
+}
+
+.formFilterExpenses .o-button button.mat-raised-button:hover{
+  background-color: rgba(247,94,80,0.2);
+}
+
