@@ -1,7 +1,7 @@
 <o-form fxFill #groupsTable attr="groupMembersTable" service="groups" entity="group"
 header-actions="R;U;D" keys="GR_ID" show-header="true"
   parent-keys="GR_ID" keys-sql-types="INTEGER">
-  <o-column>
+  <div>
     <o-row>
       <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
         <o-text-input class="text-detail-group" attr="GR_NAME" label="GR_GROUP_NAME" fxFlex="70" content-align="center"
@@ -30,5 +30,5 @@ header-actions="R;U;D" keys="GR_ID" show-header="true"
         <o-table-column attr="MOV_AMOUNT" title="MOV_AMOUNT" content-align="center"></o-table-column>
       </o-table>
     </o-form-layout-manager>
-  </o-column>
+  </div>
 </o-form>
