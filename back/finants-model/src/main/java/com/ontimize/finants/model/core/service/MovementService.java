@@ -137,7 +137,7 @@ public class MovementService implements IMovementService {
     }
 
     private static Double changeSignMovAmount(Float movAmount) {
-          double movAmountCastAndSignNegative = movAmount *= -1;
+          double movAmountCastAndSignNegative = movAmount *-1;
           return movAmountCastAndSignNegative;
     }
 
