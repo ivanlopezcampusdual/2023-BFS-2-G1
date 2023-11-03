@@ -111,31 +111,9 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        EntityResult resultBalance = this.movementQuery(keyMap, attrList);
-        List<BigDecimal> listMovAmount = (List<BigDecimal>) resultBalance.get(MovementDao.ATTR_MOV_AMOUNT);
-        BigDecimal balance = calcBalance(listMovAmount);
-        setResultBalance(resultBalance, balance);
-        return resultBalance;
-    }
-
-    private void setResultBalance(EntityResult resultBalance, BigDecimal balance) {
-        List<Object> balanceTotal  = new ArrayList<>();
-        List<Object> user  = new ArrayList<>();
-        user.add(this.daoHelper.getUser().getUsername());
-        balanceTotal.add(balance);
-        resultBalance.clear();
-        resultBalance.put(MovementDao.ATTR_BALANCE, balanceTotal);
-        resultBalance.put(MovementDao.ATTR_USER_, user);
-    }
-
-    @NotNull
-    private static BigDecimal calcBalance(List<BigDecimal> listMovAmount)  {
-        if(listMovAmount == null || listMovAmount.isEmpty()){
-            return BigDecimal.ZERO;
-        }else{
-            return listMovAmount.stream()
-                    .reduce(BigDecimal.ZERO,BigDecimal::add );
-        }
+        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.ATTR_BALANCE);
     }
 
     @Override
