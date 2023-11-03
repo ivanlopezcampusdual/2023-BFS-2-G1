@@ -61,5 +61,10 @@
   "MEMBER_BALANCE": "Member balance",
   "INCOMES_DETAILS": "Detail of incomes",
   "MOV_AMOUNT": "Amount",
-  "MOV_CONCEPT": "Concept"
+  "MOV_CONCEPT": "Concept",
+  "INCOMES_DETAILS": "Detail of incomes",
+  "INPUT.BUTTON.DATERANGE": "Date range",
+  "FILTER": "Filter",
+  "CLEAR": "Clear"
+
 }

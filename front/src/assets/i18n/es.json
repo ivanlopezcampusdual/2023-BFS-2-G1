@@ -61,5 +61,18 @@
   "MEMBER_BALANCE": "Balance",
   "INCOMES_DETAILS": "Detalle de ingresos",
   "MOV_AMOUNT": "Importe",
-  "MOV_CONCEPT": "Concepto"
+  "MOV_CONCEPT": "Concepto",
+  "INCOMES_DETAILS": "Detalle de ingresos",
+  "INPUT.BUTTON.DATERANGE": "Rango de fecha",
+  "FILTER": "Filtrar",
+  "CLEAR": "Limpiar",
+  "DATERANGE.today": "Hoy",
+  "DATERANGE.yesterday": "Ayer",
+  "DATERANGE.last_7days": "Últimos 7 días",
+  "DATERANGE.last_30days": "Últimos 30 días",
+  "DATERANGE.this_month": "Este mes",
+  "DATERANGE.last_month": "Mes anterior",
+  "DATERANGE.this_year": "Este año",
+  "DATERANGE.APPLYLABEL": "Seleccionar fechas"
+
 }
