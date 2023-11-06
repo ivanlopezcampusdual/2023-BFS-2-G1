@@ -15,7 +15,7 @@
         <o-combo attr="CA_ID" label="CATEGORY" class="input-padding text-detail-incomes" fxFlex="20" service="categories"
           entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
           value-column="CA_ID" multiple="false" required="yes" fxFlex="20" ></o-combo>
-        <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding text-detail-incomes" fxFlex="20" service="groups" entity="group"
+        <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding text-detail-incomes" fxFlex="20" service="groups" entity="getGroupsByMember"
           keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
           multiple="false" required="no" fxFlex="25">
         </o-combo>
