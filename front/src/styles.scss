@@ -155,3 +155,20 @@ mat-dialog-container {
 .o-table-column-centered {
   text-align: center;
 }
+.o-form-layout-dialog-overlay .mat-dialog-container .mat-dialog-title {
+  border-bottom: 1px solid gray;
+}
+.o-form-layout-dialog-overlay
+  .mat-dialog-container
+  .mat-dialog-title
+  .mat-icon {
+  color: gray;
+}
+.mat-stroked-button:hover .mat-button-focus-overlay,
+.mat-button-focus-overlay {
+  display: none;
+  opacity: 0;
+}
+.close-button {
+  border-radius: 50% !important;
+}

@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { OntimizeService } from "ontimize-web-ngx";
 import { ExpensesNewComponent } from "../expenses/expenses-new/expenses-new.component";
+import { IncomesNewComponent } from "../incomes/incomes-new/incomes-new.component";
 
 @Component({
   selector: "home",
@@ -14,6 +15,9 @@ export class HomeComponent implements OnInit {
   public balance: number;
   public expenseBalance: number;
   public incomeBalance: number;
+  public ruta = this.router.navigate(["/main/", "home"], {
+    relativeTo: this.actRoute,
+  });
 
   public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
   public TOTAL_BALANCE: string = "TOTAL_BALANCE";
@@ -46,21 +50,25 @@ export class HomeComponent implements OnInit {
   }
   queryExpenseBalance() {
     const filter = {};
-    const columns = [ "user_", "expenseBalance"];
-    this.service.query(filter, columns, "totalExpensesForCurrentMonth").subscribe((resp) => {
-      if (resp.code === 0) {
-        this.getExpenseBalance(resp.data);
-      }
-    });
+    const columns = ["user_", "expenseBalance"];
+    this.service
+      .query(filter, columns, "totalExpensesForCurrentMonth")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.getExpenseBalance(resp.data);
+        }
+      });
   }
   queryIncomeBalance() {
     const filter = {};
     const columns = ["user_", "incomeBalance"];
-    this.service.query(filter, columns, "totalIncomesForCurrentMonth").subscribe((resp) => {
-      if (resp.code === 0) {
-        this.getIncomeBalance(resp.data);
-      }
-    });
+    this.service
+      .query(filter, columns, "totalIncomesForCurrentMonth")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.getIncomeBalance(resp.data);
+        }
+      });
   }
   getBalance(data: { balance: number }[]) {
     this.balance = data[0].balance;
@@ -92,14 +100,16 @@ export class HomeComponent implements OnInit {
 
   buttonExpenses() {
     this.dialog.open(ExpensesNewComponent, {
+      data: { showCloseButton: true, cancelUrl: this.ruta },
       width: "fit-content",
       height: "580px",
     });
- 
   }
   buttonIncomes() {
-    this.router.navigate(["../../incomes", "new"], {
-      relativeTo: this.actRoute,
+    this.dialog.open(IncomesNewComponent, {
+      data: { showCloseButton: true, cancelUrl: this.ruta },
+      width: "fit-content",
+      height: "580px",
     });
   }
 }
