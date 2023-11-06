@@ -44,8 +44,8 @@ export class HomeComponent implements OnInit {
   }
   queryExpenseBalance() {
     const filter = {};
-    const columns = ["user_", "expensebalance"];
-    this.service.query(filter, columns, "expensebalance").subscribe((resp) => {
+    const columns = ["user_", "expenseBalance"];
+    this.service.query(filter, columns, "expenseBalance").subscribe((resp) => {
       if (resp.code === 0) {
         this.getExpenseBalance(resp.data);
       }
@@ -53,8 +53,8 @@ export class HomeComponent implements OnInit {
   }
   queryIncomeBalance() {
     const filter = {};
-    const columns = ["user_", "incomebalance"];
-    this.service.query(filter, columns, "incomebalance").subscribe((resp) => {
+    const columns = ["user_", "incomeBalance"];
+    this.service.query(filter, columns, "incomeBalance").subscribe((resp) => {
       if (resp.code === 0) {
         this.getIncomeBalance(resp.data);
       }
@@ -65,14 +65,14 @@ export class HomeComponent implements OnInit {
     this.balance = data[0].balance;
     console.log(this.balance);
   }
-  getExpenseBalance(data: { expensebalance: number }[]) {
+  getExpenseBalance(data: { expenseBalance: number }[]) {
     console.log(data);
-    this.expenseBalance = data[0].expensebalance;
+    this.expenseBalance = data[0].expenseBalance;
     console.log(this.expenseBalance);
   }
-  getIncomeBalance(data: { incomebalance: number }[]) {
+  getIncomeBalance(data: { incomeBalance: number }[]) {
     console.log(data);
-    this.incomeBalance = data[0].incomebalance;
+    this.incomeBalance = data[0].incomeBalance;
   }
 
   protected configureService() {
