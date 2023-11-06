@@ -246,6 +246,33 @@
 
         </Sentence>
     </Query>
+<<<<<<< HEAD
+=======
+
+
+    <Query id="incomeBalance">
+        <Sentence>
+            <![CDATA[
+            WITH INCOMEBALANCE AS
+                (
+                    SELECT
+                    SUM(MOV_AMOUNT) AS INCOMEBALANCE,
+                    USER_
+                    FROM ${mainschema}.MOVEMENTS
+                    WHERE MOV_AMOUNT > 0
+                    GROUP BY
+                    USER_
+                     )
+                SELECT
+                   #COLUMNS#
+                 FROM
+                    INCOMEBALANCE
+                #WHERE#
+        ]]>
+        </Sentence>
+    </Query>
+
+>>>>>>> ccd844ecea74fa86cc8459715681f05a064ed3c2
     <Query id="totalExpensesForCategories">
         <AmbiguousColumns>
             <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
@@ -295,7 +322,7 @@
                  TOTAL_EXPENSES_CATEGORY
                  #WHERE#
               ]]>
->>>>>>> Stashed changes
+
         </Sentence>
     </Query>
 

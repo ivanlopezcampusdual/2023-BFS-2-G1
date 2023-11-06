@@ -164,4 +164,11 @@ public class MovementService implements IMovementService {
         return this.movementDelete(keyMap);
     }
 
+    @Override
+    public EntityResult totalExpensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().minusMonths(1).getMonthValue());
+        keyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().minusMonths(1).getYear());
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
+    }
+
 }

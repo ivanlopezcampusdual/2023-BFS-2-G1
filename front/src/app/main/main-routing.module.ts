@@ -30,6 +30,11 @@ export const routes: Routes = [
         path: "groups",
         loadChildren: () =>
           import("./groups/groups.module").then((m) => m.GroupsModule)
+      },
+      {
+        path: "goals",
+        loadChildren: () =>
+          import("./goals/goals.module").then((m) => m.GoalsModule)
       }
     ],
   },
