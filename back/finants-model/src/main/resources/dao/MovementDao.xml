@@ -247,7 +247,7 @@
         </Sentence>
     </Query>
 
-<<<<<<< Updated upstream
+
     <Query id="incomeBalance">
         <Sentence>
             <![CDATA[
@@ -267,8 +267,9 @@
                     INCOMEBALANCE
                 #WHERE#
         ]]>
+        </Sentence>
+    </Query>
 
-=======
     <Query id="totalExpensesForCategories">
         <AmbiguousColumns>
             <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
@@ -318,7 +319,7 @@
                  TOTAL_EXPENSES_CATEGORY
                  #WHERE#
               ]]>
->>>>>>> Stashed changes
+
         </Sentence>
     </Query>
 

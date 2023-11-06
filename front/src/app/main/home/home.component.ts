@@ -14,12 +14,14 @@ export class HomeComponent implements OnInit {
   public balance: number;
   public expenseBalance: number;
   public incomeBalance: number;
-
   public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
   public TOTAL_BALANCE: string = "TOTAL_BALANCE";
   public TOTAL_EXPENSE: string = "TOTAL_EXPENSE";
   public TOTAL_INCOME: string = "TOTAL_INCOME";
-
+  servicePath = "/balances";
+  //public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
+  //servicePath = "/balances";
+  httpOptions: any;
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -72,7 +74,11 @@ export class HomeComponent implements OnInit {
       this.expenseBalance = data[0].expenseBalance;
     }
   }
+  // getExpenseBalance(data: { expenseBalance: number }[]) {
 
+  //   this.expenseBalance = data[0].expenseBalance || 0;
+
+  // }
   getIncomeBalance(data: { incomeBalance: number }[]) {
     if (data[0] === undefined) {
       this.incomeBalance = 0;
@@ -95,7 +101,9 @@ export class HomeComponent implements OnInit {
       width: "fit-content",
       height: "580px",
     });
- 
+    /*  this.router.navigate(["../../expenses", "new"], {
+      relativeTo: this.actRoute,
+    });*/
   }
   buttonIncomes() {
     this.router.navigate(["../../incomes", "new"], {
