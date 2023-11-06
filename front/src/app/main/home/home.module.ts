@@ -1,15 +1,14 @@
-import { NgModule } from '@angular/core';
-import { OntimizeWebModule } from 'ontimize-web-ngx';
+import { NgModule } from "@angular/core";
+import { OntimizeWebModule } from "ontimize-web-ngx";
 
-import { SharedModule } from '../../shared/shared.module';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { ExpensesModule } from '../expenses/expenses.module';
-import { IncomesModule } from '../incomes/incomes.module';
-import { OChartModule } from 'ontimize-web-ngx-charts';
+import { SharedModule } from "../../shared/shared.module";
+import { HomeRoutingModule } from "./home-routing.module";
+import { HomeComponent } from "./home.component";
+import { ExpensesModule } from "../expenses/expenses.module";
+import { IncomesModule } from "../incomes/incomes.module";
+import { OChartModule } from "ontimize-web-ngx-charts";
 
-import { BalanceColorDirective } from './balance-color.directive';
-
+import { BalanceColorDirective } from "./balance-color.directive";
 
 @NgModule({
   imports: [
@@ -18,12 +17,9 @@ import { BalanceColorDirective } from './balance-color.directive';
     HomeRoutingModule,
     ExpensesModule,
     IncomesModule,
-    OChartModule
-
+    OChartModule,
   ],
-  declarations: [
-    HomeComponent,
-    BalanceColorDirective
-  ]
+  declarations: [HomeComponent, BalanceColorDirective],
+  exports: [BalanceColorDirective],
 })
-export class HomeModule { }
+export class HomeModule {}

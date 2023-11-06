@@ -72,6 +72,11 @@ export class HomeComponent implements OnInit {
       this.expenseBalance = data[0].expenseBalance;
     }
   }
+  // getExpenseBalance(data: { expenseBalance: number }[]) {
+
+  //   this.expenseBalance = data[0].expenseBalance || 0;
+
+  // }
   getIncomeBalance(data: { incomeBalance: number }[]) {
     if (data[0] === undefined) {
       this.incomeBalance = 0;

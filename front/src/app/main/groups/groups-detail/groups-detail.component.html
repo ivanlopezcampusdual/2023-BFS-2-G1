@@ -18,8 +18,8 @@
           virtual-scroll="yes">
           <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
           <!--<o-table-column attr="MG_IS_ADMIN" title="ISADMIN" content-align="center"></o-table-column>-->
-          <o-table-column attr="MEMBER_BALANCE" title="MEMBER_BALANCE" content-align="center" type="currency"
-            currency-symbol="€" locale="es-ES" currency-symbol-position="right"></o-table-column>
+          <o-table-column attr="MEMBER_BALANCE" title="MEMBER_BALANCE">
+            <app-movement-column-renderer></app-movement-column-renderer></o-table-column>
         </o-table>
       </o-form-layout-manager>
       <o-table class="detail-group group-table" #groupsTable attr="movementsTable" service="groups"
@@ -30,13 +30,9 @@
         <o-table-column attr="MOV_DATE" title="Date" type="date" format="L"></o-table-column>
         <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
         <o-table-column attr="MOV_CONCEPT" title="MOV_CONCEPT" content-align="center"></o-table-column>
-        <o-table-column attr="MOV_AMOUNT" title="MOV_AMOUNT" content-align="center" type="currency" currency-symbol="€"
-          locale="es-ES" currency-symbol-position="right">
-          <ng-template o-table-cell-template let-rowData="rowData">
-            <div [style.color]="getAmountColor($event)">
-              {{ rowData.MOV_AMOUNT }}
-            </div>
-          </ng-template>
+        <o-table-column #groupBalanceColor attr="MOV_AMOUNT" title="MOV_AMOUNT" type="currency"
+          class="o-table-column-centered">
+          <app-movement-column-renderer></app-movement-column-renderer>
         </o-table-column>
       </o-table>
     </div>
