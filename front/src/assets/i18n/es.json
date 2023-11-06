@@ -73,6 +73,8 @@
   "DATERANGE.this_month": "Este mes",
   "DATERANGE.last_month": "Mes anterior",
   "DATERANGE.this_year": "Este año",
-  "DATERANGE.APPLYLABEL": "Seleccionar fechas"
+  "DATERANGE.APPLYLABEL": "Seleccionar fechas",
+  "TOTAL_EXPENSES_CATEGORIES": "Gastos del mes anterior por categorias"
+
 
 }

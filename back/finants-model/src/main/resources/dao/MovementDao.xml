@@ -285,6 +285,57 @@
 
         </Sentence>
     </Query>
+    <Query id="totalExpensesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+            <AmbiguousColumn name="GR_ID" prefix="gr" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+       WITH  TOTAL_EXPENSES_CATEGORY AS
+       (
+     SELECT
+        ca.CA_ID,
+        ca.CA_NAME,
+        MOV_MONTH,
+        MOV_YEAR,
+
+
+           SUM(mov_filtered.MOV_AMOUNT) AS TOTAL_SPENT
+       FROM
+            (SELECT
+                MOV_ID,
+                MOV_CONCEPT,
+                ABS(MOV_AMOUNT) MOV_AMOUNT,
+                MOV_DATE,
+                CA_ID,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                GR_ID
+        FROM
+            MOVEMENTS
+        WHERE
+            MOV_AMOUNT < 0) AS mov_filtered
+       LEFT JOIN
+            CATEGORIES ca
+       ON
+            mov_filtered.CA_ID = ca.CA_ID
+       GROUP BY
+           ca.CA_ID,
+           ca.CA_NAME,
+           mov_filtered.MOV_MONTH,
+           mov_filtered.MOV_YEAR
+           )
+                 SELECT
+                 #COLUMNS#
+                 FROM
+                 TOTAL_EXPENSES_CATEGORY
+                 #WHERE#
+              ]]>
+        </Sentence>
+    </Query>
 
 </Queries>
 

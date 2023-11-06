@@ -65,6 +65,8 @@
   "INCOMES_DETAILS": "Detail of incomes",
   "INPUT.BUTTON.DATERANGE": "Date range",
   "FILTER": "Filter",
-  "CLEAR": "Clear"
+  "CLEAR": "Clear",
+  "TOTAL_EXPENSES_CATEGORIES": "Expenses of the last month by categories"
+
 
 }
