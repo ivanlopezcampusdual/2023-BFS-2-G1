@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as moment from 'moment';
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
 import { ViewChildren, QueryList } from '@angular/core';
+import { ChartSeries, PieChartConfiguration } from 'ontimize-web-ngx-charts';
 
 @Component({
   selector: "app-expenses-home",
@@ -12,13 +13,19 @@ export class ExpensesHomeComponent implements OnInit {
   @ViewChildren('expenseTable') expenseTable: QueryList<any>;
   public selected ={};
   public date=[];
-
+  chartParameters: PieChartConfiguration;
 
   constructor() {
     this.selected = {
       startDate: moment('1993-01-01T00:00Z'),
       endDate: moment(new Date())
     };
+    this.chartParameters = new PieChartConfiguration();
+
+    this.chartParameters.labelType="percent";
+    this.chartParameters.margin.top=30;
+    this.chartParameters.legendPosition='right';
+    this.chartParameters.legend.margin.right=20;
 
 
   }

@@ -89,11 +89,11 @@ mat-dialog-container {
 .btn-terms.agree button.mat-raised-button:hover {
   background-color: rgba(88, 180, 183, 1);
 }
-.expensesDetailsTable {
+.expenses-details-table {
   -webkit-text-fill-color: var(--var-expense-color);
 }
 
-.expensesDetailsTable svg {
+.expenses-details-table svg {
   color: var(--var-expense-color);
 }
 
@@ -123,4 +123,6 @@ mat-dialog-container {
 .formFilterExpenses .o-button button.mat-raised-button:hover{
   background-color: rgba(247,94,80,0.2);
 }
+
+
 

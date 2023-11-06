@@ -1,4 +1,5 @@
-<o-form fxFill #expenseTable class= "expensesDetailsTable" attr="expensesDetailsTable" service="movements" entity="expensesForCategories"  header-actions="R;U;D" keys="MOV_ID" show-header="true"
+<div class ="expenses-details-container">
+<o-form fxFill #expenseTable class= "expenses-details-table" attr="expensesDetailsTable" service="movements" entity="expensesForCategories"  header-actions="R;U;D" keys="MOV_ID" show-header="true"
   parent-keys="MOV_ID" keys-sql-types="INTEGER" label-header="EXPENSES_DETAILS"  show-header-navigation="yes">
   <o-column>
     <o-row>
@@ -7,10 +8,10 @@
           content-align="center" required="yes"></o-date-input>
         <o-text-input class="text-detail-expense" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" content-align="center" required="yes"></o-text-input>
         <o-currency-input class="text-detail-expense" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10"
-        [validators]="validatorAmount" currency-symbol="€" locale="es-ES" required="yes" >
+        [validators]="validatorAmount" required="yes" >
         <o-validator error-name="negativeNumber" error-text="NONEGATIVE" required="yes"></o-validator>
       </o-currency-input>
-        <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20" service="categories"
+        <o-combo attr="CA_ID" label="CATEGORY" class="input-padding" fxFlex="20" service="categories"
           entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
           value-column="CA_ID" multiple="false" required="yes" fxFlex="20" required="yes"></o-combo>
         <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding" fxFlex="20" service="groups" entity="group"
@@ -21,3 +22,4 @@
     </o-row>
   </o-column>
 </o-form>
+</div>

@@ -1,0 +1,6 @@
+.expenses-details-table {
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0 var(--var-expense-color);
+    background-color: white;
+    
+  }

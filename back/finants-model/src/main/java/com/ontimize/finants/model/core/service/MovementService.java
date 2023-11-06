@@ -19,10 +19,11 @@ import java.util.Map;
 @Lazy
 @Service("MovementService")
 public class MovementService implements IMovementService {
-    @Autowired
-    private MovementDao movementDao;
+
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
+    @Autowired
+    private MovementDao movementDao;
 
     @Override
     public EntityResult movementQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
@@ -49,7 +50,7 @@ public class MovementService implements IMovementService {
     public EntityResult movementDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.movementDao, keyMap);
     }
-    
+
     @Override
     public EntityResult totalMovementsForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_SUM_AMOUNT_FOR_MONTH );
@@ -111,7 +112,18 @@ public class MovementService implements IMovementService {
         keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.ATTR_BALANCE);
     }
-
+    @Override
+    public EntityResult expenseBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_EXPENSE_BALANCE);
+    }
+    @Override
+    public EntityResult incomeBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_INCOME_BALANCE);
+    }
     @Override
     public EntityResult expensesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         Map<String, Object> attrMapForThisQuery =  new HashMap<>(attrMap);
@@ -120,16 +132,14 @@ public class MovementService implements IMovementService {
             Double movAmountSignNegative = changeSignMovAmount(movAmount);
             attrMapForThisQuery.put(MovementDao.ATTR_MOV_AMOUNT, movAmountSignNegative);
         }
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 
-    private static boolean isIdGroupNull(Map<String, Object> attrMapForThisQuery) {
+    private static boolean isIdGroupNullValue(Map<String, Object> attrMapForThisQuery) {
         return attrMapForThisQuery.get(MovementDao.ATTR_GR_ID) instanceof NullValue;
-    }
-    private static Object changeFromNullValueToNull(Map<String, Object> attrMapForThisQuery){
-      return (MovementService.isIdGroupNull(attrMapForThisQuery))? null : attrMapForThisQuery.get(MovementDao.ATTR_GR_ID);
     }
 
     private static Double changeSignMovAmount(Float movAmount) {
@@ -145,14 +155,23 @@ public class MovementService implements IMovementService {
     @Override
     public EntityResult incomesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         Map<String, Object> attrMapForThisQuery =  new HashMap<>(attrMap);
-        Object groupId = changeFromNullValueToNull(attrMapForThisQuery);
-        attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, groupId);
+        if(MovementService.isIdGroupNullValue(attrMapForThisQuery)){
+            attrMapForThisQuery.put(MovementDao.ATTR_GR_ID, null);
+        }
         return this.movementUpdate(attrMapForThisQuery,keyMap);
     }
 
     @Override
     public EntityResult incomesForCategoriesDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.movementDelete(keyMap);
+    }
+
+    @Override
+    public EntityResult totalExpensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+        keyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().minusMonths(1).getMonthValue());
+        keyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().minusMonths(1).getYear());
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
+
     }
 
 }

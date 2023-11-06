@@ -29,9 +29,12 @@ public class GroupService implements IGroupService {
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
     private final MemberGroupService memberGroupService;
+    private final MovementService movementService;
 
-    public GroupService(MemberGroupService memberGroupService) {
+    @Autowired
+    public GroupService(MemberGroupService memberGroupService, MovementService movementService) {
         this.memberGroupService = memberGroupService;
+        this.movementService = movementService;
     }
 
     @Override
@@ -131,6 +134,13 @@ public class GroupService implements IGroupService {
         return this.daoHelper.query(this.groupDao, keyMap, attrList, GroupDao.QUERY_GET_GROUP_MOVEMENTS);
     }
 
+    @Override
+    public EntityResult getGroupMovementsDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        Map<String, Object> fieldToUpdate = new HashMap<>();
+        fieldToUpdate.put(MovementDao.ATTR_GR_ID, null);
+        return movementService.movementUpdate(fieldToUpdate, keyMap);
+    }
+
     public EntityResult getGroupMovementsByUser(Map<String, Object> keyMap, String user){
         keyMap.put(GroupDao.ATTR_USER_, user);
         return getGroupMovements(keyMap);
@@ -146,7 +156,8 @@ public class GroupService implements IGroupService {
         if(listMovAmount == null || listMovAmount.isEmpty()){
             return BigDecimal.ZERO;
         }else{
-            return listMovAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal aux = listMovAmount.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+            return aux;
         }
     }
 

@@ -2,7 +2,20 @@
   <div class="cont-balance">
     <div fxFlex class="box-balance" [appBalanceBoxShadow]="balance">
       <p class="mat-body-strong">{{MONTHLY_BALANCE | oTranslate}}</p>
-      <p fxLayoutAlign="end center" [appBalanceColor]="balance">{{balance}}€</p>
+      <div fxLayout="column" fxLayoutAlign="end end">
+        <div class="balances-container balance" [appBalanceColor]="balance">
+          <p fxLayoutAlign="end center">Balance total: </p>
+          <p fxLayoutAlign="end center">{{balance}}€</p>
+        </div>
+        <div class="balances-container text" [appBalanceColor]="expenseBalance">
+          <p fxLayoutAlign="end center">Gasto total: </p>
+          <p fxLayoutAlign="end center">{{expenseBalance}}€</p>
+        </div>
+        <div class="balances-container text" [appBalanceColor]="incomeBalance">
+          <p fxLayoutAlign="start center">Ingreso total: </p>
+          <p fxLayoutAlign="end center">{{incomeBalance}}€</p>
+        </div>
+      </div>
     </div>
   </div>
   <div fxFlex fxLayout.lt-lg="column" fxLayout.gt-md="row" fxLayoutGap="20px">
