@@ -89,6 +89,7 @@ public class GroupService implements IGroupService {
     @Override
     public EntityResult getGroupMovements(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         List<String> attrList = new ArrayList<>();
+        attrList.add(MovementDao.ATTR_ID);
         attrList.add(MovementDao.ATTR_GR_ID);
         attrList.add(MovementDao.ATTR_MOV_AMOUNT);
         attrList.add(MovementDao.ATTR_MOV_CONCEPT);
@@ -108,8 +109,11 @@ public class GroupService implements IGroupService {
         //Get group users
         List<String> attrGroupMembers = new ArrayList<>();
         attrGroupMembers.add(GroupDao.ATTR_USER_);
+        attrGroupMembers.add(MemberGroupDao.ATTR_MG_ID);
         EntityResult groupMembers = this.getGroupMembersQuery(keyMap, attrGroupMembers);
         List<Object> members = (List<Object>)groupMembers.get(GroupDao.ATTR_USER_);
+        List<Object> mgIds = (List<Object>)groupMembers.get(MemberGroupDao.ATTR_MG_ID);
+
         BigDecimal memberCount = new BigDecimal(members.size());
 
         //Group expenses are evenly distributed
@@ -118,6 +122,7 @@ public class GroupService implements IGroupService {
         //Recomposing an entityresult with all users and balances
         EntityResult memberBalance = new EntityResultMapImpl();
         memberBalance.put(GroupDao.ATTR_USER_, members);
+        memberBalance.put(MemberGroupDao.ATTR_MG_ID, mgIds);
 
         List<BigDecimal> userBalancesList = new ArrayList<>();
         for (String o : (List<String>)memberBalance.get(GroupDao.ATTR_USER_)){
@@ -141,6 +146,36 @@ public class GroupService implements IGroupService {
         return movementService.movementUpdate(fieldToUpdate, keyMap);
     }
 
+    @Override
+    public EntityResult getGroupMembersWithBalanceDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        EntityResult userMovements = getMovementsFromMgId(keyMap);
+
+        //If the user has any movements, unlink them first
+        if (!userMovements.isEmpty()) {
+            Integer movementCount = ((List<BigDecimal>) userMovements.get(MovementDao.ATTR_MOV_AMOUNT)).size();
+
+            for (int i = 0; i < movementCount; i++) {
+                Map<String, Object> movId = new HashMap<>();
+                movId.put(MovementDao.ATTR_ID, userMovements.getRecordValues(i).get(MovementDao.ATTR_ID));
+                this.getGroupMovementsDelete(movId);
+            }
+        }
+        //Then, delete the user
+        return this.memberGroupService.memberGroupDelete(keyMap);
+    }
+
+    private EntityResult getMovementsFromMgId(Map<String, Object> keyMap){
+        EntityResult eUser = this.memberGroupService.getMemberByMgId(keyMap);
+        List<String> user = (List<String>)eUser.get(GroupDao.ATTR_USER_);
+        List<Integer> group = (List<Integer>)eUser.get(GroupDao.ATTR_GR_ID);
+
+        Map<String, Object> keyMapMovs = new HashMap<>();
+        keyMapMovs.put(GroupDao.ATTR_GR_ID, group.get(0));
+
+       return getGroupMovementsByUser(keyMapMovs, user.get(0));
+    }
+
+    @Override
     public EntityResult getGroupMovementsByUser(Map<String, Object> keyMap, String user){
         keyMap.put(GroupDao.ATTR_USER_, user);
         return getGroupMovements(keyMap);

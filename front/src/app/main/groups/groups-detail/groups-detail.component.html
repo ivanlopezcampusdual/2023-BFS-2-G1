@@ -27,13 +27,31 @@
         visible-columns="MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;USER_" parent-keys="GR_ID" pagination-controls="true"
         virtual-scroll="no" insert-button="false" refresh-button="false" delete-button="false" quick-filter="no"
         query-rows="20">
-        <o-table-column attr="MOV_DATE" title="Date" type="date" format="L"></o-table-column>
-        <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
-        <o-table-column attr="MOV_CONCEPT" title="MOV_CONCEPT" content-align="center"></o-table-column>
-        <o-table-column #groupBalanceColor attr="MOV_AMOUNT" title="MOV_AMOUNT" type="currency"
-          class="o-table-column-centered">
-          <app-movement-column-renderer></app-movement-column-renderer>
-        </o-table-column>
+        <o-form-layout-manager mode="dialog">
+          <o-form-layout-dialog-options width="fit-content" height="450px"></o-form-layout-dialog-options>
+          <o-table class="detail-group group-table" #groupsTable attr="memberGroupsTable" service="groups"
+            entity="getGroupMembersWithBalance" keys="MG_ID" columns="MG_ID;USER_;MEMBER_BALANCE"
+            visible-columns="USER_;MEMBER_BALANCE" parent-keys="GR_ID" pagination-controls="true" query-rows="20"
+            query-on-change="no" virtual-scroll="yes">
+            <o-table-column attr="MG_ID" title="ID" type="integer" content-align="center">
+              <app-movement-column-renderer></app-movement-column-renderer>
+            </o-table-column>
+            <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
+            <!--<o-table-column attr="MG_IS_ADMIN" title="ISADMIN" content-align="center"></o-table-column>-->
+            <o-table-column attr="MEMBER_BALANCE" title="MEMBER_BALANCE" content-align="center"></o-table-column>
+          </o-table>
+        </o-form-layout-manager>
+        <o-table class="detail-group group-table" #groupsTable attr="movementsTable" service="groups"
+          entity="getGroupMovements" keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;GR_ID"
+          visible-columns="MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;USER_" parent-keys="GR_ID" pagination-controls="true"
+          query-rows="20" query-on-change="yes" virtual-scroll="no">
+          <o-table-column attr="MOV_DATE" title="Date" type="date" format="L"></o-table-column>
+          <o-table-column attr="USER_" title="MG_USER" content-align="center"></o-table-column>
+          <o-table-column attr="MOV_CONCEPT" title="MOV_CONCEPT" content-align="center"></o-table-column>
+          <o-table-column attr="MOV_AMOUNT" title="MOV_AMOUNT" type="currency" class="o-table-column-centered">
+            <app-movement-column-renderer></app-movement-column-renderer>
+          </o-table-column>
+        </o-table>
       </o-table>
     </div>
   </div>
