@@ -4,15 +4,15 @@
       <p class="mat-body-strong">{{MONTHLY_BALANCE | oTranslate}}</p>
       <div fxLayout="column" fxLayoutAlign="end end">
         <div class="balances-container balance" [appBalanceColor]="balance">
-          <p fxLayoutAlign="end center">Balance total: </p>
+          <p fxLayoutAlign="end center">{{TOTAL_BALANCE | oTranslate}}: </p>
           <p fxLayoutAlign="end center">{{balance}}€</p>
         </div>
         <div class="balances-container text" [appBalanceColor]="expenseBalance">
-          <p fxLayoutAlign="end center">Gasto total: </p>
+          <p fxLayoutAlign="end center">{{TOTAL_EXPENSE| oTranslate}}: </p>
           <p fxLayoutAlign="end center">{{expenseBalance}}€</p>
         </div>
         <div class="balances-container text" [appBalanceColor]="incomeBalance">
-          <p fxLayoutAlign="start center">Ingreso total: </p>
+          <p fxLayoutAlign="start center">{{TOTAL_INCOME| oTranslate}}: </p>
           <p fxLayoutAlign="end center">{{incomeBalance}}€</p>
         </div>
       </div>

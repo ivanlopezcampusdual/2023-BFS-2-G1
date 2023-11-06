@@ -62,7 +62,6 @@
   "INCOMES_DETAILS": "Detalle de ingresos",
   "MOV_AMOUNT": "Importe",
   "MOV_CONCEPT": "Concepto",
-  "INCOMES_DETAILS": "Detalle de ingresos",
   "INPUT.BUTTON.DATERANGE": "Rango de fecha",
   "FILTER": "Filtrar",
   "CLEAR": "Limpiar",
@@ -73,6 +72,8 @@
   "DATERANGE.this_month": "Este mes",
   "DATERANGE.last_month": "Mes anterior",
   "DATERANGE.this_year": "Este año",
-  "DATERANGE.APPLYLABEL": "Seleccionar fechas"
-
+  "DATERANGE.APPLYLABEL": "Seleccionar fechas",
+  "TOTAL_BALANCE": "Balance total",
+  "TOTAL_INCOME": "Ingreso total",
+  "TOTAL_EXPENSE": "Gasto total"
 }

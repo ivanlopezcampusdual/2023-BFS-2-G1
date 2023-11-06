@@ -15,6 +15,9 @@ export class HomeComponent implements OnInit {
   public expenseBalance: number;
   public incomeBalance: number;
   public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
+  public TOTAL_BALANCE: string = "TOTAL_BALANCE";
+  public TOTAL_EXPENSE: string = "TOTAL_EXPENSE";
+  public TOTAL_INCOME: string = "TOTAL_INCOME";
   servicePath = "/balances";
   httpOptions: any;
   constructor(

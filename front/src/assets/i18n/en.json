@@ -62,9 +62,10 @@
   "INCOMES_DETAILS": "Detail of incomes",
   "MOV_AMOUNT": "Amount",
   "MOV_CONCEPT": "Concept",
-  "INCOMES_DETAILS": "Detail of incomes",
   "INPUT.BUTTON.DATERANGE": "Date range",
   "FILTER": "Filter",
-  "CLEAR": "Clear"
-
+  "CLEAR": "Clear",
+  "TOTAL_BALANCE": "Total balance",
+  "TOTAL_INCOME": "Total income",
+  "TOTAL_EXPENSE": "Total expense"
 }

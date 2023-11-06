@@ -1,3 +1,7 @@
 .text-detail-group {
   color: var(--var-normal-color);
 }
+.group-details-table-container {
+  display: flex;
+  height: 620px;
+}

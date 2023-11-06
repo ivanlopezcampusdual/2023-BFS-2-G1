@@ -3,6 +3,7 @@
   --var-expense-color: rgba(192, 145, 145);
   --var-income-color: rgba(145, 192, 158);
   --var-normal-color: rgba(88, 180, 183);
+  --var-expenses-hover: rgba(247, 94, 80, 0.2);
 }
 .container-margin {
   margin: 0 20px;
@@ -35,7 +36,9 @@ button,
 mat-dialog-container {
   border-radius: 10px !important;
 }
-
+.md-drppicker .ranges button {
+  border-radius: 0 !important;
+}
 .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary {
   background-color: white !important;
 }
@@ -105,24 +108,47 @@ mat-dialog-container {
   color: var(--var-income-color);
 }
 
-.formFilter .o-button button.mat-raised-button{
+.formFilter .o-button button.mat-raised-button {
   color: rgba(145, 192, 158, 1);
 }
 
-.formFilter .mat-raised-button:not([class*=mat-elevation-z]),.formFilterExpenses .mat-raised-button:not([class*=mat-elevation-z]){
+.formFilter .mat-raised-button:not([class*="mat-elevation-z"]),
+.formFilterExpenses .mat-raised-button:not([class*="mat-elevation-z"]) {
   box-shadow: none;
 }
-.formFilter .o-button button.mat-raised-button:hover{
-  background-color: rgba(145, 192, 158, 0.2)!important;
+.formFilter .o-button button.mat-raised-button:hover {
+  background-color: rgba(145, 192, 158, 0.2) !important;
 }
 
-.formFilterExpenses .o-button button.mat-raised-button{
+.formFilterExpenses .o-button button.mat-raised-button {
   color: var(--var-expense-color);
 }
 
-.formFilterExpenses .o-button button.mat-raised-button:hover{
-  background-color: rgba(247,94,80,0.2);
+.formFilterExpenses .o-button button.mat-raised-button:hover,
+.expenses-details-table button:not([disabled]).mat-button-base:hover {
+  background-color: var(--var-expenses-hover) !important;
 }
-
-
-
+.expense-table o-data-toolbar button,
+.expensesDetailsTable button {
+  color: rgba(192, 145, 145) !important;
+}
+.income-table o-data-toolbar button {
+  color: var(--var-income-color) !important;
+}
+.expense-table
+  .o-table-toolbar
+  .o-table-button
+  button:not([disabled]).mat-button-base:hover,
+.expensesDetailsTable
+  o-form-toolbar
+  button:not([disabled]).mat-button-base.mat-primary:hover,
+.expensesDetailsTable
+  o-form-toolbar
+  button:not([disabled]).mat-button-base:hover {
+  background-color: var(--var-expenses-hover) !important;
+}
+.inputs-container-form {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
