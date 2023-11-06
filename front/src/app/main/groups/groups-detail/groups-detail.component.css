@@ -4,4 +4,5 @@
 .group-details-table-container {
   display: flex;
   height: 620px;
+  gap: 20px;
 }
