@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
     this.queryBalance();
     this.queryExpenseBalance();
     this.queryIncomeBalance();
-    console.log(this.expenseBalance);
   }
 
   queryBalance() {
@@ -64,18 +63,21 @@ export class HomeComponent implements OnInit {
     });
   }
   getBalance(data: { balance: number }[]) {
-    console.log(data);
     this.balance = data[0].balance;
-    console.log(this.balance);
   }
   getExpenseBalance(data: { expenseBalance: number }[]) {
-    console.log(data);
-    this.expenseBalance = data[0].expenseBalance;
-    console.log(this.expenseBalance);
+    if (data[0] === undefined) {
+      this.expenseBalance = 0;
+    } else {
+      this.expenseBalance = data[0].expenseBalance;
+    }
   }
   getIncomeBalance(data: { incomeBalance: number }[]) {
-    console.log(data);
-    this.incomeBalance = data[0].incomeBalance;
+    if (data[0] === undefined) {
+      this.incomeBalance = 0;
+    } else {
+      this.incomeBalance = data[0].incomeBalance;
+    }
   }
 
   protected configureService() {

@@ -139,10 +139,10 @@ mat-dialog-container {
   .o-table-toolbar
   .o-table-button
   button:not([disabled]).mat-button-base:hover,
-.expensesDetailsTable
+.expenses-details-table
   o-form-toolbar
   button:not([disabled]).mat-button-base.mat-primary:hover,
-.expensesDetailsTable
+.expenses-details-table
   o-form-toolbar
   button:not([disabled]).mat-button-base:hover {
   background-color: var(--var-expenses-hover) !important;

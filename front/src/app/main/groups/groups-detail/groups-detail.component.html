@@ -33,10 +33,11 @@
         <o-table-column attr="MOV_AMOUNT" title="MOV_AMOUNT" content-align="center" type="currency" currency-symbol="€"
           locale="es-ES" currency-symbol-position="right">
           <ng-template o-table-cell-template let-rowData="rowData">
-            <div [style.color]="getAmountColor(rowData.MOV_AMOUNT)">
+            <div [style.color]="getAmountColor($event)">
               {{ rowData.MOV_AMOUNT }}
             </div>
-          </ng-template></o-table-column>
+          </ng-template>
+        </o-table-column>
       </o-table>
     </div>
   </div>

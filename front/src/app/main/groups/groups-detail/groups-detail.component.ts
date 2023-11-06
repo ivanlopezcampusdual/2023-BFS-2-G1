@@ -9,14 +9,13 @@ export class GroupsDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-  getAmountColor(amount: number): string {
-    if (amount > 0) {
-      return "green";
-    } else if (amount < 0) {
+  getAmountColor(amount) {
+    console.log({ amount });
+
+    if (amount < 0) {
       return "red";
     } else {
-      console.log({ amount });
-      return "black";
+      return "green";
     }
   }
 }

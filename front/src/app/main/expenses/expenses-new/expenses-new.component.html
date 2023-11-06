@@ -1,25 +1,27 @@
 <o-form #newExpense service="movements" after-insert-mode="detail" entity="insertExpense" keys="MOV_ID"
   header-actions="I" show-header-navigation="no" emitEvent="false" label-header="EXPENSES_FORM"
   (onFormModeChange)="addCurrentDate($event)" [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'"
-  (click)="resetCurrentDate($event)" class= "expensesDetailsTable" >
+  (click)="resetCurrentDate($event)" class="expenses-details-table">
   <o-column>
-  <o-row>
-        <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
+    <o-row>
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
         <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="10" class="expensesDetailsTable"> </o-date-input>
-        <o-text-input class="input-padding expensesDetailsTable" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" required="yes"
-          max-length="30" (onChange)="onUserChange()"></o-text-input>
-        <o-currency-input class="input-padding expensesDetailsTable" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10" required="yes"
-          [validators]="validatorAmount" currency-symbol="€" locale="es-ES" (change)="onUserChange()">
+        <o-text-input class="input-padding expensesDetailsTable" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20"
+          required="yes" max-length="30" (onChange)="onUserChange()"></o-text-input>
+        <o-currency-input class="input-padding expensesDetailsTable" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10"
+          required="yes" [validators]="validatorAmount" currency-symbol="€" locale="es-ES" (change)="onUserChange()">
           <o-validator error-name="negativeNumber" error-text="NONEGATIVE"></o-validator>
         </o-currency-input>
-        <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20" service="categories"
-          entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-          value-column="CA_ID" multiple="false" required="yes" fxFlex="25" (onChange)="onUserChange()"></o-combo>
-        <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding expensesDetailsTable" fxFlex="20" service="groups" entity="group"
-          keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE" visible-columns="GR_NAME" value-column="GR_ID"
-          multiple="false" required="no" fxFlex="25" (onChange)="onUserChange()">
+        <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20"
+          service="categories" entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME"
+          visible-columns="CA_NAME" value-column="CA_ID" multiple="false" required="yes" fxFlex="25"
+          (onChange)="onUserChange()"></o-combo>
+        <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding expensesDetailsTable" fxFlex="20"
+          service="groups" entity="group" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE"
+          visible-columns="GR_NAME" value-column="GR_ID" multiple="false" required="no" fxFlex="25"
+          (onChange)="onUserChange()">
         </o-combo>
       </div>
-      </o-row>
-    </o-column>
+    </o-row>
+  </o-column>
 </o-form>

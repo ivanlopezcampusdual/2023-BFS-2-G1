@@ -3,18 +3,21 @@
     <div fxFlex class="box-balance" [appBalanceBoxShadow]="balance">
       <p class="mat-body-strong">{{MONTHLY_BALANCE | oTranslate}}</p>
       <div fxLayout="column" fxLayoutAlign="end end">
-        <div class="balances-container balance" [appBalanceColor]="balance">
-          <p fxLayoutAlign="end center">{{TOTAL_BALANCE | oTranslate}}: </p>
-          <p fxLayoutAlign="end center">{{balance}}€</p>
+        <div class=" balance" [appBalanceColor]="balance">
+          <p>{{TOTAL_BALANCE | oTranslate}}: </p>
+          <p>{{balance}}€</p>
         </div>
-        <div class="balances-container text" [appBalanceColor]="expenseBalance">
-          <p fxLayoutAlign="end center">{{TOTAL_EXPENSE| oTranslate}}: </p>
-          <p fxLayoutAlign="end center">{{expenseBalance}}€</p>
+        <div fxLayout="row" class="balances-container">
+          <div class=" text ">
+            <p fxLayoutAlign="end center" [appBalanceColor]="expenseBalance">{{TOTAL_EXPENSE| oTranslate}}: </p>
+            <p fxLayoutAlign="end center" [appBalanceColor]="incomeBalance">{{TOTAL_INCOME| oTranslate}}: </p>
+          </div>
+          <div class="text numbers-expenses">
+            <p fxLayoutAlign="end center" [appBalanceColor]="expenseBalance">{{expenseBalance}}€</p>
+            <p fxLayoutAlign="end center" [appBalanceColor]="incomeBalance">{{incomeBalance}}€</p>
+          </div>
         </div>
-        <div class="balances-container text" [appBalanceColor]="incomeBalance">
-          <p fxLayoutAlign="start center">{{TOTAL_INCOME| oTranslate}}: </p>
-          <p fxLayoutAlign="end center">{{incomeBalance}}€</p>
-        </div>
+
       </div>
     </div>
   </div>
