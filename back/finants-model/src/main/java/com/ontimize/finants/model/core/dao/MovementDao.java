@@ -19,6 +19,8 @@ public class MovementDao extends OntimizeJdbcDaoSupport  {
         public static final String ATTR_MOV_MONTH = "MOV_MONTH";
         public static final String ATTR_MOV_YEAR = "MOV_YEAR";
         public static final String ATTR_BALANCE = "balance";
+        public static final String ATTR_EXPENSE_BALANCE = "expensebalance";
+        public static final String ATTR_INCOME_BALANCE = "incomebalance";
         public static final String QUERY_SUM_AMOUNT_FOR_MONTH = "totalMovementsForCurrentMonth";
         public static final String QUERY_SUM_INCOMES_AMOUNT_FOR_MONTH ="totalIncomesForCurrentMonth";
         public static final String QUERY_SUM_EXPENSES_AMOUNT_FOR_MONTH ="totalExpensesForCurrentMonth";
