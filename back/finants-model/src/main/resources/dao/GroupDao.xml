@@ -43,6 +43,7 @@
                             g.GR_ID,
                             g.GR_NAME,
                             g.GR_CREATION_DATE,
+                            mg.MG_ID,
                             t.USER_,
                             mg.MG_IS_ADMIN
                         FROM
@@ -72,6 +73,7 @@
                 <![CDATA[
                     WITH GROUP_MEMBERS_EXPENSES as (
                         SELECT
+                            mg.MG_ID,
                             mg.USER_,
                             COALESCE(SUM(m.MOV_AMOUNT), 0) EXPENSES
                         FROM
@@ -86,7 +88,8 @@
                             mg.USER_ = m.USER_
                         #WHERE#
                         GROUP BY
-                            mg.USER_
+                            mg.USER_,
+                            mg.MG_ID
                     ),
 
                     GROUP_BALANCE AS (
@@ -97,6 +100,7 @@
 
                     MEMBER_BALANCE AS (
                         SELECT
+                            me.MG_ID,
                             me.user_,
                             (
                                 SELECT
@@ -109,8 +113,7 @@
                     )
 
                     SELECT
-                        mb.USER_,
-                        mb.MEMBER_BALANCE
+                        #COLUMNS#
                     FROM
                         MEMBER_BALANCE mb;
                 ]]>

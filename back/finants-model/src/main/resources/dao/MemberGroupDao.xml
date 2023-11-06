@@ -12,4 +12,17 @@
         <Column>MG_ID</Column>
     </UpdateKeys>
     <GeneratedKey>mg_id</GeneratedKey>
+    <Queries>
+        <Query id="getMgIdFromMemberGroup">
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        mg.MG_ID
+                    FROM
+                        ${mainschema}.MEMBER_GROUP
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

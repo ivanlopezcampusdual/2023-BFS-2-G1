@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,6 @@ public class MemberGroupService implements IMemberGroupService {
 
     @Override
     public EntityResult memberGroupQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        keyMap.put(UserDao.USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.memberGroupDao, keyMap, attrList);
     }
 
@@ -50,5 +50,13 @@ public class MemberGroupService implements IMemberGroupService {
     @Override
     public EntityResult memberGroupDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         return this.daoHelper.delete(this.memberGroupDao, keyMap);
+    }
+
+    @Override
+    public EntityResult getMemberByMgId(Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+        List<String> attrList = new ArrayList<>();
+        attrList.add(MemberGroupDao.ATTR_USER_);
+        attrList.add(MemberGroupDao.ATTR_GR_ID);
+        return this.memberGroupQuery(keyMap, attrList);
     }
 }
