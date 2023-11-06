@@ -240,7 +240,7 @@
 
         </Sentence>
     </Query>
-    <Query id="expensebalance">
+    <Query id="expenseBalance">
         <Sentence>
             <![CDATA[
             WITH EXPENSEBALANCE AS
@@ -263,7 +263,7 @@
         </Sentence>
     </Query>
 
-    <Query id="incomebalance">
+    <Query id="incomeBalance">
         <Sentence>
             <![CDATA[
             WITH INCOMEBALANCE AS
