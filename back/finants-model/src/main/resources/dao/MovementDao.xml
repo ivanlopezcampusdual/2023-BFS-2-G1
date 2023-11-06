@@ -45,26 +45,26 @@
     <Query id="totalIncomesForCurrentMonth">
         <Sentence>
             <![CDATA[
-                WITH TOTAL_MOVEMENTS AS
+                     WITH AMOUNT_INCOMES AS
                 (
+                    SELECT
+                        MOV_AMOUNT,
+                        USER_,
+                        MOV_DATE
+                    FROM
+                        ${mainschema}.MOVEMENTS
+
+                     WHERE
+                        MOV_AMOUNT >=0
+                     )
                 SELECT
-                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
-                USER_,
-                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
-                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
-                MOV_AMOUNT
-                FROM
-                MOVEMENTS
-                GROUP BY
-                USER_,
-                EXTRACT(MONTH FROM MOV_DATE),
-                EXTRACT(YEAR FROM MOV_DATE)
-                )
-                SELECT
-                   #COLUMNS#
+                    sum(MOV_AMOUNT) as incomeBalance
                  FROM
-                    TOTAL_MOVEMENTS
-                 WHERE MOV_AMOUNT >= 0;
+                    AMOUNT_INCOMES
+                WHERE
+                     EXTRACT(MONTH FROM MOV_DATE) = EXTRACT(MONTH FROM CURRENT_DATE) AND
+                     EXTRACT(YEAR FROM MOV_DATE) =  EXTRACT(YEAR FROM CURRENT_DATE)
+                     AND USER_ = ?
         ]]>
         </Sentence>
     </Query>
@@ -72,26 +72,28 @@
     <Query id="totalExpensesForCurrentMonth">
         <Sentence>
             <![CDATA[
-                WITH TOTAL_MOVEMENTS AS
+           WITH AMOUNT_EXPENSES AS
                 (
+                    SELECT
+                        MOV_AMOUNT,
+                        USER_,
+                        MOV_DATE
+                    FROM
+                        ${mainschema}.MOVEMENTS
+                    WHERE
+                        MOV_AMOUNT <0
+                     )
                 SELECT
-                SUM(MOV_AMOUNT) AS MOV_TOTAL_AMOUNT,
-                USER_,
-                EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
-                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
-                MOV_AMOUNT
-                FROM
-                MOVEMENTS
-                GROUP BY
-                USER_,
-                EXTRACT(MONTH FROM MOV_DATE),
-                EXTRACT(YEAR FROM MOV_DATE)
-                )
-                SELECT
-                   #COLUMNS#
+                    sum(MOV_AMOUNT) as expenseBalance
                  FROM
-                    TOTAL_MOVEMENTS
-                 WHERE MOV_AMOUNT < 0;
+                    AMOUNT_EXPENSES
+                WHERE
+                     EXTRACT(MONTH FROM MOV_DATE) = EXTRACT(MONTH FROM CURRENT_DATE)
+                AND
+                     EXTRACT(YEAR FROM MOV_DATE) =  EXTRACT(YEAR FROM CURRENT_DATE)
+
+                AND
+                    USER_ = ?
         ]]>
         </Sentence>
     </Query>
@@ -222,47 +224,30 @@
     <Query id="balance">
         <Sentence>
             <![CDATA[
+
             WITH BALANCE AS
                 (
                     SELECT
-                    SUM(MOV_AMOUNT) AS balance,
-                    USER_
-                    FROM ${mainschema}.MOVEMENTS
-                    GROUP BY
-                    USER_
+                        MOV_AMOUNT,
+                        USER_,
+                        MOV_DATE
+                    FROM
+                        ${mainschema}.MOVEMENTS
                      )
                 SELECT
-                   #COLUMNS#
+                    sum(MOV_AMOUNT)as balance
                  FROM
                     BALANCE
-                #WHERE#
-        ]]>
-
-        </Sentence>
-    </Query>
-    <Query id="expenseBalance">
-        <Sentence>
-            <![CDATA[
-            WITH EXPENSEBALANCE AS
-                (
-                    SELECT
-                    SUM(MOV_AMOUNT) AS EXPENSEBALANCE,
-                    USER_
-                    FROM ${mainschema}.MOVEMENTS
-                    WHERE MOV_AMOUNT < 0
-                    GROUP BY
-                    USER_
-                     )
-                SELECT
-                   #COLUMNS#
-                 FROM
-                    EXPENSEBALANCE
-                #WHERE#
+                WHERE
+                     EXTRACT(MONTH FROM MOV_DATE) = EXTRACT(MONTH FROM CURRENT_DATE) AND
+                     EXTRACT(YEAR FROM MOV_DATE) =  EXTRACT(YEAR FROM CURRENT_DATE)
+                     AND USER_ = ?
         ]]>
 
         </Sentence>
     </Query>
 
+<<<<<<< Updated upstream
     <Query id="incomeBalance">
         <Sentence>
             <![CDATA[
@@ -283,6 +268,57 @@
                 #WHERE#
         ]]>
 
+=======
+    <Query id="totalExpensesForCategories">
+        <AmbiguousColumns>
+            <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
+            <AmbiguousColumn name="CA_ID" prefix="ca" />
+            <AmbiguousColumn name="GR_ID" prefix="gr" />
+        </AmbiguousColumns>
+        <Sentence>
+            <![CDATA[
+       WITH  TOTAL_EXPENSES_CATEGORY AS
+       (
+     SELECT
+        ca.CA_ID,
+        ca.CA_NAME,
+        MOV_MONTH,
+        MOV_YEAR,
+
+
+           SUM(mov_filtered.MOV_AMOUNT) AS TOTAL_SPENT
+       FROM
+            (SELECT
+                MOV_ID,
+                MOV_CONCEPT,
+                ABS(MOV_AMOUNT) MOV_AMOUNT,
+                MOV_DATE,
+                CA_ID,
+                USER_,
+                EXTRACT(MONTH FROM MOV_DATE) as MOV_MONTH,
+                EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR,
+                GR_ID
+        FROM
+            MOVEMENTS
+        WHERE
+            MOV_AMOUNT < 0) AS mov_filtered
+        LEFT JOIN
+            CATEGORIES ca
+        ON
+            mov_filtered.CA_ID = ca.CA_ID
+        GROUP BY
+           ca.CA_ID,
+           ca.CA_NAME,
+           mov_filtered.MOV_MONTH,
+           mov_filtered.MOV_YEAR
+           )
+                 SELECT
+                 #COLUMNS#
+                 FROM
+                 TOTAL_EXPENSES_CATEGORY
+                 #WHERE#
+              ]]>
+>>>>>>> Stashed changes
         </Sentence>
     </Query>
 

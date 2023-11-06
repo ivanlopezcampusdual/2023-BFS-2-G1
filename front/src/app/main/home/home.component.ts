@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
   public balance: number;
   public expenseBalance: number;
   public incomeBalance: number;
+
   public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
   public TOTAL_BALANCE: string = "TOTAL_BALANCE";
   public TOTAL_EXPENSE: string = "TOTAL_EXPENSE";
   public TOTAL_INCOME: string = "TOTAL_INCOME";
-  servicePath = "/balances";
-  httpOptions: any;
+
   constructor(
     private router: Router,
     private actRoute: ActivatedRoute,
@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
   }
   queryExpenseBalance() {
     const filter = {};
-    const columns = ["user_", "expenseBalance"];
-    this.service.query(filter, columns, "expenseBalance").subscribe((resp) => {
+    const columns = [ "user_", "expenseBalance"];
+    this.service.query(filter, columns, "totalExpensesForCurrentMonth").subscribe((resp) => {
       if (resp.code === 0) {
         this.getExpenseBalance(resp.data);
       }
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   queryIncomeBalance() {
     const filter = {};
     const columns = ["user_", "incomeBalance"];
-    this.service.query(filter, columns, "incomeBalance").subscribe((resp) => {
+    this.service.query(filter, columns, "totalIncomesForCurrentMonth").subscribe((resp) => {
       if (resp.code === 0) {
         this.getIncomeBalance(resp.data);
       }
@@ -72,11 +72,7 @@ export class HomeComponent implements OnInit {
       this.expenseBalance = data[0].expenseBalance;
     }
   }
-  // getExpenseBalance(data: { expenseBalance: number }[]) {
 
-  //   this.expenseBalance = data[0].expenseBalance || 0;
-
-  // }
   getIncomeBalance(data: { incomeBalance: number }[]) {
     if (data[0] === undefined) {
       this.incomeBalance = 0;
@@ -99,9 +95,7 @@ export class HomeComponent implements OnInit {
       width: "fit-content",
       height: "580px",
     });
-    /*  this.router.navigate(["../../expenses", "new"], {
-      relativeTo: this.actRoute,
-    });*/
+ 
   }
   buttonIncomes() {
     this.router.navigate(["../../incomes", "new"], {

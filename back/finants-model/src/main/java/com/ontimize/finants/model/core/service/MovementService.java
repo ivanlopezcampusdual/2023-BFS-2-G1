@@ -57,17 +57,15 @@ public class MovementService implements IMovementService {
     }
 
     @Override
-    public EntityResult totalIncomesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult totalIncomesForCurrentMonthQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         Map<String, Object> filterDatekeyMap = new HashMap<>(keyMap);
-        filterDatekeyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().getMonthValue());
-        filterDatekeyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().getYear());
+        filterDatekeyMap.put(MovementDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, filterDatekeyMap, attrList, MovementDao.QUERY_SUM_INCOMES_AMOUNT_FOR_MONTH);
     }
     @Override
-    public EntityResult totalExpensesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
+    public EntityResult totalExpensesForCurrentMonthQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         Map<String, Object> filterDatekeyMap = new HashMap<>(keyMap);
-        filterDatekeyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().getMonthValue());
-        filterDatekeyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().getYear());
+        filterDatekeyMap.put(MovementDao.ATTR_USER_, this.daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, filterDatekeyMap, attrList, MovementDao.QUERY_SUM_EXPENSES_AMOUNT_FOR_MONTH);
     }
 

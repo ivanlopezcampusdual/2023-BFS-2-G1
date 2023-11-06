@@ -14,8 +14,11 @@ public interface IMovementService {
     public EntityResult movementUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult movementDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult totalMovementsForCurrentMonth(Map<String, Object> keyMap, List<String> attrList)throws OntimizeJEERuntimeException;
-    public EntityResult totalIncomesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
-    public EntityResult totalExpensesForCurrentMonth(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
+    EntityResult totalIncomesForCurrentMonthQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
+    EntityResult totalExpensesForCurrentMonthQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
+
     public EntityResult insertExpenseInsert(Map<String, Object> attrMap)throws OntimizeJEERuntimeException;
     public EntityResult totalExpensesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
     public EntityResult totalIncomesAmountDayQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException;
