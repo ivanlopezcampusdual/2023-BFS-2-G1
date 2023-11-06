@@ -1,0 +1,5 @@
+.text-detail-incomes {
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0 var(--var-income-color);
+    background-color: white;
+  }

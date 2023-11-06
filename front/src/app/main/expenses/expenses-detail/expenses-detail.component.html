@@ -1,4 +1,4 @@
-<div expenses-details-container>
+<div class ="expenses-details-container">
 <o-form fxFill #expenseTable class= "expenses-details-table" attr="expensesDetailsTable" service="movements" entity="expensesForCategories"  header-actions="R;U;D" keys="MOV_ID" show-header="true"
   parent-keys="MOV_ID" keys-sql-types="INTEGER" label-header="EXPENSES_DETAILS"  show-header-navigation="yes">
   <o-column>
@@ -8,7 +8,7 @@
           content-align="center" required="yes"></o-date-input>
         <o-text-input class="text-detail-expense" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" content-align="center" required="yes"></o-text-input>
         <o-currency-input class="text-detail-expense" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10"
-        [validators]="validatorAmount" currency-symbol="€" locale="es-ES" required="yes" >
+        [validators]="validatorAmount" required="yes" >
         <o-validator error-name="negativeNumber" error-text="NONEGATIVE" required="yes"></o-validator>
       </o-currency-input>
         <o-combo attr="CA_ID" label="CATEGORY" class="input-padding" fxFlex="20" service="categories"
