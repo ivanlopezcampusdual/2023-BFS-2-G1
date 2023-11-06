@@ -62,9 +62,16 @@
   "INCOMES_DETAILS": "Detail of incomes",
   "MOV_AMOUNT": "Amount",
   "MOV_CONCEPT": "Concept",
+  "INCOMES_DETAILS": "Detail of incomes",
   "INPUT.BUTTON.DATERANGE": "Date range",
   "FILTER": "Filter",
   "CLEAR": "Clear",
+  "TOTAL_EXPENSES_CATEGORIES": "Expenses of the last month by categories",
+  "GOALS": "Goals",
+  "GOALS_FORM": "Goals form",
+  "GOALS_NAME": "Goals name"
+
+
   "TOTAL_BALANCE": "Total balance",
   "TOTAL_INCOME": "Total income",
   "TOTAL_EXPENSE": "Total expense"

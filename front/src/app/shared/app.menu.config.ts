@@ -29,6 +29,13 @@ export const MENU_CONFIG: MenuRootItem[] = [
     confirm: "yes",
   },
   {
+    id: "goals",
+    name: "GOALS",
+    route: "/main/goals",
+    icon: "",
+    confirm: "yes",
+  },
+  {
     id: "logout",
     name: "LOGOUT",
     route: "/login",

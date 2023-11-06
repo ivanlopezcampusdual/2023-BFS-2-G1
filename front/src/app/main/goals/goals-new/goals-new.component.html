@@ -1,0 +1,14 @@
+<o-form #newGoal label-header="GOALS_FORM" fxFlex header-actions="I" >
+<o-column>
+    <o-row>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-around">
+            <o-text-input label="GOALS_NAME" fxFlex="20" required="yes" max-length="30" ></o-text-input>
+            <o-currency-input label="AMOUNT" fxFlex="10" required="yes" currency-symbol="€" 
+            locale="es-ES" ></o-currency-input>
+            <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20" service="categories"
+            entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+            value-column="CA_ID" multiple="false" required="yes" fxFlex="25" ></o-combo>
+        </div>
+    </o-row>
+</o-column>
+</o-form>
