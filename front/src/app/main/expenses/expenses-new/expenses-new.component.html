@@ -2,13 +2,11 @@
   <button *ngIf="data.showCloseButton" (click)="closeDialog()" class="close-button">X</button>
 </div>
 <div mat-dialog-content>
-
-  <o-form #newExpense class="expenses-details-table" service="movements" 
-    entity="insertExpense" keys="MOV_ID" header-actions="I" show-header-navigation="no" emitEvent="false"
-    label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"
-    [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
-    (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)" (onCancel)="onCancel()">
-
+  <o-form #newExpense class="expenses-details-table" service="movements" entity="insertExpense" keys="MOV_ID"
+    header-actions="I" show-header-navigation="no" emitEvent="false" label-header="EXPENSES_FORM"
+    (onFormModeChange)="addCurrentDate($event)" [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'"
+    (click)="resetCurrentDate($event)" (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)"
+    (onCancel)="onCancel()">
     <o-column>
       <o-row>
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">

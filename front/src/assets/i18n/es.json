@@ -23,7 +23,7 @@
   "DECLINE": "Rechazar",
 
   "EXPENSES": "Gastos",
-  "CATEGORIES": "Categorias",
+  "CATEGORIES": "Categorías",
   "CONCEPT": "Concepto",
   "AMOUNT": "Importe",
   "DATE": "Fecha",
@@ -59,7 +59,6 @@
   "DUPLICATED_MEMBER_ERROR": "Error: El usuario seleccionado ya es miembro del grupo",
   "EXPENSES_DETAILS": "Detalle de gastos",
   "MEMBER_BALANCE": "Balance",
-  "INCOMES_DETAILS": "Detalle de ingresos",
   "MOV_AMOUNT": "Importe",
   "MOV_CONCEPT": "Concepto",
   "INCOMES_DETAILS": "Detalle de ingresos",
@@ -83,6 +82,4 @@
   "GOALS_LIST": "Lista de objetivos",
   "GOALS_FORM": "Formulario de objetivos",
   "GOALS_NAME": "Nombre del objetivo"
-
-
 }
