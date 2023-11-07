@@ -246,9 +246,6 @@
 
         </Sentence>
     </Query>
-<<<<<<< HEAD
-=======
-
 
     <Query id="incomeBalance">
         <Sentence>
@@ -272,7 +269,6 @@
         </Sentence>
     </Query>
 
->>>>>>> ccd844ecea74fa86cc8459715681f05a064ed3c2
     <Query id="totalExpensesForCategories">
         <AmbiguousColumns>
             <AmbiguousColumn name="CA_ID" prefix="mov_filtered" />
