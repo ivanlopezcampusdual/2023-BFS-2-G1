@@ -12,7 +12,8 @@
       <o-row>
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">
           <div class="inputs-container-form">
-            <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="45"></o-date-input>
+            <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="45"
+              (onChange)="onUserChange()"></o-date-input>
 
             <o-currency-input class="input-padding" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="45" required="yes"
               [validators]="validatorAmount" (onChange)="onUserChange()" currency-symbol-position="right">
