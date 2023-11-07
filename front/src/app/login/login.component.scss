@@ -53,10 +53,10 @@
   align-items: stretch;
   gap: 10px;
 }
-.mat-form-field.mat-focused .mat-form-field-ripple {
+.container-main-form .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: rgb(63, 130, 133);
 }
-.mat-input-element {
+.container-main-form .mat-input-element {
   caret-color: rgb(63, 130, 133) !important;
 }
 .mat-form-field.mat-focused .mat-form-field-label {

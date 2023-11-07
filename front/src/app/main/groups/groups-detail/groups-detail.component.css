@@ -3,3 +3,6 @@
   height: 620px;
   gap: 20px;
 }
+.text-detail-group {
+  color: var(--var-normal-color);
+}
