@@ -30,7 +30,9 @@ public class GoalService implements IGoalService {
 
     @Override
     public EntityResult goalInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-        return this.daoHelper.insert(this.goalDao,attrMap);
+        Map<String, Object> attrMapFilterUser = new HashMap<>(attrMap);
+        attrMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.insert(this.goalDao,attrMapFilterUser);
     }
 
     @Override
