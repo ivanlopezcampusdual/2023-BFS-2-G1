@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
   public TOTAL_EXPENSE: string = "TOTAL_EXPENSE";
   public TOTAL_INCOME: string = "TOTAL_INCOME";
 
+  public user: string; 
+
+  
+
   httpOptions: any;
   constructor(
     private router: Router,
@@ -35,13 +39,31 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadUserData(); 
     this.queryBalance();
     this.queryExpenseBalance();
     this.queryIncomeBalance();
+    
+  }
+
+  loadUserData(){
+
+    try {
+      const dataStore = localStorage.getItem('com.ontimize.finants.front');
+      if (dataStore) {
+        const dataObject = JSON.parse(dataStore);
+        this.user = dataObject.session.user;
+        console.log(this.user)
+      } else {
+        console.log('No se encontró la clave en el almacenamiento local.');
+      }
+    } catch (e) {
+      console.error('Error al parsear los datos de usuario:', e);
+    }
   }
 
   queryBalance() {
-    const filter = {'MONTH' : new Date().getMonth() + 1 , 'YEAR' : new Date().getFullYear()};
+    const filter = {'USER_': this.user, 'MONTH' : new Date().getMonth() + 1 , 'YEAR' : new Date().getFullYear()};
     const columns = ["user_", "balance" ];
     this.service.query(filter, columns, "balance").subscribe((resp) => {
       if (resp.code === 0) {
@@ -113,4 +135,8 @@ export class HomeComponent implements OnInit {
       height: "580px",
     });
   }
+
+
+
+  
 }

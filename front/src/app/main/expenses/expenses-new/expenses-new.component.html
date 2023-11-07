@@ -30,7 +30,7 @@
               visible-columns="CA_NAME" value-column="CA_ID" multiple="false" required="yes"
               (onChange)="onUserChange()"></o-combo>
             <o-combo attr="GR_ID" label="GROUPS_OPTIONAL" class="input-padding expensesDetailsTable" fxFlex="45"
-              service="groups" entity="group" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE"
+              service="groups" entity="getGroupsByMember" keys="GR_ID" columns="GR_ID;GR_NAME;GR_CREATION_DATE"
               visible-columns="GR_NAME" value-column="GR_ID" multiple="false" required="no" (onChange)="onUserChange()">
             </o-combo>
           </div>

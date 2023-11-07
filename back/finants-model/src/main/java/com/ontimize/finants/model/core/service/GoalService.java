@@ -15,10 +15,12 @@ import java.util.Map;
 @Lazy
 @Service("GoalService")
 public class GoalService implements IGoalService {
+
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
     @Autowired
     private GoalDao goalDao;
+
     @Override
     public EntityResult goalQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.goalDao, keyMap, attrList);
@@ -26,16 +28,12 @@ public class GoalService implements IGoalService {
 
     @Override
     public EntityResult goalInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
-
         return this.daoHelper.insert(this.goalDao,attrMap);
     }
 
     @Override
     public EntityResult goalUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-
         return this.daoHelper.update(this.goalDao,attrMap, keyMap);
-
-
     }
 
     @Override

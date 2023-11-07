@@ -106,22 +106,23 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
-        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
-        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.ATTR_BALANCE);
+        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.ATTR_BALANCE);
     }
+
     @Override
     public EntityResult expenseBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
         keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_EXPENSE_BALANCE);
     }
+
     @Override
     public EntityResult incomeBalanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
         keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
         return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_INCOME_BALANCE);
     }
+
     @Override
     public EntityResult expensesForCategoriesUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
         Map<String, Object> attrMapForThisQuery =  new HashMap<>(attrMap);
