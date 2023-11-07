@@ -16,9 +16,8 @@ export class GoalsHomeComponent implements OnInit {
     this.chartParameters = new PieChartConfiguration();
 
     this.chartParameters.labelType="percent";
-    this.chartParameters.margin.top=30;
-    this.chartParameters.legendPosition='right';
-    this.chartParameters.legend.margin.right=20;
+    this.chartParameters.legendPosition="bottom";   
+    
   }
 
   ngOnInit() {

@@ -1,11 +1,30 @@
-.divCategoriesPieChart {
-    margin-top: 1%;
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px 0 rgba(192, 145, 145, 1);
+
+.goals-main-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
+.goal-table {
+    height: 600px;
+    flex: 2;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 0px rgba(173,107,169,1);
+}
+.table-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
-h2 {
-    margin-left: 4%;
-    margin-top: 2%;
+.total_category_chart{
+    box-shadow: 2px 2px 5px 0px rgba(173,107,169,1);
+    border-radius: 10px;
+}
+@media (max-width: 1182px) {
+    .goals-main-container {
+        grid-template-columns: 1fr;
+    }
 }

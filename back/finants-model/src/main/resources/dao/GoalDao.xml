@@ -12,4 +12,25 @@
         <Column>GO_ID</Column>
     </UpdateKeys>
     <GeneratedKey>go_id</GeneratedKey>
+    <Queries>
+        <Query id="getGoalsCategoryWithName">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="CA_ID" prefix="go"/>
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+          SELECT
+             #COLUMNS#
+          FROM
+             ${mainschema}.GOALS go
+          LEFT JOIN
+             ${mainschema}.CATEGORIES ca
+          ON
+             go.CA_ID = ca.CA_ID
+             #WHERE#
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
+
 </JdbcEntitySetup>
