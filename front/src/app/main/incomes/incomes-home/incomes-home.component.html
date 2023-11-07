@@ -3,46 +3,58 @@
     <h2>{{'INCOME_LIST' | oTranslate }}</h2>
   </div>
 
-  <o-form editable-detail="no" show-header="no" layout-direction="column" class="formFilter">
-    <div fxLayout="column" layout-padding fxFlex fxLayout="row">
-      <label class="input-comp-title"></label>
-      <o-row layout-align="start" layout-gap="40px" fxFlex>
-        <o-daterange-input attr="daterange" fxFlex="30" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}"
-          read-only="no" required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="desktop">
-        </o-daterange-input>
-        <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="60" service="categories"
-          entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME" value-column="CA_ID"
-          multiple="true" required="no" read-only="no" searchable="true"></o-combo>
-      </o-row>
 
-      <o-row layout-gap="20px">
-        <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED" label="{{ 'FILTER' | oTranslate }}"
-          class="filter-button">
-        </o-button>
-        <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED" label="{{ 'CLEAR' | oTranslate }}"
-          (click)="clearFilters()" class="filter-button">
-        </o-button>
-      </o-row>
-      <o-filter-builder #filterBuilder attr="thefilter" filters="date_range:daterange;CA_ID:CA_ID"
-        [target]="incomeTable" query-on-change="no" query-on-change-delay="300"
-        [expression-builder]="createFilter"></o-filter-builder>
-    </div>
-  </o-form>
 
   <o-form-layout-manager mode="dialog">
     <o-form-layout-dialog-options width="fit-content" height="580px"></o-form-layout-dialog-options>
-    <div fxFlex fxLayout="column" fxLayoutGap="20px">
-      <div>
-        <o-table class="income-table" #incomeTable attr="incomeTable" service="movements" entity="incomesForCategories"
-          keys="MOV_ID" columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
-          visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" delete-button="no">
-          <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
-          <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
-          <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
-            currency-symbol-position="right" content-align="center"></o-table-column>
-          <o-table-column attr="MOV_DATE" title="DATE" type="date" format="L"></o-table-column>
-          <o-table-column attr="GR_NAME" title="GR_GROUP" content-align="center"></o-table-column>
-        </o-table>
+    <div class="income-main-container">
+      <div class="table-and-filter-container">
+        <div class="form-filter-container">
+          <o-form editable-detail="no" show-header="no">
+            <div fxLayout="column" fxFlex fxLayoutAlign=" stretch">
+              <div class="input-container">
+                <o-daterange-input attr="daterange" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}" read-only="no"
+                  required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="desktop" fxFlex="45">
+                </o-daterange-input>
+                <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="45" service="categories"
+                  entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+                  value-column="CA_ID" multiple="true" required="no" read-only="no" searchable="true"></o-combo>
+              </div>
+
+              <div fxLayoutAlign="end">
+                <div class="formButtonIncome">
+                  <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED"
+                    label="{{ 'FILTER' | oTranslate }}" class="filter-button" class="button">
+                  </o-button>
+                  <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED"
+                    label="{{ 'CLEAR' | oTranslate }}" (click)="clearFilters()" class="filter-button" class="button">
+                  </o-button>
+                </div>
+
+              </div>
+              <div>
+                <o-filter-builder #filterBuilder attr="thefilter" filters="date_range:daterange;CA_ID:CA_ID"
+                  [target]="incomeTable" query-on-change="no" query-on-change-delay="300"
+                  [expression-builder]="createFilter"></o-filter-builder>
+              </div>
+
+            </div>
+          </o-form>
+        </div>
+        <div>
+          <o-table class="income-table" #incomeTable attr="incomeTable" service="movements"
+            entity="incomesForCategories" keys="MOV_ID"
+            columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
+            visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" delete-button="no">
+            <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
+            <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
+            <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+              currency-symbol-position="right" content-align="center"></o-table-column>
+            <o-table-column attr="MOV_DATE" title="DATE" type="date" format="L"></o-table-column>
+            <o-table-column attr="GR_NAME" title="GR_GROUP" content-align="center"></o-table-column>
+          </o-table>
+        </div>
+
       </div>
       <div>
         <app-incomes-chart></app-incomes-chart>
