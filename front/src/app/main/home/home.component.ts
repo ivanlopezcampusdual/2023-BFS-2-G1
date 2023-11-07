@@ -12,9 +12,9 @@ import { IncomesNewComponent } from "../incomes/incomes-new/incomes-new.componen
 })
 export class HomeComponent implements OnInit {
   protected service: OntimizeService;
-  public balance: number;
-  public expenseBalance: number;
-  public incomeBalance: number;
+  public balance: number = 0;
+  public expenseBalance: number = 0;
+  public incomeBalance: number = 0;
   public ruta = this.router.navigate(["/main/", "home"], {
     relativeTo: this.actRoute,
   });
@@ -24,9 +24,7 @@ export class HomeComponent implements OnInit {
   public TOTAL_EXPENSE: string = "TOTAL_EXPENSE";
   public TOTAL_INCOME: string = "TOTAL_INCOME";
 
-  public user: string; 
-
-  
+  public user: string;
 
   httpOptions: any;
   constructor(
@@ -39,32 +37,34 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadUserData(); 
+    this.loadUserData();
     this.queryBalance();
     this.queryExpenseBalance();
     this.queryIncomeBalance();
-    
   }
 
-  loadUserData(){
-
+  loadUserData() {
     try {
-      const dataStore = localStorage.getItem('com.ontimize.finants.front');
+      const dataStore = localStorage.getItem("com.ontimize.finants.front");
       if (dataStore) {
         const dataObject = JSON.parse(dataStore);
         this.user = dataObject.session.user;
-        console.log(this.user)
+        console.log(this.user);
       } else {
-        console.log('No se encontró la clave en el almacenamiento local.');
+        console.log("No se encontró la clave en el almacenamiento local.");
       }
     } catch (e) {
-      console.error('Error al parsear los datos de usuario:', e);
+      console.error("Error al parsear los datos de usuario:", e);
     }
   }
 
   queryBalance() {
-    const filter = {'USER_': this.user, 'MONTH' : new Date().getMonth() + 1 , 'YEAR' : new Date().getFullYear()};
-    const columns = ["user_", "balance" ];
+    const filter = {
+      USER_: this.user,
+      MONTH: new Date().getMonth() + 1,
+      YEAR: new Date().getFullYear(),
+    };
+    const columns = ["user_", "balance"];
     this.service.query(filter, columns, "balance").subscribe((resp) => {
       if (resp.code === 0) {
         this.getBalance(resp.data);
@@ -94,22 +94,14 @@ export class HomeComponent implements OnInit {
       });
   }
   getBalance(data: { balance: number }[]) {
-    this.balance = 0 || data[0].balance;
+    this.balance = data[0].balance || 0;
   }
   getExpenseBalance(data: { expenseBalance: number }[]) {
-    if (data[0] === undefined || data[0] === null) {
-      this.expenseBalance = 0;
-    } else {
-      this.expenseBalance = data[0].expenseBalance;
-    }
+    this.expenseBalance = data[0].expenseBalance || 0;
   }
 
   getIncomeBalance(data: { incomeBalance: number }[]) {
-    if (data[0] === undefined || data[0] === null) {
-      this.incomeBalance = 0;
-    } else {
-      this.incomeBalance = data[0].incomeBalance;
-    }
+    this.incomeBalance = data[0].incomeBalance || 0;
   }
 
   protected configureService() {
@@ -135,8 +127,4 @@ export class HomeComponent implements OnInit {
       height: "580px",
     });
   }
-
-
-
-  
 }
