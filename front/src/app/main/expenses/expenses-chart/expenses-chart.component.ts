@@ -45,14 +45,16 @@ export class ExpensesChartComponent implements OnInit {
     const filter = {};
     const columns = ["SUM_AMOUNT", "DATE_SUM_AMOUNT", "USER_"];
     this.configureService();
-    service.query(filter, columns, "totalExpensesAmountDay").subscribe((resp) => {
-      if (resp.code === 0) {
-        this.adaptResult(resp.data);
-        this.formater();
-      } else {
-        alert("Impossible to query data!");
-      }
-    });
+    service
+      .query(filter, columns, "totalExpensesAmountDay")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.adaptResult(resp.data);
+          this.formater();
+        } else {
+          alert("Impossible to query data!");
+        }
+      });
   }
   adaptResult(data: any) {
     if (data && data.length) {

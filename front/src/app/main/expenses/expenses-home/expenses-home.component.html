@@ -3,45 +3,42 @@
     <h2>{{'EXPENSE_LIST' | oTranslate }}</h2>
   </div>
 
-
   <o-form-layout-manager mode="dialog">
     <o-form-layout-dialog-options width="fit-content" height="580px"></o-form-layout-dialog-options>
     <div class="expenses-main-container">
       <div class="table-and-filter-container">
-        <div class="form-filter-container">
-          <o-form editable-detail="no" show-header="no">
-            <div fxLayout="column" fxFlex fxLayoutAlign=" stretch">
-              <div class="input-container">
-                <o-daterange-input attr="daterange" fxFlex="20" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}"
-                  read-only="no" required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="auto"
-                  fxFlex="45">
-                </o-daterange-input>
+        <o-form editable-detail="no" show-header="no" class="form-filter-container">
+          <div fxLayout="column" fxFlex fxLayoutAlign=" stretch">
+            <div class="input-container">
+              <o-daterange-input attr="daterange" fxFlex="20" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}"
+                read-only="no" required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="auto"
+                fxFlex="45">
+              </o-daterange-input>
 
-                <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="45" read-only="no"
-                  service="categories" entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME"
-                  visible-columns="CA_NAME" value-column="CA_ID" multiple="true" required="no" searchable="true"
-                  class="combo-padding"></o-combo>
-              </div>
-              <div fxLayoutAlign="end">
-                <div class="formFilterExpenses">
-                  <o-button class="buttonFilter" attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED"
-                    label="{{ 'FILTER' | oTranslate }}" class="filter-button">
-                  </o-button>
-                  <o-button class="buttonFilter" attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED"
-                    label="{{ 'CLEAR' | oTranslate }}" (click)="clearFilters()" class="filter-button">
-                  </o-button>
-                </div>
-              </div>
-
-              <div>
-                <o-filter-builder #filterBuilder attr="thefilter" filters="date_range2:daterange;CA_ID:CA_ID"
-                  [target]="expenseTable" query-on-change="no" query-on-change-delay="300"
-                  [expression-builder]="createFilter"></o-filter-builder>
+              <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="45" read-only="no"
+                service="categories" entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME"
+                visible-columns="CA_NAME" value-column="CA_ID" multiple="true" required="no" searchable="true"
+                class="combo-padding"></o-combo>
+            </div>
+            <div fxLayoutAlign="end">
+              <div class="formFilterExpenses">
+                <o-button class="buttonFilter" attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED"
+                  label="{{ 'FILTER' | oTranslate }}" class="filter-button">
+                </o-button>
+                <o-button class="buttonFilter" attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED"
+                  label="{{ 'CLEAR' | oTranslate }}" (click)="clearFilters()" class="filter-button">
+                </o-button>
               </div>
             </div>
 
-          </o-form>
-        </div>
+            <div>
+              <o-filter-builder #filterBuilder attr="thefilter" filters="date_range2:daterange;CA_ID:CA_ID"
+                [target]="expenseTable" query-on-change="no" query-on-change-delay="300"
+                [expression-builder]="createFilter"></o-filter-builder>
+            </div>
+          </div>
+
+        </o-form>
         <div>
           <o-table class="expense-table" #expenseTable attr="expenseTable" service="movements"
             entity="expensesForCategories" keys="MOV_ID"

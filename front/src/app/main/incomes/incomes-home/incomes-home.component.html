@@ -9,39 +9,37 @@
     <o-form-layout-dialog-options width="fit-content" height="580px"></o-form-layout-dialog-options>
     <div class="income-main-container">
       <div class="table-and-filter-container">
-        <div class="form-filter-container">
-          <o-form editable-detail="no" show-header="no">
-            <div fxLayout="column" fxFlex fxLayoutAlign=" stretch">
-              <div class="input-container">
-                <o-daterange-input attr="daterange" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}" read-only="no"
-                  required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="desktop" fxFlex="45">
-                </o-daterange-input>
-                <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="45" service="categories"
-                  entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-                  value-column="CA_ID" multiple="true" required="no" read-only="no" searchable="true"
-                  class="combo-padding"></o-combo>
-              </div>
+        <o-form editable-detail="no" show-header="no" class="form-filter-container">
+          <div fxLayout="column" fxFlex fxLayoutAlign=" stretch">
+            <div class="input-container">
+              <o-daterange-input attr="daterange" label="{{ 'INPUT.BUTTON.DATERANGE' | oTranslate }}" read-only="no"
+                required="no" show-ranges="true" format="DD/MM/YYYY" touch-ui="yes" mode="desktop" fxFlex="45">
+              </o-daterange-input>
+              <o-combo attr="CA_ID" label="{{ 'CATEGORIES' | oTranslate }}" fxFlex="45" service="categories"
+                entity="categoriesIncomes" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+                value-column="CA_ID" multiple="true" required="no" read-only="no" searchable="true"
+                class="combo-padding"></o-combo>
+            </div>
 
-              <div fxLayoutAlign="end">
-                <div class="formButtonIncome">
-                  <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED"
-                    label="{{ 'FILTER' | oTranslate }}" class="filter-button" class="button">
-                  </o-button>
-                  <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED"
-                    label="{{ 'CLEAR' | oTranslate }}" (click)="clearFilters()" class="filter-button" class="button">
-                  </o-button>
-                </div>
-
-              </div>
-              <div>
-                <o-filter-builder #filterBuilder attr="thefilter" filters="date_range:daterange;CA_ID:CA_ID"
-                  [target]="incomeTable" query-on-change="no" query-on-change-delay="300"
-                  [expression-builder]="createFilter"></o-filter-builder>
+            <div fxLayoutAlign="end">
+              <div class="formButtonIncome">
+                <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="RAISED"
+                  label="{{ 'FILTER' | oTranslate }}" class="filter-button" class="button">
+                </o-button>
+                <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="RAISED"
+                  label="{{ 'CLEAR' | oTranslate }}" (click)="clearFilters()" class="filter-button" class="button">
+                </o-button>
               </div>
 
             </div>
-          </o-form>
-        </div>
+            <div>
+              <o-filter-builder #filterBuilder attr="thefilter" filters="date_range:daterange;CA_ID:CA_ID"
+                [target]="incomeTable" query-on-change="no" query-on-change-delay="300"
+                [expression-builder]="createFilter"></o-filter-builder>
+            </div>
+
+          </div>
+        </o-form>
         <div>
           <o-table class="income-table" #incomeTable attr="incomeTable" service="movements"
             entity="incomesForCategories" keys="MOV_ID"

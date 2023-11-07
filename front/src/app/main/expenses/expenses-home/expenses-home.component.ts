@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
 import { ViewChildren, QueryList } from "@angular/core";
-import { ChartSeries, PieChartConfiguration } from "ontimize-web-ngx-charts";
 
 @Component({
   selector: "app-expenses-home",

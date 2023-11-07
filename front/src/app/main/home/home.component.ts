@@ -72,10 +72,10 @@ export class HomeComponent implements OnInit {
       });
   }
   getBalance(data: { balance: number }[]) {
-    this.balance = data[0].balance;
+    this.balance = 0 || data[0].balance;
   }
   getExpenseBalance(data: { expenseBalance: number }[]) {
-    if (data[0] === undefined) {
+    if (data[0] === undefined || data[0] === null) {
       this.expenseBalance = 0;
     } else {
       this.expenseBalance = data[0].expenseBalance;
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
   }
 
   getIncomeBalance(data: { incomeBalance: number }[]) {
-    if (data[0] === undefined) {
+    if (data[0] === undefined || data[0] === null) {
       this.incomeBalance = 0;
     } else {
       this.incomeBalance = data[0].incomeBalance;
