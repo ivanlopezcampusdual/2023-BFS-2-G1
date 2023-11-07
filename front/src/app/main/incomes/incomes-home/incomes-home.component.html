@@ -43,7 +43,8 @@
           <o-table class="income-table" #incomeTable attr="incomeTable" service="movements"
             entity="incomesForCategories" keys="MOV_ID"
             columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
-            visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" delete-button="no">
+            visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" delete-button="no"
+            refresh-button="false">
             <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
             <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
             <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"

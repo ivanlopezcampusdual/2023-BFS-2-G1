@@ -1,12 +1,12 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="stretch" class="container-margin">
   <div fxLayout="row" fxLayoutAlign="space-around stretch">
-  <div fxLayoutAlign="center center" fxFlex>
-    <h2>{{'GOALS_LIST' | oTranslate }}</h2>
-  </div>
+    <div fxLayoutAlign="center center" fxFlex>
+      <h2>{{'GOALS_LIST' | oTranslate }}</h2>
+    </div>
     <div fxLayoutAlign="center center" fxFlex>
       <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
+    </div>
   </div>
-</div>
   <o-form-layout-manager mode="dialog">
     <o-form-layout-dialog-options width="fit-content" height="450px"></o-form-layout-dialog-options>
     <div class="goals-main-container">
@@ -24,10 +24,8 @@
           </div>
         </div>
       </div>
-
-    
-        <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
-          y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
+      <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
+        y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
     </div>
   </o-form-layout-manager>
 </div>

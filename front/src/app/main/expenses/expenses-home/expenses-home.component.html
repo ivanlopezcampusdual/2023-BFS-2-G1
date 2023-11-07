@@ -44,7 +44,7 @@
             entity="expensesForCategories" keys="MOV_ID"
             columns="MOV_ID;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;CA_ID;USER_;CA_ID;CA_NAME;GR_ID;GR_NAME"
             visible-columns="CA_NAME;MOV_CONCEPT;MOV_AMOUNT;MOV_DATE;GR_NAME" virtual-scroll="no" page-index="20"
-            delete-button="no">
+            delete-button="no" refresh-button="false">
             <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
             <o-table-column attr="MOV_CONCEPT" title="CONCEPT" content-align="center"></o-table-column>
             <o-table-column attr="MOV_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
@@ -55,6 +55,7 @@
         </div>
       </div>
       <app-expenses-chart></app-expenses-chart>
+
     </div>
   </o-form-layout-manager>
 </div>
