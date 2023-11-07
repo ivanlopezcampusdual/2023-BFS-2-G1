@@ -21,6 +21,7 @@ export class IncomesChartComponent implements OnInit {
   protected yAxis: string = "SUM_AMOUNT";
   protected xAxis: string = "DATE_SUM_AMOUNT";
   protected service: OntimizeService;
+  public lang;
   protected d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
   protected chartParameters: DiscreteBarChartConfiguration;
 
@@ -32,8 +33,10 @@ export class IncomesChartComponent implements OnInit {
     this.service = this.injector.get(OntimizeService);
     this.translateService.onLanguageChanged.subscribe(() => {
       this.queryData();
+      this.translateNoDataMessage();
     });
     this._confDiscreteBar();
+    this.translateNoDataMessage();
     this.queryData();
   }
   protected configureService() {
@@ -43,17 +46,22 @@ export class IncomesChartComponent implements OnInit {
 
   queryData() {
     let service: OntimizeService = this.injector.get(OntimizeService);
-    const filter = {'MOV_MONTH': new Date().getMonth() + 1,'MOV_YEAR' : new Date().getFullYear()};
+    const filter = {
+      MOV_MONTH: new Date().getMonth() + 1,
+      MOV_YEAR: new Date().getFullYear(),
+    };
     const columns = ["SUM_AMOUNT", "DATE_SUM_AMOUNT", "USER_"];
     this.configureService();
-    service.query(filter, columns, "totalIncomesAmountDay").subscribe((resp) => {
-      if (resp.code === 0) {
-        this.adaptResult(resp.data);
-        this.formater();
-      } else {
-        alert("Impossible to query data!");
-      }
-    });
+    service
+      .query(filter, columns, "totalIncomesAmountDay")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.adaptResult(resp.data);
+          this.formater();
+        } else {
+          alert("Impossible to query data!");
+        }
+      });
   }
   adaptResult(data: any) {
     if (data && data.length) {
@@ -92,6 +100,15 @@ export class IncomesChartComponent implements OnInit {
     chartOps["yAxis"]["tickFormat"] = (d) => {
       return d.toLocaleString("es-ES", { style: "currency", currency: "EUR" });
     };
+  }
+  public translateNoDataMessage() {
+    this.lang = this.translateService.getCurrentLang().toUpperCase();
+
+    if (this.lang === "ES") {
+      this.chartParameters.noDataMessage = "No hay datos disponibles";
+    } else if (this.lang === "EN") {
+      this.chartParameters.noDataMessage = "No data available";
+    }
   }
   public _confDiscreteBar() {
     this.chartParameters = new DiscreteBarChartConfiguration();
