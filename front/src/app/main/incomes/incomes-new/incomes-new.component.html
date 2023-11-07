@@ -1,11 +1,11 @@
-<o-form class="text-detail-incomes" service="movements" after-insert-mode="detail" stay-in-record-after-insert="no"
-  entity="movement" keys="MOV_ID" header-actions="I" show-header-navigation="no" emitEvent="false" changeType="0"
+<o-form class="text-detail-incomes" service="movements"  stay-in-record-after-insert="no"
+  entity="movement" keys="MOV_ID" header-actions="I" show-header-navigation="no" emitEvent="false"
   label-header="INCOMES_FORM" (onFormModeChange)="addCurrentDate($event)"
   [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)">
   <o-column>
     <o-row>
       <div fxFlex fxLayout="row" fxLayoutAlign="space-around center">
-        <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="10"></o-date-input>
+        <o-date-input #dateInput attr="MOV_DATE" label="DATE" fxFlex="10" (onChange)="onUserChange()"></o-date-input>
         <o-text-input class="input-padding" attr="MOV_CONCEPT" label="CONCEPT" fxFlex="20" required="yes"
           max-length="30" (onChange)="onUserChange()"></o-text-input>
         <o-currency-input class="input-padding" attr="MOV_AMOUNT" label="AMOUNT" fxFlex="10" required="yes"

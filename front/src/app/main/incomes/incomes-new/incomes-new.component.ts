@@ -26,6 +26,7 @@ export class IncomesNewComponent implements OnInit {
 
   public addCurrentDate(event){
     if (event === 1) {
+      console.log({event})
       this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
       this.userHasMadeChanges = false;
     } 
@@ -36,7 +37,11 @@ export class IncomesNewComponent implements OnInit {
   }
 
   public resetCurrentDate(event): void{
-    this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+    let closestSVG=  event.target.closest('mat-icon[svgicon="ontimize:undo"]'); 
+    if((event.target.tagName === 'BUTTON' || event.target.tagName === 'SPAN'   && event.target.textContent.trim() === 'Deshacer')|| closestSVG ) 
+     {
+      this.fieldFecha.setValue(this.datePipe.transform(new Date(), "yyyy-MM-dd"));
+    }
     this.userHasMadeChanges = false;
-  }
+  } 
 }
