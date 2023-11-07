@@ -4,7 +4,7 @@
   --var-income-color: rgba(145, 192, 158);
   --var-normal-color: rgba(88, 180, 183);
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
-  --var-goals-color: rgba(173,107,169);
+  --var-goals-color: rgba(173, 107, 169);
 }
 
 .container-margin {
@@ -131,15 +131,10 @@ mat-dialog-container {
 .formButtonIncome .o-button button.mat-raised-button {
   color: var(--var-income-color);
 }
-.formNewGoal  .o-form-toolbar-button {
+.formNewGoal .o-form-toolbar-button {
   color: var(--var-goals-color) !important ;
 }
-.formNewGoal .o-form-toolbar button:hover {
-  background-color: rgba(173,107,169,0.2) !important;
-}
-.formNewGoal .o-form-toolbar button:not([disabled]).mat-button-base.mat-primary:hover{
-  background-color: rgba(173,107,169,0.2) !important;
-}
+
 .expense-table o-data-toolbar button,
 .expensesDetailsTable button {
   color: rgba(192, 145, 145) !important;
@@ -154,11 +149,8 @@ mat-dialog-container {
 .income-table o-data-toolbar button {
   color: var(--var-income-color) !important;
 }
-.goal-table o-data-toolbar button{
-  color: rgba(173,107,169) !important;
-}
-.goal-table o-data-toolbar button:hover{
-  background-color: rgba(173,107,169,0.2) !important;
+.goal-table o-data-toolbar button {
+  color: var(--var-goals-color) !important;
 }
 
 .expense-table
@@ -187,6 +179,16 @@ mat-dialog-container {
   o-form-toolbar
   button:not([disabled]).mat-button-base:hover {
   background-color: rgba(88, 180, 183, 0.2) !important;
+}
+.goal-table
+  .o-table-toolbar
+  .o-table-button
+  button:not([disabled]).mat-button-base:hover,
+.formNewGoal
+  o-form-toolbar
+  button:not([disabled]).mat-button-base.mat-primary:hover,
+.formNewGoal o-form-toolbar button:not([disabled]).mat-button-base:hover {
+  background-color: rgba(173, 107, 169, 0.2) !important;
 }
 .inputs-container-form {
   display: flex;
