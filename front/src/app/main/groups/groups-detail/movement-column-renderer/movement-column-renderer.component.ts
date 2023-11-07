@@ -32,7 +32,6 @@ export class MovementColumnRendererComponent
       decimalDigits: 2,
       decimalSeparator: ",",
       grouping: true,
-      thousandSeparator: ".",
     };
   }
 
