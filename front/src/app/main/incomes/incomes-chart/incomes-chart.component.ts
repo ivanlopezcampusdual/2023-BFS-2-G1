@@ -43,7 +43,7 @@ export class IncomesChartComponent implements OnInit {
 
   queryData() {
     let service: OntimizeService = this.injector.get(OntimizeService);
-    const filter = {};
+    const filter = {'MOV_MONTH': new Date().getMonth() + 1,'MOV_YEAR' : new Date().getFullYear()};
     const columns = ["SUM_AMOUNT", "DATE_SUM_AMOUNT", "USER_"];
     this.configureService();
     service.query(filter, columns, "totalIncomesAmountDay").subscribe((resp) => {

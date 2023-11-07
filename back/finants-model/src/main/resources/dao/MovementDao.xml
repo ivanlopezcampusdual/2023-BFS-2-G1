@@ -105,14 +105,18 @@
                     SELECT
                         ABS(SUM(MOV_AMOUNT)) AS SUM_AMOUNT,
                         TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
-                        USER_
+                        USER_,
+                        EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                        EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR
                     FROM
                         ${mainschema}.MOVEMENTS
                     WHERE
                         MOV_AMOUNT < 0
                     GROUP BY
                         DATE_SUM_AMOUNT,
-                        USER_
+                        USER_,
+                        MOV_MONTH,
+                        MOV_YEAR
                     ORDER BY
                         DATE_SUM_AMOUNT
                 )
@@ -133,14 +137,18 @@
                     SELECT
                         SUM(MOV_AMOUNT) AS SUM_AMOUNT,
                         TO_CHAR(MOV_DATE, 'YYYY-MM-DD') AS DATE_SUM_AMOUNT,
-                        USER_
+                        USER_,
+                        EXTRACT(MONTH FROM MOV_DATE) as  MOV_MONTH,
+                        EXTRACT(YEAR FROM MOV_DATE) as MOV_YEAR
                     FROM
                         ${mainschema}.MOVEMENTS
                     WHERE
                         MOV_AMOUNT >= 0
                     GROUP BY
                         DATE_SUM_AMOUNT,
-                        USER_
+                        USER_,
+                        MOV_MONTH,
+                        MOV_YEAR
                     ORDER BY
                         DATE_SUM_AMOUNT
                 )
