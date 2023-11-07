@@ -22,7 +22,9 @@ export class MovementColumnRendererComponent
     super(injector);
     this.setComponentPipe();
   }
-
+  setComponentPipe() {
+    this.componentPipe = new OCurrencyPipe(this.injector);
+  }
   ngOnInit() {
     this.pipeArguments = {
       currencySimbol: "€",
@@ -33,9 +35,7 @@ export class MovementColumnRendererComponent
       thousandSeparator: ".",
     };
   }
-  setComponentPipe() {
-    this.componentPipe = new OCurrencyPipe(this.injector);
-  }
+
   getCellData(value: any) {
     let cellValue: string;
     if (

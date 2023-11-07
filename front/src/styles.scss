@@ -136,7 +136,9 @@ mat-dialog-container {
 .group-detail-table button {
   color: rgba(88, 180, 183) !important;
 }
-
+.group-detail-table thead button {
+  color: white !important;
+}
 .income-table o-data-toolbar button {
   color: var(--var-income-color) !important;
 }
