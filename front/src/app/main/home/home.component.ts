@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit {
   }
 
   queryBalance() {
-    const filter = {};
-    const columns = ["user_", "balance"];
+    const filter = {'MONTH' : new Date().getMonth() + 1 , 'YEAR' : new Date().getFullYear()};
+    const columns = ["user_", "balance" ];
     this.service.query(filter, columns, "balance").subscribe((resp) => {
       if (resp.code === 0) {
         this.getBalance(resp.data);

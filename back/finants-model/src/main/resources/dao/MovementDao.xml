@@ -224,24 +224,36 @@
     <Query id="balance">
         <Sentence>
             <![CDATA[
-
+            WITH BALANCE_TOTAL AS(
             WITH BALANCE AS
                 (
                     SELECT
                         MOV_AMOUNT,
                         USER_,
-                        MOV_DATE
+                        MOV_DATE,
+                        EXTRACT(MONTH FROM MOV_DATE) AS MONTH,
+                        EXTRACT(YEAR FROM MOV_DATE) AS YEAR
                     FROM
                         ${mainschema}.MOVEMENTS
                      )
                 SELECT
-                    sum(MOV_AMOUNT)as balance
+                    sum(MOV_AMOUNT)as balance,
+                    USER_,
+                    MONTH,
+                    YEAR
+
                  FROM
                     BALANCE
-                WHERE
-                     EXTRACT(MONTH FROM MOV_DATE) = EXTRACT(MONTH FROM CURRENT_DATE) AND
-                     EXTRACT(YEAR FROM MOV_DATE) =  EXTRACT(YEAR FROM CURRENT_DATE)
-                     AND USER_ = ?
+                 GROUP BY
+                    USER_,
+                    MONTH,
+                    YEAR
+                )
+                SELECT
+                    #COLUMNS#
+                FROM
+                    BALANCE_TOTAL
+                    #WHERE#
         ]]>
 
         </Sentence>
@@ -284,9 +296,7 @@
         ca.CA_NAME,
         MOV_MONTH,
         MOV_YEAR,
-
-
-           SUM(mov_filtered.MOV_AMOUNT) AS TOTAL_SPENT
+        SUM(mov_filtered.MOV_AMOUNT) AS TOTAL_SPENT
        FROM
             (SELECT
                 MOV_ID,
