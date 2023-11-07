@@ -32,7 +32,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: "goals",
     name: "GOALS",
     route: "/main/goals",
-    icon: "",
+    icon: "flag",
     confirm: "yes",
   },
   {

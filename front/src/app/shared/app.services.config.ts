@@ -9,12 +9,15 @@ export const SERVICE_CONFIG: Object = {
     path: "/balances",
   },
   memberGroups: {
-    path: "/memberGroups"
+    path: "/memberGroups",
   },
   movements: {
-    path: "/movements"
+    path: "/movements",
   },
   categories: {
-    path: "/categories"
-  }
+    path: "/categories",
+  },
+  goals: {
+    path: "/goals",
+  },
 };

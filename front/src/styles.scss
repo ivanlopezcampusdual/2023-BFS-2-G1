@@ -32,6 +32,7 @@
 .group-table thead {
   background-color: var(--var-normal-color);
 }
+
 button,
 mat-dialog-container {
   border-radius: 10px !important;
@@ -124,14 +125,15 @@ mat-dialog-container {
   color: var(--var-expense-color);
 }
 
-.formFilterExpenses .o-button button.mat-raised-button:hover,
-.expenses-details-table button:not([disabled]).mat-button-base:hover {
-  background-color: var(--var-expenses-hover) !important;
-}
 .expense-table o-data-toolbar button,
 .expensesDetailsTable button {
   color: rgba(192, 145, 145) !important;
 }
+.group-table o-data-toolbar button,
+.group-detail-table button {
+  color: rgba(88, 180, 183) !important;
+}
+
 .income-table o-data-toolbar button {
   color: var(--var-income-color) !important;
 }
@@ -144,8 +146,23 @@ mat-dialog-container {
   button:not([disabled]).mat-button-base.mat-primary:hover,
 .expenses-details-table
   o-form-toolbar
-  button:not([disabled]).mat-button-base:hover {
+  button:not([disabled]).mat-button-base:hover,
+.formFilterExpenses .o-button button.mat-raised-button:hover,
+.expenses-details-table button:not([disabled]).mat-button-base:hover {
   background-color: var(--var-expenses-hover) !important;
+}
+
+.group-table
+  .o-table-toolbar
+  .o-table-button
+  button:not([disabled]).mat-button-base:hover,
+.group-detail-table
+  o-form-toolbar
+  button:not([disabled]).mat-button-base.mat-primary:hover,
+.group-detail-table
+  o-form-toolbar
+  button:not([disabled]).mat-button-base:hover {
+  background-color: rgba(88, 180, 183, 0.2) !important;
 }
 .inputs-container-form {
   display: flex;
@@ -171,4 +188,7 @@ mat-dialog-container {
 }
 .close-button {
   border-radius: 50% !important;
+}
+.combo-padding span {
+  padding-bottom: 6px !important;
 }

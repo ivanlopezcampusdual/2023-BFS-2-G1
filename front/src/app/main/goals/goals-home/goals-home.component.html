@@ -1,10 +1,10 @@
 <div fxFill fxLayout="column" fxLayoutAlign="start">
-    <o-table >
+  <o-table>
 
   </o-table>
   <div class="divCategoriesPieChart" fxLayout="row" fxFlexFill fxFlex>
     <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
-  <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME" y-axis="TOTAL_SPENT"
-  [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
+    <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
+      y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
   </div>
 </div>
