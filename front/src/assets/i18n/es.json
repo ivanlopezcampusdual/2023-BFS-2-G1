@@ -51,6 +51,7 @@
   "ISADMIN": "Es administrador",
   "GR_GROUP": "Grupo",
   "GR_GROUP_NAME": "Nombre del grupo",
+  "GR_GROUP_NAME_DETAIL": "Nombre del grupo (para editar dar click sobre el nombre)",
   "GR_CREATION_DATE": "Fecha de creación",
   "GR_ADD_MEMBER": "Añadir participante",
   "GROUP_FORM": "Formulario de grupos",

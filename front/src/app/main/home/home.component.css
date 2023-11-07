@@ -6,7 +6,7 @@
 
 .cont-balance {
   max-width: 20%;
-  min-width: 350px;
+  min-width: 400px;
   flex-wrap: nowrap;
 }
 
@@ -40,7 +40,7 @@
   border-radius: 10px;
 }
 .balances-container {
-  width: 160px;
+  width: 172px;
   display: flex;
   justify-content: end;
   align-items: center;

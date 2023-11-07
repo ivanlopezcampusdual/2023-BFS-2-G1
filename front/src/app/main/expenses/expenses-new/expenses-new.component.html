@@ -2,11 +2,17 @@
   <button *ngIf="data.showCloseButton" (click)="closeDialog()" class="close-button">X</button>
 </div>
 <div mat-dialog-content>
-  <o-form #newExpense class="expenses-details-table" service="movements" entity="insertExpense" keys="MOV_ID"
-    header-actions="I" show-header-navigation="no" emitEvent="false" label-header="EXPENSES_FORM"
-    (onFormModeChange)="addCurrentDate($event)" [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'"
-    (click)="resetCurrentDate($event)" (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)"
-    (onCancel)="onCancel()">
+  <o-form #newExpense class="expenses-details-table expenses-form-new-buttons" service="movements"
+    entity="insertExpense" keys="MOV_ID" header-actions="I;U" show-header-navigation="no" emitEvent="false"
+    label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"
+    [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
+    (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)">
+    <div o-form-toolbar-buttons class="btn-cancel-cont">
+      <button type="button" mat-stroked-button (click)="onClickCustomButtonCancel()">
+        <mat-icon>close</mat-icon>
+        <span>{{"CANCEL" | oTranslate}}</span>
+      </button>
+    </div>
     <o-column>
       <o-row>
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">

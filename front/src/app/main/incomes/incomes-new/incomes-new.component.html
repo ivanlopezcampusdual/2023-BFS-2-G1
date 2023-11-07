@@ -3,11 +3,17 @@
 </div>
 <div mat-dialog-content>
 
-  <o-form #newIncome class="text-detail-incomes" service="movements" 
+  <o-form #newIncome class="text-detail-incomes expenses-form-new-buttons" service="movements"
     stay-in-record-after-insert="no" entity="movement" keys="MOV_ID" header-actions="I" show-header-navigation="no"
     emitEvent="false" changeType="0" label-header="INCOMES_FORM" (onFormModeChange)="addCurrentDate($event)"
     [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
     (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)" (onCancel)="onCancel()">
+    <div o-form-toolbar-buttons class="btn-cancel-cont">
+      <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="onClickCustomButtonCancel()">
+        <mat-icon>close</mat-icon>
+        <span>{{"CANCEL" | oTranslate}}</span>
+      </button>
+    </div>
     <o-column>
       <o-row>
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">

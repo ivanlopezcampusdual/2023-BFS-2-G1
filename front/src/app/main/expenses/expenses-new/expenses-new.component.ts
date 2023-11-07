@@ -5,11 +5,11 @@ import {
   ODateInputComponent,
   OValidators,
   OFormComponent,
+  DialogService,
 } from "ontimize-web-ngx";
 
 import { MAT_DIALOG_DATA } from "@angular/material";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { Router } from "@angular/router";
 @Component({
   selector: "app-expenses-new",
   templateUrl: "./expenses-new.component.html",
@@ -28,7 +28,8 @@ export class ExpensesNewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ExpensesNewComponent>,
     private datePipe: DatePipe,
-    private router: Router
+
+    protected dialogService: DialogService
   ) {
     this.validatorAmount.push(
       OValidators.patternValidator(/^\d+([,.]\d+)?$/, "negativeNumber")
@@ -46,10 +47,7 @@ export class ExpensesNewComponent implements OnInit {
   public closeDialog(event: any) {
     this.dialogRef.close();
   }
-  onCancel() {
-    this.dialogRef.close();
-    this.router.navigate([this.data.cancelUrl]);
-  }
+
   public addCurrentDate(event) {
     if (event === 1) {
       this.fieldFecha.setValue(
@@ -76,5 +74,17 @@ export class ExpensesNewComponent implements OnInit {
       );
     }
     this.userHasMadeChanges = false;
+  }
+
+  onClickCustomButtonCancel() {
+    if (this.dialogService) {
+      this.dialogService
+        .confirm("CONFIRM", "MESSAGES.FORM_CHANGES_WILL_BE_LOST")
+        .then((result) => {
+          if (result) {
+            this.dialogRef.close();
+          }
+        });
+    }
   }
 }

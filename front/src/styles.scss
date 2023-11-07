@@ -6,6 +6,7 @@
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
   --var-goals-color: #ad6ba9;
 }
+
 .container-margin {
   margin: 0 20px;
 }
@@ -199,4 +200,14 @@ mat-dialog-container {
 }
 .combo-padding span {
   padding-bottom: 6.6px !important;
+}
+.expenses-form-new-buttons .o-form-toolbar-button-cancel,
+.incomes-form-new-buttons .o-form-toolbar-button-cancel {
+  display: none;
+}
+.btn-cancel-cont {
+  margin: 0px 6px 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

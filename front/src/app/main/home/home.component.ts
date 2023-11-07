@@ -15,9 +15,6 @@ export class HomeComponent implements OnInit {
   public balance: number = 0;
   public expenseBalance: number = 0;
   public incomeBalance: number = 0;
-  public ruta = this.router.navigate(["/main/", "home"], {
-    relativeTo: this.actRoute,
-  });
 
   public MONTHLY_BALANCE: string = "MONTHLY_BALANCE";
   public TOTAL_BALANCE: string = "TOTAL_BALANCE";
@@ -49,7 +46,6 @@ export class HomeComponent implements OnInit {
       if (dataStore) {
         const dataObject = JSON.parse(dataStore);
         this.user = dataObject.session.user;
-        console.log(this.user);
       } else {
         console.log("No se encontró la clave en el almacenamiento local.");
       }
@@ -115,16 +111,18 @@ export class HomeComponent implements OnInit {
 
   buttonExpenses() {
     this.dialog.open(ExpensesNewComponent, {
-      data: { showCloseButton: true, cancelUrl: this.ruta },
+      data: { showCloseButton: true },
       width: "fit-content",
       height: "580px",
+      closeOnNavigation: false,
     });
   }
   buttonIncomes() {
     this.dialog.open(IncomesNewComponent, {
-      data: { showCloseButton: true, cancelUrl: this.ruta },
+      data: { showCloseButton: true },
       width: "fit-content",
       height: "580px",
+      closeOnNavigation: false,
     });
   }
 }

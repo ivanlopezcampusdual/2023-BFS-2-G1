@@ -33,9 +33,7 @@ export class ExpensesHomeComponent implements OnInit {
   createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
 
-    console.log("Entramos en fecha");
     values.forEach((fil) => {
-      console.log(fil.value);
       if (fil.value) {
         if (fil.attr === "date_range2") {
           filters.push(
@@ -50,7 +48,6 @@ export class ExpensesHomeComponent implements OnInit {
               fil.value.endDate
             )
           );
-          console.log(filters);
         }
 
         if (fil.attr === "CA_ID") {

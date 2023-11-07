@@ -51,6 +51,7 @@
   "ISADMIN": "Is admin",
   "GR_GROUP": "Group",
   "GR_GROUP_NAME": "Group name",
+  "GR_GROUP_NAME_DETAIL": "Group name (to edit click on the name)",
   "GR_CREATION_DATE": "Creation date",
   "GR_ADD_MEMBER": "Add member",
   "GROUP_FORM": "Group form",
