@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,7 +118,7 @@ public class GroupService implements IGroupService {
         BigDecimal memberCount = new BigDecimal(members.size());
 
         //Group expenses are evenly distributed
-        BigDecimal memberSplitBalance = totalExpenses.divide(memberCount);
+        BigDecimal memberSplitBalance = totalExpenses.divide(memberCount, RoundingMode.HALF_EVEN);
 
         //Recomposing an entityresult with all users and balances
         EntityResult memberBalance = new EntityResultMapImpl();
@@ -125,8 +126,8 @@ public class GroupService implements IGroupService {
         memberBalance.put(MemberGroupDao.ATTR_MG_ID, mgIds);
 
         List<BigDecimal> userBalancesList = new ArrayList<>();
-        for (String o : (List<String>)memberBalance.get(GroupDao.ATTR_USER_)){
-            BigDecimal userExpenseToSubstract = this.getUserTotalExpense(keyMap, o);
+        for (String s : (List<String>)memberBalance.get(GroupDao.ATTR_USER_)){
+            BigDecimal userExpenseToSubstract = this.getUserTotalExpense(keyMap, s);
             userBalancesList.add(memberSplitBalance.subtract(userExpenseToSubstract));
         }
         memberBalance.put(GroupDao.ATTR_MEMBER_BALANCE, userBalancesList);
