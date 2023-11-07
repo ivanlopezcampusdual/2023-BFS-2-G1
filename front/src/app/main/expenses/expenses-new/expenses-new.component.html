@@ -3,7 +3,7 @@
 </div>
 <div mat-dialog-content>
 
-  <o-form #newExpense class="expenses-details-table" service="movements" after-insert-mode="detail"
+  <o-form #newExpense class="expenses-details-table" service="movements" 
     entity="insertExpense" keys="MOV_ID" header-actions="I" show-header-navigation="no" emitEvent="false"
     label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"
     [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
