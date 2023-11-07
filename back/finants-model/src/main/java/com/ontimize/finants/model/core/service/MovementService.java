@@ -1,6 +1,7 @@
 package com.ontimize.finants.model.core.service;
 
 import com.ontimize.finants.api.core.service.IMovementService;
+import com.ontimize.finants.model.core.dao.GoalDao;
 import com.ontimize.finants.model.core.dao.MovementDao;
 import com.ontimize.jee.common.db.NullValue;
 import com.ontimize.jee.common.dto.EntityResult;
@@ -169,7 +170,9 @@ public class MovementService implements IMovementService {
     public EntityResult totalExpensesForCategoriesQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         keyMap.put(MovementDao.ATTR_MOV_MONTH, LocalDate.now().minusMonths(1).getMonthValue());
         keyMap.put(MovementDao.ATTR_MOV_YEAR, LocalDate.now().minusMonths(1).getYear());
-        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
+        Map<String, Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(GoalDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.QUERY_TOTAL_EXPENSES_FOR_CATEGORIES);
     }
 
 }
