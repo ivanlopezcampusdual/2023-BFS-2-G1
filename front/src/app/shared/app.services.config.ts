@@ -16,5 +16,8 @@ export const SERVICE_CONFIG: Object = {
   },
   categories: {
     path: "/categories"
+  },
+  goals: {
+    path: "/goals"
   }
 };
