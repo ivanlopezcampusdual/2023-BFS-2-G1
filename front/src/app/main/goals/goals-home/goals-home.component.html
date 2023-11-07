@@ -1,10 +1,23 @@
-<div fxFill fxLayout="column" fxLayoutAlign="start">
-  <o-table>
-
-  </o-table>
-  <div class="divCategoriesPieChart" fxLayout="row" fxFlexFill fxFlex>
-    <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
-    <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
-      y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
+<o-form-layout-manager mode="dialog">
+  <o-form-layout-dialog-options width="fit-content" height="450px"></o-form-layout-dialog-options>
+  <div fxFill fxLayout="column" fxLayoutAlign="start">
+    <div>
+      <h2>{{'GOALS_LIST' | oTranslate }}</h2>
+    </div>
+    <div>
+      <o-table #goalTable class="goal-table" attr="goalTable" service="goals" entity="goal" keys="GO_ID"
+        columns="GO_ID;USER_;GO_NAME;GO_CA_ID;GO_AMOUNT" visible-columns="GO_NAME;GO_CA_ID;GO_AMOUNT"
+        virtual-scroll="no" delete-button="no">
+        <o-table-column attr="GO_NAME" title="GOAL" content-align="center"></o-table-column>
+        <o-table-column attr="GO_CA_ID" title="CATEGORY" content-align="center"></o-table-column>
+        <o-table-column attr="GO_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+          currency-symbol-position="right" content-align="center"></o-table-column>
+      </o-table>
+    </div>
+    <div class="divCategoriesPieChart" fxLayout="row" fxFlexFill fxFlex>
+      <h2>{{'TOTAL_EXPENSES_CATEGORIES' | oTranslate }}</h2>
+      <o-chart fxFlex type="pie" entity="totalExpensesForCategories" service="movements" x-axis="CA_NAME"
+        y-axis="TOTAL_SPENT" [chart-parameters]="chartParameters" class="total_category_chart"></o-chart>
+    </div>
   </div>
-</div>
+</o-form-layout-manager>

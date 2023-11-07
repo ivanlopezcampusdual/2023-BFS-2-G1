@@ -26,14 +26,21 @@ public class GoalService implements IGoalService {
 
     @Override
     public EntityResult goalInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 677a7918732ce47471ce3bbe51668eab62983bb1
         return this.daoHelper.insert(this.goalDao,attrMap);
     }
 
     @Override
     public EntityResult goalUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
+<<<<<<< HEAD
 
         return this.daoHelper.update(this.goalDao,attrMap, keyMap);
+=======
+        return this.daoHelper.update(this.goalDao, attrMap, keyMap);
+>>>>>>> 677a7918732ce47471ce3bbe51668eab62983bb1
     }
 
     @Override

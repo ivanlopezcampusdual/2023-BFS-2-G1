@@ -1,14 +1,18 @@
-<o-form #newGoal label-header="GOALS_FORM" fxFlex header-actions="I" >
+<o-form #newGoal service="goals" entity="goal" label-header="GOALS_FORM" keys="GO_ID" fxFlex header-actions="I" >
 <o-column>
     <o-row>
-        <div fxFlex fxLayout="row" fxLayoutAlign="space-around">
-            <o-text-input label="GOALS_NAME" fxFlex="20" required="yes" max-length="30" ></o-text-input>
-            <o-currency-input label="AMOUNT" fxFlex="10" required="yes" currency-symbol="€" 
+        <div fxFlex fxLayout="column" fxLayoutAlign="space-around">
+            <div fxLayout="row" fxLayoutAlign="space-around" >
+            <o-text-input attr="GO_NAME" label="GOALS_NAME" fxFlex="40" required="yes" max-length="30" ></o-text-input>
+            <o-currency-input attr="GO_AMOUNT" label="AMOUNT" fxFlex="40" required="yes" currency-symbol="€" 
             locale="es-ES" ></o-currency-input>
-            <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="20" service="categories"
-            entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
-            value-column="CA_ID" multiple="false" required="yes" fxFlex="25" ></o-combo>
         </div>
+        <div fxLayout="row" fxLayoutAlign="space-around">
+            <o-combo attr="CA_ID" label="CATEGORY" class="input-padding expensesDetailsTable" fxFlex="50" service="categories"
+            entity="categoriesExpenses" keys="CA_ID" columns="CA_ID;CA_NAME" visible-columns="CA_NAME"
+            value-column="CA_ID" multiple="false" required="no" ></o-combo>
+        </div>
+    </div>
     </o-row>
 </o-column>
 </o-form>

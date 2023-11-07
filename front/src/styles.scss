@@ -4,6 +4,7 @@
   --var-income-color: rgba(145, 192, 158);
   --var-normal-color: rgba(88, 180, 183);
   --var-expenses-hover: rgba(247, 94, 80, 0.2);
+  --var-goals-color: #ad6ba9;
 }
 .container-margin {
   margin: 0 20px;
@@ -32,7 +33,13 @@
 .group-table thead {
   background-color: var(--var-normal-color);
 }
+<<<<<<< HEAD
 
+=======
+.goal-table thead{
+background-color: var(--var-goals-color);
+}
+>>>>>>> 677a7918732ce47471ce3bbe51668eab62983bb1
 button,
 mat-dialog-container {
   border-radius: 10px !important;
