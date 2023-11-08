@@ -107,7 +107,9 @@ public class MovementService implements IMovementService {
 
     @Override
     public EntityResult balanceQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.movementDao, keyMap, attrList, MovementDao.ATTR_BALANCE);
+        Map<String,Object> keyMapFilterUser = new HashMap<>(keyMap);
+        keyMapFilterUser.put(MovementDao.ATTR_USER_, daoHelper.getUser().getUsername());
+        return this.daoHelper.query(this.movementDao, keyMapFilterUser, attrList, MovementDao.ATTR_BALANCE);
     }
 
     @Override

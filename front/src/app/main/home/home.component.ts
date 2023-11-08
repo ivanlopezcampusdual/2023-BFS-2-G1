@@ -34,29 +34,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadUserData();
     this.queryBalance();
     this.queryExpenseBalance();
     this.queryIncomeBalance();
   }
 
-  loadUserData() {
-    try {
-      const dataStore = localStorage.getItem("com.ontimize.finants.front");
-      if (dataStore) {
-        const dataObject = JSON.parse(dataStore);
-        this.user = dataObject.session.user;
-      } else {
-        console.log("No se encontró la clave en el almacenamiento local.");
-      }
-    } catch (e) {
-      console.error("Error al parsear los datos de usuario:", e);
-    }
-  }
 
   queryBalance() {
     const filter = {
-      USER_: this.user,
       MONTH: new Date().getMonth() + 1,
       YEAR: new Date().getFullYear(),
     };
