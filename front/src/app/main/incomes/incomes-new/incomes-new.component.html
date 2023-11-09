@@ -7,7 +7,7 @@
     stay-in-record-after-insert="no" entity="movement" keys="MOV_ID" header-actions="I" show-header-navigation="no"
     emitEvent="false" changeType="0" label-header="INCOMES_FORM" (onFormModeChange)="addCurrentDate($event)"
     [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
-    (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)" (onCancel)="onCancel()">
+    (onFormModeChange)="forceInsertMode($event)" (onCancel)="onCancel()" ignore-default-navigation="true">
     <div o-form-toolbar-buttons class="btn-cancel-cont">
       <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="onClickCustomButtonCancel()">
         <mat-icon>close</mat-icon>

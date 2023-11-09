@@ -1,11 +1,11 @@
 <o-form #newGoal service="goals" entity="goal" label-header="GOALS_FORM" class="formNewGoal" keys="GO_ID" fxFlex
-  header-actions="I">
+  header-actions="I" show-header-navigation="no">
   <o-column>
     <o-row>
       <div fxFlex fxLayout="column" fxLayoutAlign="space-around">
         <div fxLayout="row" fxLayoutAlign="space-around stretch">
           <o-text-input attr="GO_NAME" label="GOALS_NAME" fxFlex="45" required="yes" max-length="30"></o-text-input>
-          <o-currency-input attr="GO_AMOUNT" label="AMOUNT" fxFlex="45" required="yes" currency-symbol="€"
+          <o-currency-input attr="GO_AMOUNT" label="GOAL" fxFlex="45" required="yes" currency-symbol="€"
             locale="es-ES"></o-currency-input>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around stretch">

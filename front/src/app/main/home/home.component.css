@@ -68,3 +68,9 @@
   border-radius: 0;
   border-bottom: 1px solid #91c09e;
 }
+.button-expense-color {
+  color: #f75e50;
+}
+.button-income-color {
+  color: green;
+}

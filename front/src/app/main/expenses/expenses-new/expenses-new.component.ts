@@ -28,7 +28,6 @@ export class ExpensesNewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ExpensesNewComponent>,
     private datePipe: DatePipe,
-
     protected dialogService: DialogService
   ) {
     this.validatorAmount.push(
@@ -86,5 +85,8 @@ export class ExpensesNewComponent implements OnInit {
           }
         });
     }
+  }
+  onInsert() {
+    this.dialogRef.close();
   }
 }

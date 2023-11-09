@@ -16,9 +16,9 @@
             <o-table #goalTable class="goal-table" attr="goalTable" service="goals" entity="getGoalsCategoryWithName"
               keys="GO_ID" columns="GO_ID;USER_;GO_NAME;CA_ID;GO_AMOUNT;CA_NAME"
               visible-columns="GO_NAME;CA_NAME;GO_AMOUNT" virtual-scroll="no" delete-button="no">
-              <o-table-column attr="GO_NAME" title="GOAL" content-align="center"></o-table-column>
-              <o-table-column attr="CA_NAME" title="CATEGORY" content-align="center"></o-table-column>
-              <o-table-column attr="GO_AMOUNT" title="AMOUNT" type="currency" currency-symbol="€"
+              <o-table-column attr="GO_NAME" title="GOALS_NAMES" content-align="center"></o-table-column>
+              <o-table-column attr="CA_NAME" title="CATEGORIES" content-align="center"></o-table-column>
+              <o-table-column attr="GO_AMOUNT" title="GOALS" type="currency" currency-symbol="€"
                 currency-symbol-position="right" content-align="center"></o-table-column>
             </o-table>
           </div>

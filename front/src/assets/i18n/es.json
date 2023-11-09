@@ -80,7 +80,8 @@
   "TOTAL_EXPENSES_CATEGORIES": "Gastos del mes anterior por categorias",
   "GOALS": "Objetivos",
   "GOAL": "Objetivo",
+  "GOALS_NAME": "Nombre del objetivo",
+  "GOALS_NAMES": "Nombres de los objetivos",
   "GOALS_LIST": "Lista de objetivos",
-  "GOALS_FORM": "Formulario de objetivos",
-  "GOALS_NAME": "Nombre del objetivo"
+  "GOALS_FORM": "Formulario de objetivos"
 }

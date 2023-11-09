@@ -6,13 +6,14 @@
     entity="insertExpense" keys="MOV_ID" header-actions="I;U" show-header-navigation="no" emitEvent="false"
     label-header="EXPENSES_FORM" (onFormModeChange)="addCurrentDate($event)"
     [confirm-exit]="(userHasMadeChanges) ? 'yes' : 'no'" (click)="resetCurrentDate($event)"
-    (onFormModeChange)="forceInsertMode($event)" (onInsert)="closeDialog($event)">
-    <div o-form-toolbar-buttons class="btn-cancel-cont">
+    (onFormModeChange)="forceInsertMode($event)" ignore-default-navigation="true">
+    <div o-form-toolbar-buttons class=" btn-cancel-cont">
       <button type="button" mat-stroked-button (click)="onClickCustomButtonCancel()">
         <mat-icon>close</mat-icon>
         <span>{{"CANCEL" | oTranslate}}</span>
       </button>
     </div>
+
     <o-column>
       <o-row>
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around stretch">
