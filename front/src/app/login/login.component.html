@@ -1,7 +1,5 @@
 <div class="full-page">
-  <div class="login-title">
-    <img src="../../assets/images/logo/login-title.png" alt="">
-  </div>
+
   <div class="container-main-form">
     <div class="image-container">
       <ng-container *ngIf="!showImage; else hiddenImage">
@@ -12,7 +10,9 @@
       <ng-template #hiddenImage>
         <img class="hidden-image" [src]="currentImage" alt="Hidden Image">
       </ng-template>
-
+    </div>
+    <div class="login-title">
+      <img src="../../assets/images/logo/login-title.png" alt="">
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-container">
       <mat-form-field>

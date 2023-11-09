@@ -45,7 +45,7 @@
 }
 
 @media (max-width: 1182px) {
-  .expenses-main-container {
+  .income-main-container {
     grid-template-columns: 1fr;
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import * as moment from "moment";
 import { Expression, FilterExpressionUtils } from "ontimize-web-ngx";
 import { ViewChildren, QueryList } from "@angular/core";
-import { ChartSeries, PieChartConfiguration } from "ontimize-web-ngx-charts";
 
 @Component({
   selector: "app-expenses-home",
@@ -34,9 +33,7 @@ export class ExpensesHomeComponent implements OnInit {
   createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
 
-    console.log("Entramos en fecha");
     values.forEach((fil) => {
-      console.log(fil.value);
       if (fil.value) {
         if (fil.attr === "date_range2") {
           filters.push(
@@ -51,7 +48,6 @@ export class ExpensesHomeComponent implements OnInit {
               fil.value.endDate
             )
           );
-          console.log(filters);
         }
 
         if (fil.attr === "CA_ID") {

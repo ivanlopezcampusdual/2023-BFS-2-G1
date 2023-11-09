@@ -9,12 +9,12 @@
         </div>
         <div fxLayout="row" class="balances-container">
           <div class="text">
-            <p fxLayoutAlign="end center" [appBalanceColor]="expenseBalance">{{TOTAL_EXPENSE| oTranslate}}: </p>
-            <p fxLayoutAlign="end center" [appBalanceColor]="incomeBalance">{{TOTAL_INCOME| oTranslate}}: </p>
+            <p fxLayoutAlign="end center" class="button-expense-color">{{TOTAL_EXPENSE| oTranslate}}: </p>
+            <p fxLayoutAlign="end center" class="button-income-color">{{TOTAL_INCOME| oTranslate}}: </p>
           </div>
           <div class="text numbers-expenses">
-            <p fxLayoutAlign="end center" [appBalanceColor]="expenseBalance">{{expenseBalance}}€</p>
-            <p fxLayoutAlign="end center" [appBalanceColor]="incomeBalance">{{incomeBalance}}€</p>
+            <p fxLayoutAlign="end center" class="button-expense-color">{{expenseBalance}}€</p>
+            <p fxLayoutAlign="end center" class="button-income-color">{{incomeBalance}}€</p>
           </div>
         </div>
 

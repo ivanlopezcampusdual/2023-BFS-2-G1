@@ -30,9 +30,7 @@ export class MovementColumnRendererComponent
       currencySimbol: "€",
       currencySymbolPosition: "right",
       decimalDigits: 2,
-      decimalSeparator: ",",
       grouping: true,
-      thousandSeparator: ".",
     };
   }
 

@@ -15,10 +15,12 @@ import java.util.Map;
 @Lazy
 @Service("CategoryService")
 public class CategoryService implements ICategoryService {
+
     @Autowired
     private CategoryDao categoryDao;
     @Autowired
     private DefaultOntimizeDaoHelper daoHelper;
+
     @Override
     public EntityResult categoryQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
         return this.daoHelper.query(this.categoryDao, keyMap, attrList);

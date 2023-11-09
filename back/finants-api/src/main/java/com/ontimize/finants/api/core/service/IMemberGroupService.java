@@ -11,5 +11,5 @@ public interface IMemberGroupService {
     public EntityResult memberGroupInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException;
     public EntityResult memberGroupUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
     public EntityResult memberGroupDelete(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
-    EntityResult getMemberByMgId(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
+    public EntityResult getMemberByMgId(Map<String, Object> keyMap) throws OntimizeJEERuntimeException;
 }

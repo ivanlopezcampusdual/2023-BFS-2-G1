@@ -23,7 +23,7 @@
   "DECLINE": "Rechazar",
 
   "EXPENSES": "Gastos",
-  "CATEGORIES": "Categorias",
+  "CATEGORIES": "Categorías",
   "CONCEPT": "Concepto",
   "AMOUNT": "Importe",
   "DATE": "Fecha",
@@ -51,6 +51,7 @@
   "ISADMIN": "Es administrador",
   "GR_GROUP": "Grupo",
   "GR_GROUP_NAME": "Nombre del grupo",
+  "GR_GROUP_NAME_DETAIL": "Nombre del grupo (para editar dar click sobre el nombre)",
   "GR_CREATION_DATE": "Fecha de creación",
   "GR_ADD_MEMBER": "Añadir participante",
   "GROUP_FORM": "Formulario de grupos",
@@ -59,7 +60,6 @@
   "DUPLICATED_MEMBER_ERROR": "Error: El usuario seleccionado ya es miembro del grupo",
   "EXPENSES_DETAILS": "Detalle de gastos",
   "MEMBER_BALANCE": "Balance",
-  "INCOMES_DETAILS": "Detalle de ingresos",
   "MOV_AMOUNT": "Importe",
   "MOV_CONCEPT": "Concepto",
   "INCOMES_DETAILS": "Detalle de ingresos",
@@ -80,9 +80,8 @@
   "TOTAL_EXPENSES_CATEGORIES": "Gastos del mes anterior por categorias",
   "GOALS": "Objetivos",
   "GOAL": "Objetivo",
+  "GOALS_NAME": "Nombre del objetivo",
+  "GOALS_NAMES": "Nombres de los objetivos",
   "GOALS_LIST": "Lista de objetivos",
-  "GOALS_FORM": "Formulario de objetivos",
-  "GOALS_NAME": "Nombre del objetivo"
-
-
+  "GOALS_FORM": "Formulario de objetivos"
 }
